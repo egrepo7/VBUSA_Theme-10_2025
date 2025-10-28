@@ -29,18 +29,18 @@ page_type: category
     {{#if category.meta_description}}
         <meta name="description" content="{{category.meta_description}}">
     {{else}}
-        <meta name="description" content="Professional volleyball net sleeves and protective covers. Ground sleeves for volleyball poles and safety padding to protect players and equipment.">
+        <meta name="description" content="Professional volleyball sleeves and sockets for ground installation. Indoor and outdoor ground sleeves for secure volleyball pole mounting.">
     {{/if}}
     
     {{#if category.meta_keywords}}
         <meta name="keywords" content="{{category.meta_keywords}}">
     {{else}}
-        <meta name="keywords" content="volleyball sleeves, ground sleeves, volleyball pole sleeves, volleyball net sleeves, volleyball protective covers">
+        <meta name="keywords" content="volleyball sleeves, ground sleeves, volleyball sockets, volleyball pole sleeves, indoor sleeves, outdoor sleeves">
     {{/if}}
     
     {{!-- Open Graph tags for social sharing --}}
-    <meta property="og:title" content="{{#if category.page_title}}{{category.page_title}}{{else}}Volleyball Sleeves & Protective Covers | VolleyballUSA{{/if}}">
-    <meta property="og:description" content="{{#if category.meta_description}}{{category.meta_description}}{{else}}Professional volleyball sleeves for ground installation and net protection. Quality covers for poles and equipment safety.{{/if}}">
+    <meta property="og:title" content="{{#if category.page_title}}{{category.page_title}}{{else}}Volleyball Sleeves & Sockets | VolleyballUSA{{/if}}">
+    <meta property="og:description" content="{{#if category.meta_description}}{{category.meta_description}}{{else}}Professional volleyball sleeves and sockets for ground installation. Indoor and outdoor options for secure pole mounting.{{/if}}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{urls.canonical}}">
     {{#if category.image}}
@@ -49,8 +49,8 @@ page_type: category
     
     {{!-- Twitter Card tags --}}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{#if category.page_title}}{{category.page_title}}{{else}}Volleyball Sleeves & Protective Covers{{/if}}">
-    <meta name="twitter:description" content="{{#if category.meta_description}}{{category.meta_description}}{{else}}Professional volleyball sleeves for ground installation and equipment protection.{{/if}}">
+    <meta name="twitter:title" content="{{#if category.page_title}}{{category.page_title}}{{else}}Volleyball Sleeves & Sockets{{/if}}">
+    <meta name="twitter:description" content="{{#if category.meta_description}}{{category.meta_description}}{{else}}Professional volleyball sleeves and sockets for ground installation.{{/if}}">
     {{#if category.image}}
     <meta name="twitter:image" content="{{getImage category.image 'zoom_size'}}">
     {{/if}}
@@ -76,13 +76,13 @@ page_type: category
     {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "{{#if category.page_title}}{{category.page_title}}{{else}}Volleyball Sleeves & Protective Covers{{/if}}",
-        "description": "{{#if category.meta_description}}{{category.meta_description}}{{else}}Professional volleyball sleeves for ground installation and equipment protection.{{/if}}",
+        "name": "{{#if category.page_title}}{{category.page_title}}{{else}}Volleyball Sleeves & Sockets{{/if}}",
+        "description": "{{#if category.meta_description}}{{category.meta_description}}{{else}}Professional volleyball sleeves and sockets for ground installation.{{/if}}",
         "url": "{{urls.canonical}}",
         "mainEntity": {
             "@type": "ItemList",
             "name": "Volleyball Sleeves Collection",
-            "description": "Professional volleyball sleeves and protective covers",
+            "description": "Professional volleyball sleeves and sockets",
             "numberOfItems": "20+"
         }
     }
@@ -104,14 +104,14 @@ page_type: category
          style="background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('{{getImage category.image 'zoom_size'}}') center/cover;">
         <div class="container">
             <div class="category-hero__content">
-                <h1 class="category-hero__title h1">Volleyball Sleeves & <strong>Protective Covers</strong></h1>
-                <div class="category-hero__subtitle">Essential volleyball accessories for safe and professional installations. Ground sleeves for secure pole mounting and protective covers to extend equipment life and ensure player safety.</div>
+                <h1 class="category-hero__title h1">Volleyball Sleeves & <strong>Sockets</strong></h1>
+                <div class="category-hero__subtitle">Essential volleyball accessories for secure ground installations. Professional-grade sleeves and sockets for indoor and outdoor volleyball pole mounting systems.</div>
                 
                 <!-- Category Navigation Buttons -->
-                <div class="category-hero__cta-group">
-                    <a href="#ground-sleeves-section" class="button button--white-ghost category-hero__cta-btn scroll-to-section">Shop Ground Sleeves</a>
-                    <a href="#protective-covers-section" class="button button--white-ghost category-hero__cta-btn scroll-to-section">Shop Protective Covers</a>
-                </div>
+                {{!-- <div class="category-hero__cta-group">
+                    <a href="#indoor-sleeves-section" class="button button--white-ghost category-hero__cta-btn scroll-to-section">Shop Indoor Sleeves</a>
+                    <a href="#outdoor-sleeves-section" class="button button--white-ghost category-hero__cta-btn scroll-to-section">Shop Outdoor Sleeves</a>
+                </div> --}}
                 
                 <!-- Scroll Down Arrow -->
                 <div class="category-hero__scroll-arrow">
@@ -130,33 +130,33 @@ page_type: category
 <!-- Sleeves Subcategories Section -->
 <section class="category-showcase" id="sleeves-section">
     <div class="container">
-        <h2 class="category-showcase__title">VOLLEYBALL SLEEVES & COVERS</h2>
+        <h2 class="category-showcase__title">VOLLEYBALL SLEEVES & SOCKETS</h2>
         
         <div class="category-showcase__grid category-showcase__grid--two-cards">
-            <!-- Ground Sleeves -->
-            <a href="/sleeves/ground-sleeves" class="category-showcase__card category-showcase__card--clickable" id="ground-sleeves-section">
-                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/sleeves/ground-sleeves.jpg'}}');">
+            <!-- Indoor Sleeves -->
+            <a href="/sleeves/indoor-sleeves-floor-anchors/" class="category-showcase__card category-showcase__card--clickable" id="indoor-sleeves-section">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/sleeves/indoor-sleeves.webp'}}');">
                     <div class="category-showcase__overlay">
                         <div class="category-showcase__content">
-                            <h3 class="category-showcase__card-title">GROUND SLEEVES</h3>
-                            <p class="category-showcase__card-subtitle">Essential ground sleeves for secure volleyball pole installation. Professional-grade materials for permanent and temporary setups.</p>
+                            <h3 class="category-showcase__card-title">INDOOR SLEEVES & FLOOR ANCHORS</h3>
+                            <p class="category-showcase__card-subtitle">Professional ground sleeves for indoor volleyball pole installation. Designed for gym floors and indoor court systems.</p>
                             <span class="button button--primary">
-                                SHOP GROUND SLEEVES
+                                SHOP INDOOR SLEEVES
                             </span>
                         </div>
                     </div>
                 </div>
             </a>
             
-            <!-- Protective Covers -->
-            <a href="/sleeves/protective-covers" class="category-showcase__card category-showcase__card--clickable" id="protective-covers-section">
-                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/sleeves/protective-covers.jpg'}}');">
+            <!-- Outdoor Sleeves -->
+            <a href="/sleeves/outdoor-sleeves" class="category-showcase__card category-showcase__card--clickable" id="outdoor-sleeves-section">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/sleeves/outdoor-sleeves.webp'}}');">
                     <div class="category-showcase__overlay">
                         <div class="category-showcase__content">
-                            <h3 class="category-showcase__card-title">PROTECTIVE COVERS</h3>
-                            <p class="category-showcase__card-subtitle">Safety padding and protective covers for volleyball poles and equipment. Prevent injuries and extend equipment life.</p>
+                            <h3 class="category-showcase__card-title">OUTDOOR SLEEVES</h3>
+                            <p class="category-showcase__card-subtitle">Durable ground sleeves for outdoor volleyball installations. Weather-resistant designs for parks and recreational facilities.</p>
                             <span class="button button--primary">
-                                SHOP PROTECTIVE COVERS
+                                SHOP OUTDOOR SLEEVES
                             </span>
                         </div>
                     </div>
@@ -167,10 +167,21 @@ page_type: category
 </section>
 
 <!-- Featured Products Section -->
-<section class="featured-products-section featured-products-section--sleeves">
+<section class="featured-products-section featured-products-section--indoor-sleeves">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Popular Volleyball Sleeves & Covers</h2>
+            <h2 class="section-title">Popular Indoor Sleeves</h2>
+        </div>
+        
+        {{!-- Products will be loaded via JavaScript using specific product IDs --}}
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="featured-products-section featured-products-section--outdoor-sleeves">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Popular Outdoor Sleeves</h2>
         </div>
         
         {{!-- Products will be loaded via JavaScript using specific product IDs --}}
@@ -197,18 +208,18 @@ page_type: category
             
             // Configuration for subcategories
             subcategories: {
-                groundSleeves: {
+                indoorSleeves: {
                     // Specify exact product IDs in your preferred display order
-                    productIds: [300, 301, 302, 303, 304], // Replace with your actual ground sleeve product IDs
+                    productIds: [520, 379, 554, 734, 240], // Replace with your actual indoor sleeve product IDs
                     sortBy: 'price-low', // manual, name, price-low, price-high, newest, oldest
-                    sectionClass: 'featured-products-section--sleeves',
+                    sectionClass: 'featured-products-section--indoor-sleeves',
                     products: []
                 },
-                protectiveCovers: {
-                    // Specify exact product IDs you want to show for protective covers
-                    productIds: [310, 311, 312, 313, 314], // Replace with your actual protective cover product IDs
+                outdoorSleeves: {
+                    // Specify exact product IDs you want to show for outdoor sleeves
+                    productIds: [878, 735, 520, 369, 554], // Replace with your actual outdoor sleeve product IDs
                     sortBy: 'price-low', // manual, name, price-low, price-high, newest, oldest
-                    sectionClass: 'featured-products-section--sleeves',
+                    sectionClass: 'featured-products-section--outdoor-sleeves',
                     products: []
                 }
             },
@@ -467,8 +478,8 @@ page_type: category
             run: async () => {
                 // Fetch both subcategories
                 await Promise.all([
-                    volleyballSleeves.fetchSubcategoryProducts('groundSleeves'),
-                    volleyballSleeves.fetchSubcategoryProducts('protectiveCovers')
+                    volleyballSleeves.fetchSubcategoryProducts('indoorSleeves'),
+                    volleyballSleeves.fetchSubcategoryProducts('outdoorSleeves')
                 ]);
             }
         };

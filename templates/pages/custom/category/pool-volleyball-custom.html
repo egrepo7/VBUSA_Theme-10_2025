@@ -175,7 +175,16 @@ page_type: category
     </div>
 </section>
 
-
+<!-- Popular Pool Systems Section -->
+<section class="featured-products-section featured-products-section--pool-systems">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Popular Pool Systems</h2>
+        </div>
+        
+        {{!-- Products will be loaded via JavaScript using specific product IDs --}}
+    </div>
+</section>
 
 <!-- Buying Guide Section - Pool Volleyball -->
 <section class="buying-guide-section">
@@ -209,6 +218,13 @@ page_type: category
                     productIds: [210, 211, 212, 213, 214], // Replace with your actual pool volleyball system product IDs
                     sortBy: 'price-low', // manual, name, price-low, price-high, newest, oldest
                     sectionClass: 'featured-products-section--systems',
+                    products: []
+                },
+                poolSystems: {
+                    // Specify exact product IDs you want to show for popular pool systems  
+                    productIds: [390, 509, 344, 264, 1675], // Replace with your actual popular pool system product IDs
+                    sortBy: 'price-low', // manual, name, price-low, price-high, newest, oldest
+                    sectionClass: 'featured-products-section--pool-systems',
                     products: []
                 },
                 balls: {
@@ -476,6 +492,7 @@ page_type: category
                 await Promise.all([
                     poolVolleyball.fetchSubcategoryProducts('nets'),
                     poolVolleyball.fetchSubcategoryProducts('systems'),
+                    poolVolleyball.fetchSubcategoryProducts('poolSystems'),
                     poolVolleyball.fetchSubcategoryProducts('balls')
                 ]);
             }
