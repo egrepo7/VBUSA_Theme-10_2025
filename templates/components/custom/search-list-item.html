@@ -1,0 +1,55 @@
+{{#if settings.data_tag_enabled}}    <article class="listItem listItem--detailed"            data-event-type="{{event}}"            data-entity-id="{{id}}"            data-subcategory-id="{{#each category}}{{#if @last}}{{trim this}}{{else}}{{trim this}},{{/if}}{{/each}}"            data-position="{{position}}"            data-name="{{name}}"            data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"            data-product-brand="{{brand.name}}"            data-product-price="{{#or customer (unless theme_settings.restrict_to_login)}}{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}{{else}}{{lang 'common.login_for_pricing'}}{{/or}}"    >{{else}}    <article class="listItem listItem--detailed"             data-entity-id="{{id}}"            data-subcategory-id="{{#each category}}{{#if @last}}{{trim this}}{{else}}{{trim this}},{{/if}}{{/each}}"            >{{/if}}    <figure class="listItem-figure">        <a href="{{url}}"           class="listItem-figure__link"           aria-label="{{> components/products/product-info}}"           {{#if settings.data_tag_enabled}}           data-event-type="product-click"           {{/if}}        >            {{#if stock_level '===' 0}}                {{#if theme_settings.pdp_sold_out_label '===' ''}}                    {{> components/products/product-badge                        badge-type='sold-out'                        badge_view=theme_settings.product_sold_out_badges                        badge_label=(lang "page_builder.pdp_sold_out_label")                    }}                {{else}}                    {{> components/products/product-badge                        badge-type='sold-out'                        badge_view=theme_settings.product_sold_out_badges                        badge_label=theme_settings.pdp_sold_out_label                    }}                {{/if}}            {{else}}                {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}                    {{#if theme_settings.pdp_sale_badge_label '===' ''}}                        {{> components/products/product-badge                            badge-type='sale'                            badge_view=theme_settings.product_sale_badges                            badge_label=(lang "page_builder.pdp_sale_badge_label")                        }}                    {{else}}                        {{> components/products/product-badge                            badge-type='sale'                            badge_view=theme_settings.product_sale_badges                            badge_label=theme_settings.pdp_sale_badge_label                        }}                    {{/if}}                {{/or}}            {{/if}}            <div class="list-img-container">                {{> components/common/responsive-img                    image=image                    class="listItem-image"                    fallback_size=theme_settings.productgallery_size                    lazyload=theme_settings.lazyload_mode                    default_image=theme_settings.default_image_product                    otherAttributes='loading="lazy" decoding="async"'                }}            </div>        </a>    </figure>    <div class="listItem-body">        <div class="listItem-content">            <div class="listItem-details">                {{#if brand.name}}                    <p class="listItem-brand">{{brand.name}}</p>                {{/if}}                <h3 class="listItem-title">                    <a href="{{url}}"                       {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}                    >                        {{name}}                    </a>                </h3>                {{!-- Product Description with Rich Content --}}                <div class="listItem__description listItem__description--detailed">                    {{#if description}}                        {{{description}}}                    {{else}}                        {{#if summary}}                            <p>{{summary}}</p>                        {{/if}}                    {{/if}}                </div>                {{!-- Product Features/Specifications if available --}}                {{#contains (toLowerCase (join (pluck custom_fields 'name') ',')) 'spec|'}}                    <div class="listItem__specifications">                        <h4>Specifications:</h4>                        <ul>                            {{#each custom_fields}}                                {{#contains (toLowerCase name) "spec|"}}                                    <li><strong>{{trim (last (split name '|'))}}:</strong> {{value}}</li>                                {{/contains}}                            {{/each}}                        </ul>                    </div>
+                {{/contains}}
+
+                <div class="listItem-rating">
+                    {{#and rating show_rating}}
+                        <span class="rating--small">
+                            {{> components/products/ratings rating_target=name rating=rating}}
+                        </span>
+                    {{/and}}
+                </div>
+            </div>
+
+            <div class="listItem-actions">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{#if price}}
+                        <div class="listItem-price">{{> components/products/price price=price}}</div>
+                    {{/if}}
+                    
+                    <div class="card-atc">
+                        <div class="card-atc__section card-atc__section--action">
+                            {{#if show_cart_action}}
+                                {{#if has_options}}
+                                    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="card-atc__button button button--primary" data-product-id="{{id}}">
+                                        {{lang 'products.choose_options'}}
+                                    </a>
+                                {{/if}}
+                                {{#if pre_order}}
+                                    <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="card-atc__button button button--primary">
+                                        {{lang 'products.pre_order'}}
+                                    </a>
+                                {{/if}}
+                                {{#if add_to_cart_url}}
+                                    <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="card-atc__button button button--primary">
+                                        {{lang 'products.add_to_cart'}}
+                                    </a>
+                                {{/if}}
+                                {{#if out_of_stock_message}}
+                                    <a href="{{url}}" data-event-type="product-click" class="card-atc__button button button--small" data-product-id="{{id}}">
+                                        {{out_of_stock_message}}
+                                    </a>
+                                {{/if}}
+                            {{else}}
+                                <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="card-atc__button button button--primary" data-product-id="{{id}}">
+                                    VIEW PRODUCT
+                                </a>
+                            {{/if}}
+                        </div>
+                    </div>
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
+        </div>
+    </div>
+</article>

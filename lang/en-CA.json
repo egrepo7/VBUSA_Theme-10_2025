@@ -1,0 +1,181 @@
+{
+    "header": {
+        "welcome_back": "Good day, {name}",
+        "skip_to_main": "Skip to main content"
+    },
+    "search": {
+        "errorMessage": "Sorry, an error occurred while searching."
+    },
+    "cart": {
+        "checkout": {
+            "title": "Checkout",
+            "item": "Item",
+            "subtotal": "Subtotal"
+        },
+        "label": "Shopping Cart",
+        "reconfigure_product": "Reconfigure Product",
+        "preview": {
+            "checkout_now": "Checkout Now"
+        },
+        "added_to_cart": {
+            "what_next": "What would you like to do next?"
+        },
+        "shipping_estimator": {
+            "add_info": "Add shipping information"
+        },
+        "coupons": {
+            "add_coupon": "Add Coupon"
+        },
+        "gift_wrapping": {
+            "title": "Gift Wrapping"
+        },
+        "gift_certificates": {
+            "gift_certificate": "Gift Certificate"
+        }
+    },
+    "brand": {
+        "label": "Brand"
+    },
+    "custom": {
+        "blog": {
+            "top": {
+                "image-alt-text": "Blog header"
+            },
+            "sidebar": {
+                "newsletter": {
+                    "heading": "Newsletter"
+                }
+            },
+            "share": "Share"
+        },
+        "home": {
+            "manfactured-heading": "Manufactured",
+            "hero-video": {
+                "image-alt-text": "Hero video"
+            },
+            "court-builder-cta": {
+                "image-alt-text": "Court builder"
+            },
+            "court-construction-cta": {
+                "image": "Court construction"
+            },
+            "blog": {
+                "title": "Latest Blog Posts"
+            },
+            "custom-printed-cta": {
+                "page-heading": "Custom Printed Products"
+            },
+            "order-callouts": {
+                "heading": "Why Choose Us"
+            },
+            "overlap-cta": {
+                "image": "Overlap CTA"
+            },
+            "testimonials-carousel": {
+                "page-heading": "Customer Testimonials"
+            }
+        },
+        "header": {
+            "static": {
+                "navigation-list": {
+                    "shop-all": {
+                        "name": "Shop All"
+                    }
+                }
+            }
+        },
+        "clients": {
+            "title": "Our Clients"
+        },
+        "about-page": {
+            "hero": {
+                "title": "About Us"
+            }
+        }
+    },
+    "checkout": {
+        "title": "Checkout"
+    },
+    "forms": {
+        "contact_us": {
+            "successful": "Thank you for contacting us!",
+            "full_name": "Full Name"
+        },
+        "new_password": {
+            "heading": "New Password"
+        },
+        "address": {
+            "edit": {
+                "heading": "Edit Address"
+            }
+        },
+        "payment_methods": {
+            "add": {
+                "heading": "Add Payment Method"
+            },
+            "edit": {
+                "heading": "Edit Payment Method"
+            }
+        },
+        "inbox": {
+            "send_message": "Send Message"
+        },
+        "search": {
+            "title": "Search",
+            "search": "Search"
+        }
+    },
+    "compare": {
+        "header": "Compare Products"
+    },
+    "products": {
+        "related_products": "Related Products",
+        "choose_options": "Choose Options",
+        "quantity": "Quantity",
+        "description": "Description",
+        "bulk_pricing": {
+            "title": "Bulk Pricing"
+        },
+        "featured": "Featured",
+        "new": "New",
+        "including_tax": "Including Tax",
+        "reviews": {
+            "rating_aria_label": "Rating",
+            "header": "Reviews",
+            "write_a_review": "Write a Review"
+        },
+        "top": "Top Products",
+        "file_option_set": "File Options",
+        "none": "None",
+        "swatch_option_announcement": "Option selected",
+        "sku": "SKU",
+        "videos": {
+            "header": "Product Videos"
+        },
+        "card_default_image_alt": "Product image"
+    },
+    "common": {
+        "login_for_pricing": "Login for pricing",
+        "compare": "Compare",
+        "month": "Month",
+        "previous": "Previous",
+        "login": "Login",
+        "currency": "Currency",
+        "search": "Search",
+        "store_credit_overview": "Store Credit",
+        "required": "Required",
+        "close": "Close"
+    },
+    "footer": {
+        "title": "Footer",
+        "navigate": "Navigate"
+    },
+    "newsletter": {
+        "subscribe": "Subscribe",
+        "subscribed_heading_error": "Subscription Error",
+        "unsubscribed_heading": "Unsubscribed"
+    },
+    "errors": {
+        "shipping_quote_failure": "Unable to get shipping quote"
+    }
+}

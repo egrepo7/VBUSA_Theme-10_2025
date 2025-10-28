@@ -1,0 +1,180 @@
+// =============================================================================
+// PRODUCT VIEW (CSS)
+// =============================================================================
+
+
+// Product view layout
+// -----------------------------------------------------------------------------
+
+.productView {
+    @include grid-row($behavior: "nest");
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: -(spacing("base"));
+    margin-right: -(spacing("base"));
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+
+    .modal & {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+}
+
+.productView--quickView {
+    .socialLinks-item--print {
+        display: none;
+    }
+}
+
+.productView-images {
+    @include grid-column(12);
+    padding-left: spacing("base");
+    padding-right: spacing("base");
+    overflow: hidden;
+    position: relative;
+
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.productView-details {
+    @include grid-column(12);
+    padding-left: spacing("base");
+    padding-right: spacing("base");
+
+    @include breakpoint("medium") {
+        clear: right;
+        float: right;
+        width: grid-calc(6, $total-columns);
+    }
+
+    .productView--quickView & {
+        position: relative;
+    }
+
+    &.product-data {
+        order: -1;
+    }
+}
+
+.productView-description {
+    @include grid-column(12);
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    z-index: 1;
+
+    .productView-title {
+        border-bottom: container("border");
+        margin-bottom: spacing("base");
+    }
+
+    .productView-description {
+        @include breakpoint("medium") {
+            clear: both;
+            float: none;
+            width: 100%;
+        }
+    }
+}
+
+// ============================================================================
+// PRODUCT VIEW LAYOUT - CONSOLIDATED IMAGE STYLES
+// ============================================================================
+
+// Base styles for all product images
+.productView-img-container,
+.productView-image.main-image-desktop img {
+    max-width: 100%;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.media-panel, 
+.media-content {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+// Main product images container - unified styles
+.productView-images {
+    .productView-image,
+    .productView-img-container {
+        // Container setup for proper image display
+        min-height: 400px; // CLS prevention and consistent layout
+        overflow: visible; // Allow full image display
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative; // Maintain positioning context
+        
+        // Remove aspect ratio hack
+        &::after {
+            display: none;
+        }
+        
+        img {
+            max-width: 100%;
+            width: auto;
+            height: auto; // Critical: let images determine natural height
+            object-fit: contain;
+            object-position: center;
+            display: block;
+            position: static; // Override any absolute positioning
+            margin: 0 auto;
+        }
+    }
+}
+
+// Mobile-specific adjustments
+@media (max-width: 768px) {
+    .productView-images {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .productView-image,
+        .productView-img-container {
+            margin: 0 auto;
+            text-align: center;
+            min-height: 300px; // Smaller minimum for mobile
+        }
+    }
+}
+
+// Center the main image slick carousel on mobile
+.main-image-slick {
+    text-align: center;
+    
+    .slick-track,
+    .slick-slide {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .productView-image,
+    .productView-img-container {
+      // Remove max-height constraint to prevent clipping
+      min-height: 300px;
+    }
+    
+    img {
+      margin: 0 auto;
+      max-width: 100%;
+      // Remove max-height: 100% to allow full image display
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+    }
+}

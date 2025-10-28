@@ -1,0 +1,44 @@
+{
+  "buying-guides": {
+    "volleyball-nets": {
+      "image": "assets/img/categories/net-buying-guide.png",
+      "title": "BUYING GUIDE: WHAT YOU NEED TO KNOW",
+      "subtitle": "Learn the differences between vinyl weights, materials, and add-on features to find the perfect net for your needs.",
+      "ctaText": "READ THE GUIDE",
+      "ctaEnabled": true,
+      "ctaUrl": "/volleyball-nets-buying-guide/"
+    },
+    "volleyball-shoes": {
+      "image": "assets/img/categories/shoes-buying-guide.png",
+      "title": "SHOE BUYING GUIDE",
+      "subtitle": "PERFORMANCE FOOTWEAR FOR EVERY LEVEL OF PLAY - FROM RECREATIONAL TO PROFESSIONAL.",
+      "ctaText": "COMING SOON",
+      "ctaEnabled": false,
+      "ctaUrl": "/volleyball-shoes-guide"
+    },
+    "volleyballs": {
+      "image": "assets/img/categories/ball-buying-guide.png",
+      "title": "VOLLEYBALL BUYING GUIDE",
+      "subtitle": "OFFICIAL GAME BALLS AND PRACTICE VOLLEYBALLS FOR ALL SKILL LEVELS.",
+      "ctaText": "COMING SOON",
+      "ctaEnabled": false,
+      "ctaUrl": "/volleyballs-guide"
+    },
+    "volleyball-apparel": {
+      "image": "assets/img/categories/apparel-buying-guide.png",
+      "title": "APPAREL BUYING GUIDE",
+      "subtitle": "PERFORMANCE WEAR DESIGNED FOR COMFORT AND MOBILITY ON THE COURT.",
+      "ctaText": "COMING SOON",
+      "ctaEnabled": false,
+      "ctaUrl": "/volleyball-apparel-guide"
+    },
+    "volleyball-accessories": {
+      "image": "assets/img/categories/accessories-buying-guide.png",
+      "title": "ACCESSORIES BUYING GUIDE",
+      "subtitle": "ESSENTIAL GEAR AND ACCESSORIES FOR TRAINING AND COMPETITION.",
+      "ctaText": "COMING SOON",
+      "ctaEnabled": false,
+      "ctaUrl": "/volleyball-accessories-guide"
+    }
+  }
+}

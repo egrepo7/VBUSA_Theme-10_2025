@@ -1,0 +1,14 @@
+<form class="form blog-sidebar__form" id="blog-sidebar-subscribe" action="{{urls.subscribe.action}}" method="post">
+    <fieldset class="form-fieldset">
+        <input type="hidden" name="action" value="subscribe">
+        <input type="hidden" name="nl_first_name" value="bc">
+        <input type="hidden" name="check" value="1">
+        <div class="form-field">
+            <label class="form-label is-srOnly" for="nl_email">{{lang 'custom.blog.sidebar.newsletter.heading'}}</label>
+            <div class="form-prefixPostfix wrap">
+                <input class="form-input" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'custom.blog.sidebar.newsletter.input-placeholder'}}">
+                <input class="button button--primary form-prefixPostfix-button--postfix" type="submit" value="{{lang 'custom.blog.sidebar.newsletter.button-text'}}">
+            </div>
+        </div>
+    </fieldset>
+</form>

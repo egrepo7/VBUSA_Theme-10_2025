@@ -1,0 +1,708 @@
+// /* ==========================================================
+// ## These match up directly with the ITS Styleguide
+// ## Colors shouldn't need to be changed but the option
+// ## is available to you.
+// ========================================================== */
+
+/* ==========================================================
+ * ## Containers
+ * ========================================================== */
+$custom-prodGrid-break: 650px;
+
+.container {
+    @include container;
+}
+
+.page,
+.main {
+    margin: 0;
+}
+
+/* ==========================================================
+ * ## HTML Elements
+ * ========================================================== */
+
+.h1,
+h1 {
+    color: $h1-color;
+    font-size: $fontSize-largest--mobile;
+    font-family: $font-family--heading;
+    font-weight: $h1-font-weight;
+    line-height: 50px;
+    text-transform: uppercase;
+
+    @include breakpoint('medium') {
+        font-size: 2.5rem;
+    }
+}
+
+.h2,
+h2 {
+    color: $h2-color;
+    font-size: $fontSize-larger--mobile;
+    font-family: $font-family--heading;
+    font-weight: $h2-font-weight;
+    text-transform: uppercase;
+
+    @include breakpoint('medium') {
+        font-size: $fontSize-larger;
+    }
+}
+
+.h3,
+h3 {
+    color: $h3-color;
+    font-size: $fontSize-large--mobile;
+    font-family: $font-family--heading;
+    font-weight: $h3-font-weight;
+    text-transform: uppercase;
+
+    @include breakpoint('medium') {
+        font-size: $fontSize-large;
+    }
+}
+
+.h4,
+h4 {
+    color: $h4-color;
+    font-size: $fontSize-medium--mobile;
+    font-family: $font-family--heading;
+    font-weight: $h4-font-weight;
+    
+
+    @include breakpoint('medium') {
+        // 801px and up
+        font-size: $fontSize-small;
+    }
+}
+
+.h5,
+h5 {
+    color: $h5-color;
+    font-size: $fontSize-smaller;
+    font-family: $font-family--heading;
+    font-weight: $h5-font-weight;
+    text-transform: none;
+}
+
+.h6,
+h6 {
+    color: $h6-color;
+    font-size: $fontSize-smallest;
+    font-family: $font-family--heading;
+    font-weight: $h6-font-weight;
+    text-transform: none;
+}
+
+p,
+.p {
+
+    color: $p-color;
+    font-size: $p-font-size;
+    font-family: $p-font-family;
+    font-weight: $p-font-weight;
+}
+
+a {
+    color: $a-color;
+    font-size: $a-font-size;
+    font-family: $a-font-family;
+    font-weight: $a-font-weight;
+    text-decoration: $a-text-decoration;
+
+    &:active,
+    &:focus,
+    &:hover {
+        color: $a-color--hover;
+        text-decoration: $a-text-decoration--alt;
+    }
+}
+
+/* ==========================================================
+ * ## Buttons
+ * ========================================================== */
+
+.button {
+    border-radius: $button-border-radius-primary;
+    border-width: $button-border-width-primary;
+    border-style: $button-border-style-primary;
+
+    &.button--primary {
+        font-size: $button-font-size-primary;
+        color: $button-text-color-primary;
+        background-color: $button-bg-color-primary;
+        border-color: $button-border-color-primary;
+        border-radius: $button-border-radius-primary;
+        border-width: $button-border-width-primary;
+        border-style: $button-border-style-primary;
+        padding: $button-padding-primary;
+        font-weight: $button-font-weight;
+        text-transform: uppercase;
+
+        &:hover,
+        &:focus {
+            background-color: $button-bg-color-primary--hover;
+            color: $button-text-color-primary--hover;
+            border-color: $button-border-color-primary--hover;
+            text-decoration: $button-text-decoration-primary--hover;
+        }
+
+        &:active {
+            background-color: $button-bg-color-primary--active;
+            color: $button-text-color-primary--active;
+            border-color: $button-border-color-primary--active;
+            text-decoration: $button-text-decoration-primary--active;
+        }
+        
+        // Responsive sizing for better mobile and tablet experience
+        @media (max-width: 1024px) and (min-width: 769px) {
+            padding: 0.4rem 0.7rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.2px;
+        }
+        
+        @media (max-width: 768px) {
+            padding: 0.55rem 1rem;
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 480px) {
+            padding: 0.45rem 0.8rem;
+            font-size: 0.75rem;
+        }
+    }
+
+    &.button--secondary {
+        font-size: $button-font-size-secondary;
+        color: $button-text-color-secondary;
+        background-color: $button-bg-color-secondary;
+        border-color: $button-border-color-secondary;
+        border-radius: $button-border-radius-secondary;
+        border-width: $button-border-width-secondary;
+        border-style: $button-border-style-secondary;
+        padding: $button-padding-secondary;
+        font-weight: $button-font-weight;
+        text-transform: uppercase;
+
+
+        &:hover,
+        &:focus {
+            background-color: $button-bg-color-secondary--hover;
+            color: $button-text-color-secondary--hover;
+            border-color: $button-border-color-secondary--hover;
+            text-decoration: $button-text-decoration-secondary--hover;
+        }
+
+        &:active {
+            background-color: $button-bg-color-secondary--active;
+            color: $button-text-color-secondary--active;
+            border-color: $button-border-color-secondary--active;
+            text-decoration: $button-text-decoration-secondary--active;
+        }
+    }
+
+    &.button--small {
+        font-size: $button-font-size-small;
+        border-color: $button-border-color-small;
+        border-radius: $button-border-radius-small;
+        border-width: $button-border-width-small;
+        border-style: $button-border-style-small;
+        padding: $button-padding-small;
+        color: $color-primary;
+        font-weight: $button-font-weight;
+        text-transform: uppercase;
+
+
+
+        &:hover,
+        &:focus {
+            color: $button-text-color-small--hover;
+            text-decoration: $button-text-decoration-small--hover;
+            background-color: $button-bg-color-small--hover;
+        }
+
+        &:active {
+            color: $button-text-color-small--active;
+            text-decoration: $button-text-decoration-small--active;
+            background-color: $button-bg-color-small--active;
+        }
+    }
+
+    // Mobile responsive button sizing
+    @media (max-width: 768px) {
+        &.button--primary,
+        &.button--secondary {
+            padding: 0.75rem 1rem; // Reduced from 1.145rem 1.5rem
+            font-size: 12px; // Slightly smaller font
+        }
+        
+        &.button--small {
+            padding: 0.5rem 0.75rem; // Even smaller for small buttons
+            font-size: 11px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        &.button--primary,
+        &.button--secondary {
+            padding: 0.625rem 0.875rem; // Even more compact on very small screens
+            font-size: 11px;
+        }
+        
+        &.button--small {
+            padding: 0.4rem 0.625rem;
+            font-size: 10px;
+        }
+    }
+
+    &.button--white-ghost {
+        font-size: $button-font-size-secondary;
+        color: white;
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: $button-border-radius-primary;
+        padding: $button-padding-secondary;
+        font-weight: $button-font-weight;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+
+        &:hover,
+        &:focus {
+            background-color: white;
+            color: #333333;
+            border-color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+        &:active {
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #333333;
+            border-color: white;
+            text-decoration: none;
+            transform: translateY(0);
+        }
+
+        // Responsive styles - match theme button patterns
+        @media (max-width: 768px) {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.85rem;
+            min-width: 140px;
+        }
+        
+        @media (max-width: 480px) {
+            padding: 0.75rem 1rem;
+            font-size: 0.8rem;
+            min-width: 120px;
+            width: auto;
+            max-width: 200px;
+        }
+    }
+
+    &.card-figcaption-button {
+        width: $button-fig-caption-width;
+    }
+}
+
+
+/* ==========================================================
+ * ## Form Elements
+ * ========================================================== */
+
+.form-input {
+    color: $input-text-color;
+    background: $input-bg-color;
+    border: $input-border;
+    border-color: #e6e6e6;
+    border-radius: $input-border-radius;
+
+    &:focus {
+        background: $input-bg-color--focus;
+        border: $input-border--focus;
+        border-radius: $input-border-radius;
+    }
+}
+
+.form-select {
+    border-radius: 0;
+    border-color: $color-alt--hover;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI1IiB2aWV3Qm94PSIwIDAgOCA1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEuMDQwMzEgMEMwLjYyMTA1OSAwIDAuMzg3OTczIDAuNDg0OTY2IDAuNjQ5ODc4IDAuODEyMzQ4TDMuNjA5NTcgNC41MTE5NkMzLjgwOTczIDQuNzYyMTYgNC4xOTAyNyA0Ljc2MjE2IDQuMzkwNDMgNC41MTE5Nkw3LjM1MDEyIDAuODEyMzQ4QzcuNjEyMDMgMC40ODQ5NjYgNy4zNzg5NCAwIDYuOTU5NjkgMEwxLjA0MDMxIDBaIiBmaWxsPSIjMzMzMzMzIi8+Cjwvc3ZnPgo=');
+    background-size: auto;
+    background-position-y: center;
+    height: 3.5rem;
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.form-select--small,
+.form-select--date {
+    font-size: $fontSize-base;
+}
+
+
+// Category page sort by dropdown
+.actionBar-section .form-label {
+    font-size: $fontSize-base;
+}
+
+// Increment
+.cart-item-block.cart-item-info.cart-item-quantity,
+.form-field.form-field--increments {
+    .form-increment {
+        display: flex;
+    }
+
+    .button {
+        border-radius: 0;
+        border: $input-border;
+        border-color: #E6E6E6;
+        height: 3.5rem;
+        width: 48px;
+
+        .icon {
+            width: 2rem;
+            height: 1.75rem;
+        }
+    }
+
+    .form-input--incrementTotal {
+        border-radius: 0;
+        border: $input-border;
+        height: 3.5rem;
+        border-left: none;
+        border-right: none;
+        width: 67px;
+        border-color: #E6E6E6;
+        color: $color-alt;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    svg {
+        fill: $color-primary;
+    }
+}
+
+.cart-item-block.cart-item-info.cart-item-quantity .form-input--incrementTotal {
+    margin: 0;
+}
+
+
+/* ==========================================================
+ * ## Misc
+ * ========================================================== */
+
+
+.navList-action,
+.navPages-action {
+    font-size: $fontSize-base;
+}
+
+.icon {
+    height: $icon-height;
+    width: $icon-width;
+}
+
+.icon svg {
+    fill: $icon-svg-color;
+    height: $icon-svg-height;
+    width: $icon-svg-width;
+}
+
+// Breadcrumb styles moved to unified section above
+
+.card-title {
+    font-size: $fontSize-base;
+}
+
+.productView-title {
+    font-size: $fontSize-largest--mobile;
+
+    @include breakpoint('medium') {
+        font-size: $fontSize-largest;
+    }
+}
+
+.productView-brand {
+    font-size: $fontSize-larger--mobile;
+
+    @include breakpoint('medium') {
+        font-size: $fontSize-larger;
+    }
+}
+
+.productView-info-name {
+    font-size: $fontSize-base;
+}
+
+// ALERT BOX
+.alertBox--info {
+    background-color: $color-secondary--hover !important;
+}
+
+/* ==========================================================
+ * ## Product Card
+ * ========================================================== */
+
+ .productCarousel-slide, 
+ .productGrid .product {
+     border: $input-border;
+     border-radius: 4px;
+     background-color: white;
+     border-color: $color-alt--hover;
+     padding: 1rem;
+     transition: box-shadow 0.25s;
+ 
+     &:hover,
+     &:focus {
+         box-shadow: 6px 8px 15px rgba(0, 0, 0, 0.1);
+     }
+ 
+     .card {
+         margin-bottom: 0;
+         display: flex;
+         flex-direction: column;
+         height: 100%;
+     }
+
+     .card-img-container {
+         max-height: 200px;
+     }
+     
+     .card-body {
+         text-align: center;
+         margin-top: auto;
+     }
+
+     .card-text {
+         display: flex;
+         justify-content: center;
+         margin-bottom: 24px;
+     }
+ 
+     .card-text--brand {
+         color: $color-secondary;
+         letter-spacing: -0.01em;
+         margin-bottom: 8px;
+     }
+ 
+     .card-title {
+         line-height: 19.36px;
+         letter-spacing: -0.02em;
+         margin-bottom: 8px;
+     }
+ 
+     .card-title a {
+        @extend .h4;
+         color: inherit;
+         margin-bottom: 24px;
+         line-height: 21.78px;
+     }
+ 
+     .card--inventory {
+         color: #989898;
+         margin-bottom: 1.85rem;
+     }
+ 
+     .price-section .price {
+         @extend .h4;
+         color: $color-primary;
+        //  font-family: 'Inter';
+         margin-right: 8px;
+     }
+
+     .rrp-price--withTax > span:first-child {
+         display: none;
+     }
+
+     .price.price--rrp {
+        //  text-decoration: none;
+         color: #B1B1B1;
+     }
+
+
+
+     .card-compare {
+         color: $color-alt;
+         font-weight: $fontWeight-black;
+         font-size: $fontSize-base;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         margin-bottom: 24px;
+
+         input {
+             height: 20px;
+             width: 20px;
+             border-radius: 4px;
+             border-color: $color-alt--hover;
+             margin-right: 10px;
+         }
+     }
+ }
+ 
+ .card-figcaption-body {
+     .button.button--small {
+         background: $color-primary;
+         border-color: transparent;
+         color: #fff;
+ 
+         &:hover {
+             background: $color-primary--hover;
+             border-color: $color-primary--hover;
+         }
+     }
+ }
+ 
+ /* ==========================================================
+ * ## Product Grid
+ * ========================================================== */
+ .productGrid {
+    display: grid;
+    grid-gap: 1.75rem;
+    grid-template-columns: 1fr;
+
+    @include breakpoint(375px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint('small') {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media only screen and (min-width: $custom-prodGrid-break) {
+        grid-template-columns: repeat(3, 1fr);
+        
+    }
+
+    @include breakpoint('medium') {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include breakpoint('large') {
+        // grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+.productGrid:before, .productGrid:after { 
+    content: none;
+}
+
+.productGrid .product {
+    width: 100%;
+}
+
+ /* ==========================================================
+ * ## Slider Buttons
+ * ========================================================== */
+ .slick-next, .slick-prev {
+    border-radius: 50px;
+    height: 48px;
+    width: 48px;
+    filter: drop-shadow(3px 3px 16px rgba(0, 0, 0, 0.2));
+ }
+
+ .slick-next::before,
+ .slick-next:hover::before,
+ .slick-prev::before,
+ .slick-prev:hover::before {
+    height: 21px;
+    width: 12px;
+    margin: 0 auto;
+ }
+
+ .slick-next::before,
+ .slick-next:hover::before {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAxMyAyMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTExLjc4NjYgOS42NTQzTDMuMjA3NjIgMC44OTE4ODVDMi40Nzg2OSAwLjE0NzM2NiAxLjMwMTE5IDAuMTQ3MzY2IDAuNTcyMjYyIDAuODkxODg1Qy0wLjE1NjY2OCAxLjYzNjQgLTAuMTU2NjY4IDIuODM5MDkgMC41NzIyNjIgMy41ODM2MUw3LjgyNDE3IDExLjAwOTdMMC41NzIyNjEgMTguNDE2N0MtMC4xNTY2NjkgMTkuMTYxMiAtMC4xNTY2NjkgMjAuMzYzOSAwLjU3MjI2MSAyMS4xMDg0QzEuMzAxMTkgMjEuODUyOSAyLjQ3ODY5IDIxLjg1MjkgMy4yMDc2MiAyMS4xMDg0TDExLjc4NjYgMTIuMzQ2QzEyLjUxNTUgMTEuNjIwNiAxMi41MTU1IDEwLjM5ODggMTEuNzg2NiA5LjY1NDNaIiBmaWxsPSIjREY0NDQ0Ii8+Cjwvc3ZnPgo=")
+ }
+
+ .slick-prev::before,
+ .slick-prev:hover::before {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAxMyAyMiIgZmlsbD0ibm9uZSIgeG1zbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuMjEzNDUgMTIuMzQ1N0w5Ljc5MjM4IDIxLjEwODFDMTAuNTIxMyAyMS44NTI2IDExLjY5ODggMjEuODUyNiAxMi40Mjc3IDIxLjEwODFDMTMuMTU2NyAyMC4zNjM2IDEzLjE1NjcgMTkuMTYwOSAxMi40Mjc3IDE4LjQxNjRMNS4xNzU4MyAxMC45OTAzTDEyLjQyNzcgMy41ODMyOUMxMy4xNTY3IDIuODM4NzggMTMuMTU2NyAxLjYzNjA5IDEyLjQyNzcgMC44OTE1NzFDMTEuNjk4OCAwLjE0NzA1MiAxMC41MjEzIDAuMTQ3MDUyIDkuNzkyMzggMC44OTE1N0wxLjIxMzQ1IDkuNjUzOThDMC40ODQ1MTcgMTAuMzc5NCAwLjQ4NDUxNyAxMS42MDEyIDEuMjEzNDUgMTIuMzQ1N1oiIGZpbGw9IiNERjQ0NDQiLz4KPC9zdmc+Cg==")
+ }
+
+  /* ==========================================================
+ * ## Page Headings
+ * ========================================================== */
+
+/* ==========================================================
+ * ## Breadcrumbs - Unified Styling
+ * ========================================================== */
+
+// Unified breadcrumb styling for all pages to match product page look
+.breadcrumbs-bar {
+    margin-top: 1.75rem;
+    margin-bottom: 1rem;
+    
+    
+    @include breakpoint('medium') {
+        margin-top: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+ol.breadcrumbs {
+    text-align: left; // Unified left alignment for all pages
+    margin-top: 0;
+    margin-bottom: 0;
+    display: block; // Always show breadcrumbs when available
+    font-size: 0; // Reset for proper inline-block spacing
+    
+    @include breakpoint('small') {
+        display: block;
+    }
+}
+
+.breadcrumb {
+    display: inline-block;
+    font-size: $fontSize-base;
+    color: #888;
+    margin-right: 0;
+    margin-bottom: 0;
+    transition: color 0.2s ease;
+    
+    &:not(:first-child)::before {
+        content: "";
+        display: inline-block;
+        border-right: 0.1em solid #ccc;
+        height: 0.8em;
+        margin: 0 8px; // Consistent spacing
+        transform: rotate(15deg);
+        vertical-align: middle;
+    }
+    
+    &.is-active > .breadcrumb-label {
+        color: #333333;
+        font-weight: 600;
+        cursor: default;
+    }
+    
+    .breadcrumb-label {
+        text-decoration: none;
+        color: inherit;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        
+        &:hover {
+            background: #f5f5f5;
+            color: #222;
+            text-decoration: none;
+        }
+        
+        &:focus {
+            background: #f5f5f5;
+            color: #222;
+            outline: 2px solid $color-primary;
+            outline-offset: 2px;
+        }
+    }
+}
+
+// Override existing page-specific breadcrumb styles to maintain consistency
+.page--category .breadcrumbs,
+.page--blog .breadcrumbs,
+.page--blog_post .breadcrumbs {
+    text-align: left;
+}
+

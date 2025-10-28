@@ -1,0 +1,19 @@
+{{assignVar 'key' partial}}
+
+<section class="blog-sidebar__block">
+    <a href="##"
+        data-collapsible="{{getVar 'key'}}"
+        data-collapsible-disabled-breakpoint="large"
+        data-collapsible-disabled-state="open"
+        data-collapsible-enabled-state="closed">
+        <h3 class="blog-sidebar__header h1">
+            <span class="blog-sidebar__header-text h3">{{sidebar_title}}</span>
+            <span class="icon icon--chevron-down">
+                <svg><use xlink:href="#icon-chevron-down"></use></svg>
+            </span>
+        </h3>
+    </a>
+    <div class="blog-sidebar__content" id="{{getVar 'key'}}">
+        {{{dynamicComponent 'components/custom/blog'}}}
+    </div>
+</section>

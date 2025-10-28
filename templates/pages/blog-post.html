@@ -1,0 +1,33 @@
+---
+blog:
+    posts:
+        limit: 9
+        pages: 3
+        summary: 200
+---
+
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+{{#if theme_settings.its.custom_blog}}
+    <section class="page page--blog-post-custom">
+        <aside class="blog-sidebar">
+            {{> components/custom/blog/blog-sidebar-block
+                partial='blog-sidebar-recent-posts'
+                sidebar_title=(lang 'custom.blog.sidebar.recent-posts.heading')
+            }}
+            {{!> components/custom/blog/blog-sidebar-block
+                partial='blog-sidebar-newsletter'
+                sidebar_title=(lang 'custom.blog.sidebar.newsletter.heading')
+            }}
+        </aside>
+
+        {{> components/custom/blog/blog-post post=blog.post show_tags=true}}
+    </section>
+{{else}}
+    {{> components/blog/post post=blog.post show_tags=true}}
+{{/if}}
+
+{{/partial}}
+{{> layout/base container_active=true}}

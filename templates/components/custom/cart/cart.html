@@ -1,0 +1,47 @@
+{{#if cart.items.length}}
+    <div class="container floating-checkout-button">
+        <a href="#cart-totals" class="button button--primary" title="{{lang 'cart.checkout.title'}}" tabindex="0">{{lang 'cart.checkout.button'}}</a>
+    </div>
+{{/if}}
+
+<div class="cart__container">
+    <div data-cart-content class="cart__content">
+        {{> components/custom/cart/content}}
+    </div>
+
+    <div class="cart__totals js-cart__totals" id="cart-totals">
+        <div class="cart__totals-wrapper">
+            <div class="cart__totals-header">
+                <h2 class="cart__totals-heading h2">
+                    Summary
+                </h2>
+                <div class="cart__totals-action-container">
+                    <a class="cart__totals-action cart__totals-action--cs button button--small" href="/">Continue Shopping</a>
+                </div>
+            </div>
+            <div data-cart-totals class="cart__totals-container">
+                {{> components/custom/cart/totals}}
+            </div>
+            <div class="cart__buttons">
+                {{#if cart.show_primary_checkout_button}}
+                    <div class="cart__actions">
+                        <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
+                        {{#if cart.show_multiple_address_shipping}}
+                            <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                                {{lang 'cart.preview.checkout_multiple'}}
+                            </a>
+                        {{/if}}
+                    </div>
+                {{else}}
+                    <div class="cart__actions">
+                        <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+                    </div>
+                {{/if}}
+
+                <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
+                    {{> components/cart/additional-checkout-buttons}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

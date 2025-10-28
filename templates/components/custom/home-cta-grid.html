@@ -1,0 +1,8 @@
+<section class="home-cta-grid cta-4 cta-4--default {{name}} cta-4--{{lang (concat (concat 'custom.home.' (dashcase name)) '.number-of-ctas')}}">
+    {{#for 1 (lang (concat (concat 'custom.home.' (dashcase name)) '.number-of-ctas'))}}
+        <div class="cta-4__content lazyload" style="background-image: url({{lang (concat (concat (concat (concat 'custom.home.' (dashcase ../name)) '.cta-')$index)'.image')}});" aria-label="{{lang (concat (concat (concat (concat 'custom.home.' (dashcase ../name)) '.cta-')$index)'.image-alt-text')}}">
+            <h2 class="cta-4__title h1">{{lang (concat (concat (concat (concat 'custom.home.' (dashcase ../name)) '.cta-')$index)'.title')}}</h2>
+            <a href="{{lang (concat (concat (concat (concat 'custom.home.' (dashcase ../name)) '.cta-')$index)'.link')}}" class="cta-4__button button button--primary">{{lang (concat (concat (concat (concat 'custom.home.' (dashcase ../name)) '.cta-')$index)'.button-text')}}</a>
+        </div>
+    {{/for}}
+</section>

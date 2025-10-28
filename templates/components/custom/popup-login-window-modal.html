@@ -1,0 +1,26 @@
+<div id="popupLoginWindow" class="modal modal--small modal--popupLoginWindow" data-reveal>
+	<div class="modal-header">
+		<h2 class="modal-header-title">{{lang 'common.login'}}</h2>
+		{{> components/common/modal/modal-close-btn }}
+	</div>
+	<div class="modal-body">
+		{{> components/common/alert/alert-error (lang 'custom.other.popup-login.error')}}
+		{{> components/common/alert/alert-success (lang 'custom.other.popup-login.success')}}
+		<form class="form" id="popupLoginWindowForm">
+			<div class="form-field">
+				<label class="form-label" for="login_email">{{lang 'login.field_email'}}</label>
+				<input class="form-input" name="login_email" id="login_email" type="email">
+			</div>
+			<div class="form-field">
+				<label class="form-label" for="login_pass">{{lang 'login.field_password'}}</label>
+				<input class="form-input" id="login_pass" type="password" name="login_pass">
+			</div>
+			<div class="form-actions">
+				<input type="submit" class="button button--primary" value="{{lang 'login.submit_value' }}">
+				<a class="button button--secondary" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+				<a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+			</div>
+		</form>
+	</div>
+	<div class="loadingOverlay" style="display: none;"></div>
+</div>

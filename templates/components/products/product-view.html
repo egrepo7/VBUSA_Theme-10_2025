@@ -1,0 +1,632 @@
+{{!-- Critical Performance Optimizations for Product Page --}}
+{{#partial "head"}}
+    {{!-- Preload LCP product image to drastically improve LCP --}}
+    {{#if product.main_image}}
+        <link rel="preload" as="image" href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.product_size}}" />
+        <link rel="preload" as="image" href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}" />
+    {{/if}}
+    
+    {{!-- Preload critical fonts for faster text rendering --}}
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLCz7Z1xlFd2JQEk.woff2" crossorigin>
+    
+    {{!-- Critical inline CSS for immediate layout and CLS prevention --}}
+    <style>
+        /* Prevent CLS and improve initial paint */
+        .productView.split-layout { min-height: 100vh; }
+        .productView-image { min-height: 400px; background: #f5f5f5; }
+        .productView-img-container { 
+            min-height: 400px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            overflow: visible;
+        }
+        .productView-img-container img {
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
+        .dual-panel-container { min-height: 100vh; }
+        .media-panel { min-height: 60vh; }
+        .details-panel { min-height: 60vh; }
+        
+        /* CLS prevention for main-image-slick (your existing mobile system) */
+        .main-image-slick { 
+            min-height: 300px; 
+            background: white; 
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            position: relative; /* Positioning context for dots */
+        }
+        .main-image-slick .productView-image { 
+            min-height: 300px; 
+            background: white;
+        }
+        .main-image-slick .productView-img-container { 
+            min-height: 300px;
+            background: white;
+            overflow: visible;
+        }
+        .main-image-slick img {
+            object-fit: contain;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+        }
+        
+        /* Optimize thumbnail loading */
+        .productView-thumbnails { opacity: 0; transition: opacity 0.3s ease; }
+        .productView-thumbnails.loaded { opacity: 1; }
+        
+        /* Prevent layout shifts during Slick initialization */
+        .slick-slider { opacity: 0; transition: opacity 0.3s ease; }
+        .slick-initialized { opacity: 1; }
+        
+        /* Mobile-first responsive display */
+        @media (max-width: 1024px) {
+            .details-panel { display: none; }
+            .media-panel { display: block; } /* Keep visible for main content */
+            .details-panel-inline { display: block; }
+        }
+        
+        @media (min-width: 1025px) {
+            .details-panel-inline { display: none; }
+        }
+    </style>
+{{/partial}}
+
+<div class="productView split-layout"
+    {{#if settings.data_tag_enabled}}
+    data-event-type="product"
+    data-entity-id="{{product.id}}"
+    data-name="{{product.title}}"
+    data-product-category="
+    {{#each product.category}}
+        {{#if @last}}{{this}}{{else}}{{this}}, {{/if}}
+    {{/each}}"
+    data-product-brand="{{product.brand.name}}"
+    data-product-price="
+    {{#or customer (unless theme_settings.restrict_to_login)}}
+        {{#if product.price.with_tax}}
+            {{product.price.with_tax.value}}
+        {{else}}
+            {{product.price.without_tax.value}}
+        {{/if}}
+    {{else}}
+        {{lang 'common.login_for_pricing'}}
+    {{/or}}"
+    data-product-variant="single-product-option"{{/if}}>
+    
+    <!-- Alert Messages -->
+    {{#each product.reviews.messages}}
+        {{#if error}}
+            {{> components/common/alert/alert-error error}}
+        {{/if}}
+        {{#if success}}
+            {{> components/common/alert/alert-success success}}
+        {{/if}}
+    {{/each}}
+
+    <!-- Split Layout Container -->
+    <div class="dual-panel-container">
+        
+        <!-- LEFT SIDE - Media & Content -->
+        <div class="media-panel" id="mediaPanel">
+            <div class="media-content">
+                <!-- Breadcrumbs moved above main image and carousel -->
+                {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+                <!-- Product Images & Gallery -->
+                <section class="productView-images" data-image-gallery>
+                    {{#if product.images.length '>' 1 }}
+                    {{> components/carousel-content-announcement}}
+                    {{/if}}
+                    <!-- Main product image for desktop -->
+                    <figure class="productView-image main-image-desktop"
+                            data-image-gallery-main
+                            {{#if product.main_image}}
+                            data-zoom-image="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size }}"
+                            {{/if}}>
+                        <div class="productView-img-container">
+                            {{#if product.main_image}}
+                                <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}" data-index="{{#each product.images}}{{#if data '===' ../product.main_image.data}}{{add (toInt @index) ../product.videos.list.length}}{{/if}}{{/each}}" data-type="image" target="_blank"{{#if schema}} itemprop="image"{{/if}}>
+                            {{/if}}
+                            {{> components/common/responsive-img
+                                image=product.main_image
+                                class="productView-image--default"
+                                fallback_size=theme_settings.product_size
+                                lazyload="disabled"
+                                default_image=theme_settings.default_image_product
+                                otherAttributes="data-main-image fetchpriority='high'"
+                            }}
+                            {{#if product.main_image}}
+                                </a>
+                            {{/if}}
+                        </div>
+                    </figure>
+                    {{#all (if product.videos.list) (if theme_settings.its.pdp_video_thumbnails)}}
+                        {{> components/custom/product-view-thumbnails slick_activation_count=(add product.images.length product.videos.list.length) video_pos=theme_settings.its.pdp_video_thumbnails_pos video_show=theme_settings.its.pdp_video_thumbnails lazy="true"}}
+                    {{else}}
+                        {{> components/custom/product-view-thumbnails slick_activation_count=product.images.length lazy="true"}}
+                    {{/all}}
+                </section>
+
+                <!-- DUPLICATED DETAILS PANEL FOR MOBILE/TABLET -->
+                <div class="details-panel-inline">
+                    <div class="details-content">
+                        <!-- Product Header -->
+                        <div class="productView-header">
+                            <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+                            {{#if product.brand}}
+                                <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="https://schema.org/Brand"{{/if}}>
+                                    <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                                </h2>
+                            {{/if}}
+                        </div>
+                        <!-- Product Price -->
+                        <div class="productView-price">
+                            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                                {{> components/products/price price=product.price schema_org=schema}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                        </div>
+                        <!-- Product Information -->
+                        <div class="productView-info-section">
+                            {{product.detail_messages}}
+                            <dl class="productView-info">
+                                {{#if product.sku}}
+                                    <div class="productView-info-details">
+                                        <dt class="productView-info-name">{{lang 'products.sku'}}</dt>
+                                        <dd class="productView-info-value" data-product-sku{{#if schema}} itemprop="sku"{{/if}}>{{product.sku}}</dd>
+                                    </div>
+                                {{/if}}
+                                {{#if product.upc}}
+                                    <div class="productView-info-details">
+                                        <dt class="productView-info-name">{{lang 'products.upc'}}</dt>
+                                        <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>    
+                                    </div>
+                                {{/if}}
+                                {{#if product.condition}}
+                                    <div class="productView-info-details">
+                                        <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
+                                        <dd class="productView-info-value">{{product.condition}}</dd>   
+                                    </div>
+                                {{/if}}
+                                {{#if product.availability}}
+                                    <div class="productView-info-details">
+                                        <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
+                                        <dd class="productView-info-value">{{product.availability}}</dd>
+                                    </div>
+                                {{/if}}
+                            </dl>
+                        </div>
+                        <!-- Product Options Form -->
+                        <div class="productView-options">
+                            {{#if product.release_date }}
+                                <p class="productView-releaseDate">{{product.release_date}}</p>
+                            {{/if}}
+                            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add id="productOptionsForm-inline">
+                                <input type="hidden" name="action" value="add">
+                                <input type="hidden" name="product_id" value="{{product.id}}"/>
+                                <div data-product-option-change class="productView-options-wrapper">
+                                    {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
+                                    {{#each product.options}}
+                                        {{{dynamicComponent 'components/products/options' id_suffix="-inline"}}}
+                                    {{/each}}
+                                </div>
+                                <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+                                    <label class="form-label form-label--alternate">
+                                        {{lang 'products.current_stock'}}
+                                        <span data-product-stock>{{product.stock_level}}</span>
+                                    </label>
+                                </div>
+                                {{#if product.call_for_price}}
+                                    <p class="productView-price">
+                                        <span>{{product.call_for_price}}</span>
+                                    </p>
+                                {{/if}}
+                            </form>
+                        </div>
+                        <!-- Product Description -->
+                        {{#if product.description}}
+                            <div class="productView-description" id="productDescription-inline">
+                                {{{product.description}}}
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+                <script>
+                // Optimize image data for faster processing
+                window.BCData = window.BCData || {};
+                window.BCData.product_images = [
+                    {{#each product.images}}
+                        {"url_zoom": "{{getImage this 'zoom_size'}}", "alt": "{{this.alt}}"}{{#unless @last}},{{/unless}}
+                    {{/each}}
+                ];
+                
+                // Performance optimizations
+                (function() {
+                    // Defer non-critical operations
+                    function deferNonCritical() {
+                        // Mark thumbnails as loaded to prevent CLS
+                        const thumbnails = document.querySelector('.productView-thumbnails');
+                        if (thumbnails) {
+                            thumbnails.classList.add('loaded');
+                        }
+                        
+                        // Initialize lazy loading for secondary images
+                        if ('IntersectionObserver' in window) {
+                            const lazyImages = document.querySelectorAll('img[data-src]:not([data-main-image])');
+                            const imageObserver = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        const img = entry.target;
+                                        img.src = img.dataset.src;
+                                        img.classList.remove('lazyload');
+                                        imageObserver.unobserve(img);
+                                    }
+                                });
+                            });
+                            lazyImages.forEach(img => imageObserver.observe(img));
+                        }
+                    }
+                    
+                    // Defer until after critical content loads
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', deferNonCritical);
+                    } else {
+                        setTimeout(deferNonCritical, 100);
+                    }
+                })();
+                </script>
+
+                <!-- Product Videos -->
+                {{#if product.videos.list.length}}
+                    <section class="productView-videos">
+                        {{> components/products/videos product.videos}}
+                    </section>
+                {{/if}}
+
+                <!-- Product Description Section -->
+                <section class="productView-description-section">
+                    {{{region name="pdp-description"}}}
+                </section>
+
+                <!-- Page Builder Content -->
+                <section class="productView-pageBuilder">
+                    {{{region name="product_content_left"}}}
+                    {{{region name="product_below_content"}}}
+                </section>
+
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE - Product Details -->
+        <div class="details-panel" id="detailsPanel">
+            <div class="details-content">
+                
+                <!-- Product Header -->
+                <div class="productView-header">
+                    <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+                    {{#if product.brand}}
+                        <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="https://schema.org/Brand"{{/if}}>
+                            <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                        </h2>
+                    {{/if}}
+                </div>
+
+                <!-- Product Price -->
+                <div class="productView-price">
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                        {{> components/products/price price=product.price schema_org=schema}}
+                    {{else}}
+                        {{> components/common/login-for-pricing}}
+                    {{/or}}
+                </div>
+
+                <!-- Product Information (moved below pricing) -->
+                <div class="productView-info-section">
+                    {{product.detail_messages}}
+                    <dl class="productView-info">
+                        {{#if product.sku}}
+                            <div class="productView-info-details">
+                                <dt class="productView-info-name">{{lang 'products.sku'}}</dt>
+                                <dd class="productView-info-value" data-product-sku{{#if schema}} itemprop="sku"{{/if}}>{{product.sku}}</dd>
+                            </div>
+                        {{/if}}
+                        {{#if product.upc}}
+                            <div class="productView-info-details">
+                                <dt class="productView-info-name">{{lang 'products.upc'}}</dt>
+                                <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>    
+                            </div>
+                        {{/if}}
+                        {{#if product.condition}}
+                            <div class="productView-info-details">
+                                <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
+                                <dd class="productView-info-value">{{product.condition}}</dd>   
+                            </div>
+                        {{/if}}
+                        {{#if product.availability}}
+                            <div class="productView-info-details">
+                                <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
+                                <dd class="productView-info-value">{{product.availability}}</dd>
+                            </div>
+                        {{/if}}
+                    </dl>
+                </div>
+
+                <!-- Product Options Form -->
+                <div class="productView-options">
+                    {{#if product.release_date }}
+                        <p class="productView-releaseDate">{{product.release_date}}</p>
+                    {{/if}}
+                    
+                    <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add id="productOptionsForm">
+                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="product_id" value="{{product.id}}"/>
+                        
+                        <!-- Product Options -->
+                        <div data-product-option-change class="productView-options-wrapper">
+                            {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
+                            {{#each product.options}}
+                                {{{dynamicComponent 'components/products/options' id_suffix=""}}}
+                            {{/each}}
+                        </div>
+                        
+                        <!-- Stock Level -->
+                        <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+                            <label class="form-label form-label--alternate">
+                                {{lang 'products.current_stock'}}
+                                <span data-product-stock>{{product.stock_level}}</span>
+                            </label>
+                        </div>
+                        
+                        {{#if product.call_for_price}}
+                            <p class="productView-price">
+                                <span>{{product.call_for_price}}</span>
+                            </p>
+                        {{/if}}
+                    </form>
+                </div>
+
+                <!-- Product Description -->
+                {{#if product.description}}
+                    <div class="productView-description" id="productDescription">
+                        {{{product.description}}}
+                    </div>
+                {{/if}}
+
+            </div> <!-- End of details-content -->
+            
+            <!-- Sticky Cart Section -->
+            <div class="sticky-cart-section">
+                {{#if theme_settings.show_product_quantity_box}}
+                    <div class="form-increment quantity-selector" data-quantity-change>
+                        <button class="button button--icon" data-action="dec" type="button">
+                            <span class="is-srOnly">{{lang 'products.quantity_decrease' name=product.title}}</span>
+                            <i class="icon" aria-hidden="true">
+                                <svg>
+                                    <use xlink:href="#icon-keyboard-arrow-down"/>
+                                </svg>
+                            </i>
+                        </button>
+                        <input 
+                            class="form-input form-input--incrementTotal"
+                            id="qty[]"
+                            name="qty[]"
+                            type="tel"
+                            value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
+                            data-quantity-min="{{product.min_purchase_quantity}}"
+                            data-quantity-max="{{product.max_purchase_quantity}}"
+                            min="1"
+                            pattern="[0-9]*"
+                            aria-live="polite"
+                            form="productOptionsForm"
+                            form="productOptionsForm-inline">
+                        <button class="button button--icon" data-action="inc" type="button">
+                            <span class="is-srOnly">{{lang 'products.quantity_increase' name=product.title}}</span>
+                            <i class="icon" aria-hidden="true">
+                                <svg>
+                                    <use xlink:href="#icon-keyboard-arrow-up"/>
+                                </svg>
+                            </i>
+                        </button>
+                    </div>
+                {{/if}}
+                
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    <input
+                        id="form-action-addToCart"
+                        data-wait-message="{{lang 'products.adding_to_cart'}}"
+                        class="button button--primary"
+                        type="submit"
+                        value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}"
+                        form="productOptionsForm"
+                        {{#unless product.can_purchase}}style="display: none"{{/unless}}>
+                    <span class="product-status-message aria-description--hidden">{{lang 'products.adding_to_cart'}} {{lang 'category.add_cart_announcement'}}</span>
+                {{/or}}
+                
+                {{#if product.out_of_stock}}
+                    {{#if product.out_of_stock_message}}
+                        {{> components/common/alert/alert-error product.out_of_stock_message}}
+                    {{else}}
+                        {{> components/common/alert/alert-error (lang 'products.sold_out')}}
+                    {{/if}}
+                {{/if}}
+            </div>
+        </div> <!-- End of details-panel -->
+    </div>
+</div>
+<div id="previewModal" class="modal modal--large" data-reveal>
+    {{> components/common/modal/modal-close-btn }}
+    <div class="modal-content"></div>
+    <div class="loadingOverlay"></div>
+</div>
+
+
+
+{{#or product.custom_fields
+    (if name '===' '__pdp-modal-title')
+    (if name '===' '__pdp-modal-image')
+    (if name '===' '__pdp-modal-text')
+}}
+    <div id="pdp-modal" class="modal modal--large pdp-modal" data-reveal>
+        <div class="modal-header pdp-modal__header">
+            {{#filter product.custom_fields '__pdp-modal-title' property='name'}}
+                <h2 class="modal-header-title pdp-modal__title">{{value}}</h2>
+            {{/filter}}
+            <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+                <span aria-hidden="true">&#215;</span>
+            </a>
+        </div>
+        <div class="modal-body">
+            {{#filter product.custom_fields '__pdp-modal-image' property='name'}}
+                <img class="lazyload" data-src="{{cdn (get 'string' (concat (concat 'webdav:/img/pdp_modal/'value)''))}}" src="{{cdn 'img/loading.svg'}}">
+            {{/filter}}
+
+            {{#filter product.custom_fields '__pdp-modal-text' property='name'}}
+                <p class="pdp-modal__text">{{value}}</p>
+            {{/filter}}
+        </div>
+    </div>
+{{/or}}
+
+<!-- Sticky Cart Section for Mobile/Tablet (highest level, always visible) -->
+<div class="sticky-cart-section sticky-cart-section-mobile">
+    <div class="sticky-cart-product-info">
+        <span class="sticky-cart-product-title">
+            {{product.title}}
+        </span>
+        <span class="sticky-cart-product-price">
+            {{> components/products/price price=product.price}}
+        </span>
+    </div>
+    <div class="sticky-cart-actions-row">
+        {{#if theme_settings.show_product_quantity_box}}
+            <div class="form-increment quantity-selector" data-quantity-change>
+                <button class="button button--icon" data-action="dec" type="button">
+                    <span class="is-srOnly">{{lang 'products.quantity_decrease' name=product.title}}</span>
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xlink:href="#icon-keyboard-arrow-down"/>
+                        </svg>
+                    </i>
+                </button>
+                <input 
+                    class="form-input form-input--incrementTotal"
+                    id="qty-mobile"
+                    name="qty[]"
+                    type="tel"
+                    value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
+                    data-quantity-min="{{product.min_purchase_quantity}}"
+                    data-quantity-max="{{product.max_purchase_quantity}}"
+                    min="1"
+                    pattern="[0-9]*"
+                    aria-live="polite"
+                    form="productOptionsForm-inline">
+                <button class="button button--icon" data-action="inc" type="button">
+                    <span class="is-srOnly">{{lang 'products.quantity_increase' name=product.title}}</span>
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xlink:href="#icon-keyboard-arrow-up"/>
+                        </svg>
+                    </i>
+                </button>
+            </div>
+        {{/if}}
+        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+            <input
+                id="form-action-addToCart-mobile"
+                data-wait-message="{{lang 'products.adding_to_cart'}}"
+                class="button button--primary sticky-cart-add-to-cart"
+                type="submit"
+                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}"
+                form="productOptionsForm-inline"
+                {{#unless product.can_purchase}}style="display: none"{{/unless}}>
+            <span class="product-status-message aria-description--hidden">{{lang 'products.adding_to_cart'}} {{lang 'category.add_cart_announcement'}}</span>
+        {{/or}}
+    </div>
+    {{#if product.out_of_stock}}
+        {{#if product.out_of_stock_message}}
+            {{> components/common/alert/alert-error product.out_of_stock_message}}
+        {{else}}
+            {{> components/common/alert/alert-error (lang 'products.sold_out')}}
+        {{/if}}
+    {{/if}}
+</div>
+
+{{!-- Performance monitoring and optimization --}}
+{{#partial "page_scripts"}}
+<script>
+// Performance optimization for product pages
+(function() {
+    'use strict';
+    
+    // Measure and optimize LCP
+    function optimizeLCP() {
+        const mainImage = document.querySelector('[data-main-image]');
+        
+        // Optimize main desktop image
+        if (mainImage && !mainImage.complete) {
+            mainImage.loading = 'eager';
+            mainImage.fetchPriority = 'high';
+        }
+        
+        // Optimize main-image-slick images when they exist
+        const slickImages = document.querySelectorAll('.main-image-slick img');
+        slickImages.forEach(img => {
+            if (!img.complete) {
+                img.loading = 'eager';
+                img.fetchPriority = 'high';
+            }
+        });
+    }
+    
+    // Optimize carousel initialization timing
+    function optimizeCarousel() {
+        const carousel = document.querySelector('.productView-thumbnails');
+        if (carousel) {
+            // Defer carousel initialization to prevent blocking main thread
+            setTimeout(() => {
+                if (typeof $ !== 'undefined' && $.fn.slick) {
+                    carousel.classList.add('loaded');
+                }
+            }, 100);
+        }
+    }
+    
+    // Run optimizations
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            optimizeLCP();
+            optimizeCarousel();
+        });
+    } else {
+        optimizeLCP();
+        optimizeCarousel();
+    }
+    
+    // Web Vitals monitoring (optional)
+    if (typeof gtag !== 'undefined') {
+        new PerformanceObserver((entryList) => {
+            for (const entry of entryList.getEntries()) {
+                if (entry.entryType === 'largest-contentful-paint') {
+                    gtag('event', 'web_vitals', {
+                        event_category: 'Web Vitals',
+                        event_label: 'LCP',
+                        value: Math.round(entry.startTime),
+                        custom_map: {metric_value: entry.startTime}
+                    });
+                }
+            }
+        }).observe({entryTypes: ['largest-contentful-paint']});
+    }
+})();
+</script>
+{{/partial}}
+

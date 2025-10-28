@@ -1,0 +1,333 @@
+// =============================================================================
+// SEARCH
+// =============================================================================
+
+.search-suggestion {
+    margin-bottom: spacing("single") + spacing("third");
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+.suggestion-title {
+    margin-top: 0;
+    text-transform: inherit;
+}
+
+.advancedSearch-form {
+    margin-bottom: spacing("double");
+
+    .form-row {
+        margin-bottom: -(spacing("single"));
+    }
+}
+
+.quickSearchResults {
+    // Completely disable quick search results dropdown
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    margin-top: spacing("single");
+
+    @include breakpoint("medium") {
+        margin-top: 0;
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    .modal-close {
+        display: none !important;
+
+        @include breakpoint("medium") {
+            display: none !important;
+        }
+    }
+}
+
+.advancedSearch-separator {
+    display: none;
+}
+
+.advancedSearch-title {
+    margin: 0 0 spacing("single");
+    text-transform: inherit;
+}
+
+.search-price-range {
+    label {
+        display: inline;
+
+        input {
+            display: block;
+            padding-left: spacing("single");
+
+            @include breakpoint("small") {
+                display: inline;
+                width: 6rem;
+            }
+        }
+
+        span {
+            @include breakpoint("small") {
+                display: inline;
+                padding-left: spacing("single");
+                padding-right: spacing("single");
+            }
+        }
+    }
+}
+
+.category-suggestion-list {
+    @include grid-row($behavior: "nest");
+    list-style-type: none;
+}
+
+.category-suggestion {
+    @include grid-column(4);
+    font-size: fontSize("smaller");
+}
+
+.search-refine {
+    margin-left: spacing("single");
+}
+
+.quickSearchMessage {
+    font-size: fontSize("largest");
+    margin: spacing("single") 0 0;
+    text-align: center;
+}
+
+.search-nav {
+    position: relative;
+}
+
+// Search page specific layout improvements
+.page--search {
+    // Set search page background to light gray
+    background-color: #fafafa;
+    
+    // Also ensure the body element has the background color
+    &, .body {
+        background-color: #fafafa;
+    }
+    
+    .page {
+        @include breakpoint("medium") {
+            display: flex;
+            // gap: spacing("double");
+        }
+    }
+    
+    .page-sidebar {
+        @include breakpoint("medium") {
+            flex: 0 0 280px; // Fixed width for sidebar
+            margin-right: 1rem;
+            min-width: 280px;
+        }
+    }
+    
+    .page-content {
+        @include breakpoint("medium") {
+            flex: 1;
+            min-width: 0; // Prevent flex item from growing beyond container
+        }
+    }
+    
+    // Make sure faceted search doesn't get too wide
+    #faceted-search-container {
+        @include breakpoint("medium") {
+            max-width: 280px;
+        }
+        
+        // Add container shadow similar to product cards
+        background-color: #fff;
+        border-radius: 12px; // Rounded corners
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Subtle shadow
+        overflow: hidden; // Ensure content doesn't spill outside rounded corners
+        transition: box-shadow 0.3s ease; // Smooth transition
+        padding: 1rem; // Add some padding for better spacing
+        height: 100%;
+    }
+    
+    // Force faceted search to stay visible (prevent JS from hiding it)
+    #faceted-search-container {
+        display: block !important;
+        visibility: visible !important;
+        background-color: #fff;
+        border-radius: 12px; // Rounded corners to match product cards
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Subtle shadow matching product cards
+        overflow: hidden; // Ensure content doesn't spill outside rounded corners
+        padding: 1rem; // Add some padding for better spacing
+        margin-top: 0;
+
+        @include breakpoint("medium") {
+            margin-top: 5rem;
+        }
+    }
+}
+
+// Search uses category-toolbar classes, so we import category toolbar styling
+.page--search {
+    // Ensure category toolbar styling applies to search
+    .category-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 0; // Remove top margin
+        margin-bottom: 1.5rem;
+
+        // Left side: Count + separator + sort filter
+        .category-toolbar__left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            order: 1;
+        }
+
+        // Right side: View toggle
+        .category-toolbar__right {
+            display: flex;
+            align-items: center;
+            order: 2;
+        }
+
+        // Sort filter styling
+        .category-toolbar__sort {
+            // No width constraints, let it size naturally
+        }
+
+        // View toggle styling
+        .category-toolbar__view-toggle {
+            display: none; // hide on mobile
+
+            @include breakpoint('medium') {
+                display: block; // show on tablet and up
+            }
+        }
+        
+        form {
+            margin-bottom: 0;
+        }
+        
+        .form-field {
+            margin-bottom: 0;
+        }
+        
+        // Sort dropdown styling to match category page exactly
+        .actionBar-section .form-label {
+            display: none; // Hide "Sort by:" label completely
+        }
+
+        .actionBar-section .form-select {
+            height: auto;
+            width: auto;
+            max-width: none;
+            background: transparent; // Remove white background
+            border: none; // Remove border
+            font-weight: 600; // Heavy font weight like in the image
+            font-size: 0.9rem; // Slightly larger text
+            color: #1e293b; // Dark text color
+            text-transform: uppercase; // Match "BEST MATCHES" style
+            letter-spacing: 0.5px; // Slight letter spacing
+            padding: 0.5rem 0 0.5rem 0; // Reduced right padding to bring arrow closer
+            cursor: pointer;
+            
+            // Custom dropdown arrow
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%231e293b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right center;
+            appearance: none; // Remove default browser styling
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            @media (max-width: 479px) {
+                font-size: 0.9rem;
+            }
+            
+            &:focus {
+                outline: none; // Remove outline
+                background: transparent;
+            }
+            
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+// Legacy search action bar cleanup (keeping for any remaining usage)
+.search-action-bar {
+    // Hide content count for cleaner look (matching category pages)
+    #search-results-content-count {
+        display: none;
+    }
+    
+    // Hide advanced search toggle when faceted search is enabled
+    .navBar-item--separate {
+        display: none;
+    }
+}
+
+// Search navigation specific styling
+.search-nav {
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    
+    .navBar-section {
+        width: 100%;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+// Search page product cards - match category page shadow styling
+.page--search .product {
+    background-color: #fff;
+    border-radius: 12px; // Rounded corners
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Subtle shadow
+    overflow: hidden; // Ensure content doesn't spill outside rounded corners
+    transition: box-shadow 0.3s ease, transform 0.3s ease; // Smooth hover effect
+    
+    &:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); // Enhanced shadow on hover
+        transform: translateY(-2px); // Slight lift effect on hover
+    }
+    
+    // Ensure images also have rounded corners at the top
+    .card-image,
+    .listItem-image,
+    .product-image {
+        border-radius: 12px 12px 0 0; // Rounded top corners only
+    }
+}
+
+// Disable only the quick search POPUP/DROPDOWN - keep search bar functional
+.quickSearchResults,
+.quickSearchMessage {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+}
+
+// Hide any quick search product grids (the popup content)
+.quickSearchResults .productGrid {
+    display: none !important;
+}
+
+// Hide the dropdown when it tries to open
+.dropdown--quickSearch.is-open .quickSearchResults,
+.header-2__nav-search.dropdown--quickSearch.is-open .quickSearchResults {
+    display: none !important;
+    visibility: hidden !important;
+}

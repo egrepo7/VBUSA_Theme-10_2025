@@ -1,0 +1,337 @@
+.page--cart .body {
+    margin-bottom: 56px;
+}
+
+.cart__container {
+    @include breakpoint('medium') {
+        // 801px and up
+        flex-direction: column;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        flex-direction: row;
+        
+    }
+}
+
+.cart__content {
+    @include breakpoint('medium') {
+        // 801px and up
+        margin-right: 56px;
+        // width: 72%;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        margin-right: 75px;
+        width: 72%;
+    }
+}
+
+.page--cart .page-content {
+    padding: 0;
+}
+
+.page--cart .cart {
+    margin-bottom: 32px;
+}
+
+.page--cart .cart-header {
+    border-bottom: 1px solid $color-alt--hover;
+}
+
+.page--cart .page-heading {
+    line-height: 33px;
+    margin-top: 11px;
+    margin-bottom: 32px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        line-height: 50px;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        border-bottom: 1px solid $color-alt--hover;
+        padding-bottom: 24px;
+        margin-bottom: 16px;
+    }
+}
+
+.page--cart .cart-item {
+    padding: 2.25rem 0;
+    row-gap: 32px;
+    border-bottom: 1px solid $color-alt--hover;
+    position: relative;
+}
+
+.cart-header-item {
+    font-weight: 900;
+}
+
+.cart-header-item.cart-header-item--price,
+.cart-header-item--total {
+    text-align: center;
+    padding-left: 0;
+}
+
+.cart-item-block.cart-item-price, 
+.cart-item-block.cart-item-quantity, 
+.cart-item-block.cart-item-total {
+    text-align: center;
+}
+
+.page--cart .cart-item-image {
+    // max-height: none;
+    // max-width: none;
+    min-width: 124px;
+}
+
+.page--cart .cart-item-block.cart-item-figure {
+    text-align: left;
+}
+
+.cart-item-block.cart-item-title {
+    @include breakpoint('large') {
+        // 1261px and up
+        padding: 3rem 1rem;
+    }
+}
+
+.page--cart .cart-item-name__label {
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 22px;
+}
+
+.page--cart .definitionList {
+    margin: 16px 0;
+}
+
+.page--cart .definitionList-value:not(:last-of-type) {
+    margin: 0 0 8px 0;
+}
+
+.page--cart .cart-item-change {
+    text-decoration: underline;
+}
+
+.cart-item-label,
+.cart-item-value {
+    font-size: 18px;
+}
+
+.cart-item-value {
+    text-align-last: left;
+}
+
+.cart-item-label {
+    padding-right: 2rem;
+}
+
+.page--cart .form-input--incrementTotal {
+    width: 67px !important;
+    color: $color-alt !important;
+}
+
+.page--cart .cart-item-block.cart-item-quantity {
+    align-items: center;
+}
+
+.cart-item-block.cart-item-total {
+    position: static;
+}
+
+.cart-remove-button:hover .icon.icon--cart-close svg {
+    fill: #a7a4a4;
+}
+
+.cart-remove-button {
+    position: absolute;
+    right: 0;
+
+
+    @include breakpoint('medium') {
+        // 801px and up
+        position: relative;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        position: absolute;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        @media only screen and (min-width: 1500px) {
+            flex-direction: row;
+        }
+    }
+}
+
+.cart-remove-label {
+    @include breakpoint('medium') {
+        // 801px and up
+        display: none;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        display: inline-block;
+    }
+}
+
+.icon.icon--cart-close {
+    margin-left: 8px;
+    height: 21px;
+    width: 21px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        margin: 0;
+    }
+
+    @media only screen and (min-width: 1500px) {
+        margin-left: 8px;
+    }
+}
+
+.icon.icon--cart-close svg {
+    fill: $color-alt--hover;
+}
+
+// cart totals
+.cart__totals {
+    background: #f9f9f9;
+    max-height: 650px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    @include breakpoint('large') {
+        // 1261px and up
+        width: 24.5% !important;
+        
+    }
+}
+
+.cart__totals-wrapper {
+    border: 0;
+    padding: 24px 0;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        
+    }
+}
+
+.cart__totals-container {
+    padding: 0 24px;
+}
+
+.cart__totals-action-container {
+    @include breakpoint('medium') {
+        // 801px and up
+    }
+    @include breakpoint('large') {
+        // 1261px and up
+        justify-content: center;
+        
+    }
+}
+
+.cart__buttons {
+    padding: 0 24px;
+
+    @include breakpoint('medium') {
+        // padding: 0 16px;
+    }
+}
+
+.cart__totals-header {
+    grid-template-columns: 1fr 2fr;
+    padding: 0 24px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        // grid-template-columns: 1fr;
+        // padding: 0 16px;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+.cart__totals-heading {
+    font-size: 27px;
+    font-weight: 800;
+    padding-bottom: 24px;
+    @include breakpoint('medium') {
+        // 801px and up
+        padding-bottom: 8px;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        padding-bottom: 24px;
+        text-align: center;
+    }
+}
+
+.cart__totals-action {
+    text-decoration: none;
+    margin: 0;
+}
+
+.cart-total-grandTotal span, 
+.cart-total-label-grandTotal span {
+    font-weight: 800;
+    font-size: 27px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        font-size: 20px;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        font-size: 26px;
+    }
+}
+
+.page--cart .cart__actions {
+    margin-bottom: 16px;
+}
+
+.paypalCommerce-buttons-container,
+.cart-additionalCheckoutButtons,
+.cart-additionalCheckoutButtons .FloatRight div, 
+.previewCart-additionalCheckoutButtons .FloatRight div {
+    text-align: center;
+    float: none;
+}
+
+.cart-total .form-select {
+    background-size: 0.75rem;
+}
+
+// safari issues with remove
+/* Safari 11+ */
+@media not all and (min-resolution:.001dpcm)
+{ @supports (-webkit-appearance:none) and (stroke-color:transparent) {
+.cart-remove-button { 
+    right: 32%; 
+}
+}}
+
+
+.alertBox-column.alertBox-message span {
+    color: #fff;
+}

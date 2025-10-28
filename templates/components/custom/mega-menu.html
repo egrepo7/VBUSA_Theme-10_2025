@@ -1,0 +1,15 @@
+<aside class="mega-menu">
+    <a href="{{lang (concat (concat 'custom.header.mega-menu.category-'@index)'.link')}}" class="mega-menu__link">
+        <figure class="mega-menu__image-container">
+            {{#if (lang (concat (concat 'custom.header.mega-menu.category-'@index)'.image')) '===' 'webdav:/img/mega-menu/'}}
+                <img class="lazyload mega-menu__image" data-src="{{lang (concat (concat 'custom.header.mega-menu.category-'@index)'.image-placeholder')}}?text={{name}}" src="{{cdn 'img/loading.svg'}}" alt="{{lang (concat (concat 'custom.header.mega-menu.category-'@index)'.image-alt-text')}}">
+            {{else}}
+                <img class="lazyload mega-menu__image" data-src="{{cdn (lang (concat (concat 'custom.header.mega-menu.category-'@index)'.image'))}}" src="{{cdn 'img/loading.svg'}}" alt="{{lang (concat (concat 'custom.header.mega-menu.category-'@index)'.image-alt-text')}}">
+            {{/if}}
+        </figure>
+        <section class="mega-menu__text-container">
+            <h3 class="mega-menu__title">{{lang (concat (concat 'custom.header.mega-menu.category-'@index)'.title')}}</h3>
+            <p class="mega-menu__text">{{lang (concat (concat 'custom.header.mega-menu.category-'@index)'.text')}}</p>
+        </section>
+    </a>
+</aside>

@@ -1,0 +1,12 @@
+<nav class="header-2__top-nav">
+    <h6 class="header-2__top-nav-message">Build your dream volleyball court using our all new Custom Court Builder Experience</h6>
+    <ul class="header-2__top-nav-list">
+        {{#for 1 (lang 'custom.header.top-navigation.number-of-links')}}
+            <li class="header-2__top-nav-list-item">
+                <a href="{{lang (concat (concat 'custom.header.top-navigation.link-'$index)'.link')}}" class="header-2__top-nav-list-link">
+                    {{lang (concat (concat 'custom.header.top-navigation.link-'$index)'.text')}}
+                </a>
+            </li>
+        {{/for}}
+    </ul>
+</nav>

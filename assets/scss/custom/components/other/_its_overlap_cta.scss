@@ -1,0 +1,97 @@
+.overlap-cta {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    max-width: calc(1600px + 1rem * 2);
+    margin: 0 auto 40px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        align-items: center;
+        justify-content: center;
+        grid-template-rows: 1fr;
+        margin-bottom: 56px;
+    }
+}
+
+.overlap-cta__image-container {
+    @include breakpoint('medium') {
+        // 801px and up
+        display: inline-block;
+        grid-row: 1;
+        grid-column: 5 / 13;
+        margin: 0;
+    }
+}
+
+.overlap-cta__image {
+    min-height: 580px;
+    object-fit: cover;
+}
+
+.overlap-cta__content {
+    padding: 0 1rem;
+    display: inline-block;
+    background-color: $color-white;
+    text-align: center;
+    width: 100%;
+    max-width: calc(100% - 2rem);
+    margin: 0 1rem;
+    margin-top: -180px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        grid-column: 1;
+        grid-row: 1;
+        position: absolute;
+        width: 50%;
+        top: 49%;
+        max-height: 400px;
+        text-align: left;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        width: 42%;
+        
+    }
+}
+
+.overlap-cta__title,
+.overlap-cta__sub-title,
+.overlap-cta__description {
+    max-width: 360px;
+    margin: 0 auto;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        max-width: none;
+    }
+}
+
+.overlap-cta__title {
+    margin-top: 54px;
+    margin-bottom: 16px;
+    color: #333333;
+
+    @media only screen and (max-width: $screen-xsmall) {
+        font-size: 1.75rem;
+    }
+}
+
+.overlap-cta__sub-title {
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: $color-secondary;
+}
+
+.overlap-cta__description {
+    margin-bottom: 24px;
+}
+
+.overlap-cta .button.button--primary {
+    margin-bottom: 40px;
+}

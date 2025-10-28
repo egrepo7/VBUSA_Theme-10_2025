@@ -1,0 +1,9 @@
+<h2 class="page-heading">{{lang 'custom.home.blog.title'}}</h2>
+
+<section class="home-blog">
+    {{#each blog.recent_posts}}
+        {{> components/blog/post post=this}}
+    {{/each}}
+
+    <a href="/blog" class="home-blog__link button button--secondary">{{lang 'custom.home.blog.view-all'}}</a>
+</section>

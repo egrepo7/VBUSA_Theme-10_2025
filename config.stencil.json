@@ -1,0 +1,18 @@
+{
+  "customLayouts": {
+    "brand": {},
+    "category": {
+      "/boundary-lines-custom.html": "/boundary-lines",
+      "/complete-systems-custom.html": "/complete-systems",
+      "/padding-custom.html": "/padding",
+      "/volleyball-poles-custom": "/poles",
+      "/volleyballs-custom": "/volleyballs",
+      "/pool-volleyball-custom": "/pool-volleyball"
+    },
+    "page": {},
+    "product": {}
+  },
+  "normalStoreUrl": "https://www.volleyballusa.com",
+  "port": 3000,
+  "packageManager": "npm"
+}

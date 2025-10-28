@@ -1,0 +1,56 @@
+<h3 class="page-heading h1">{{lang 'custom.home.testimonials-carousel.page-heading'}}</h3>
+<div class="button-quote-wrapper">
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}}" class="js-brand-prev-arrow slick-prev slick-arrow">brand-prev-arrow</button>
+    <span class="icon icon--quote">
+        <svg><use xlink:href="#icon-quote"></use></svg>
+    </span>
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}}" class="js-brand-next-arrow slick-next slick-arrow">brand-next-arrow</button>
+</div>
+
+<section class="testimonial-carousel"
+    data-slick='{
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "lazyLoad": "anticipated",
+        "dots": "false",
+        "slide": ".js-brand-slide",
+        "prevArrow": ".js-brand-prev-arrow",
+        "nextArrow": ".js-brand-next-arrow",
+        "responsive": [
+            {
+                "breakpoint": 800,
+                "settings": {
+                    "slidesToShow": 1,
+                    "slidesToScroll": 1
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToShow": 1,
+                    "slidesToScroll": 1
+                }
+            }
+        ]
+    }'
+    data-dots-labels='{
+        "dotAriaLabel": "{{lang 'carousel.dotAriaLabel'}}",
+        "activeDotAriaLabel": "{{lang 'carousel.activeDotAriaLabel'}}"
+    }'>
+
+    <!-- <button aria-label="{{lang 'carousel.arrowAriaLabel'}}" class="js-brand-prev-arrow slick-prev slick-arrow">brand-prev-arrow</button> -->
+
+    {{#for 1 (lang 'custom.home.testimonials-carousel.number-of-testimonials')}}
+    <div class="js-brand-slide" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'common.carousel_slide_number' slide_number=(add @index 1)}}{{/if}}">
+        <div class="brand-carousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}brand-carousel-slide--first{{/if}}">
+            <p class="testimonial-carousel__testimonial-body">{{lang (concat (concat 'custom.home.testimonials-carousel.testimonial-' $index)'.testimonial-body')}}</p>
+            <p class="testimonial-carousel__testimonial-author h6">{{lang (concat (concat 'custom.home.testimonials-carousel.testimonial-' $index)'.author')}}</p>
+            <p class="testimonial-carousel__testimonial-author-description">{{lang (concat (concat 'custom.home.testimonials-carousel.testimonial-' $index)'.author-description')}}</p>
+        </div>
+    </div>
+    {{/for}}
+
+    <!-- <button aria-label="{{lang 'carousel.arrowAriaLabel'}}" class="js-brand-next-arrow slick-next slick-arrow">brand-next-arrow</button> -->
+
+</section>

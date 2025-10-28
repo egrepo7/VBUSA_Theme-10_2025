@@ -1,0 +1,55 @@
+<nav class="pagination pagination--dropdown" aria-label="pagination">
+    <ul class="pagination-list">
+        <li class="pagination-item pagination-item--previous">
+            {{#if previous}}
+                <a class="pagination-link h5"
+                   href="{{previous}}"
+                   {{#unless reload}}data-faceted-search-facet{{/unless}}
+                   aria-label="{{lang 'common.previous'}}"
+                >
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-left"></use>
+                        </svg>
+                    </i>
+                    {{lang 'common.previous'}}
+                </a>
+            {{/if}}
+        </li>
+
+        {{!-- Sets a variable to find and replace the page numbers in the select dropdown below --}}
+
+        {{#each (split (last (split links.[0].url '?')) '&')}}
+            {{#contains this "page="}}
+                {{assignVar 'replace_text' this}}
+            {{/contains}}
+        {{/each}}
+
+        <li class="pagination-item pagination-item--dropdown">
+            <label class="pagination-item__label h5" for="paginate-pages">{{lang 'custom.other.paginator.label'}}</label>
+            <select class="pagination-item__dropdown h4" id="paginate-pages" name="paginate-pages" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                {{#for 1 page_count}}
+                    <option value="{{#replace (getVar 'replace_text') ../links.[0].url}}page={{$index}}{{/replace}}" {{#unless reload}}data-faceted-search-facet{{/unless}} {{#if $index '==' ../current}}selected aria-current="page" data-pagination-current-page-link {{/if}} >{{$index}}</option>
+                {{/for}}
+            </select>
+            <span class="pagination-item__page-count h5">{{lang 'custom.other.paginator.of-label' page_count=page_count}}</span>
+        </li>
+
+        <li class="pagination-item pagination-item--next">
+            {{#if next}}
+                <a class="pagination-link h5"
+                   href="{{next}}"
+                   {{#unless reload}}data-faceted-search-facet{{/unless}}
+                   aria-label="{{lang 'common.next'}}"
+                >
+                    {{lang 'common.next'}}
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-right"></use>
+                        </svg>
+                    </i>
+                </a>
+            {{/if}}
+        </li>
+    </ul>
+</nav>

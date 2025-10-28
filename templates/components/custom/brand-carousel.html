@@ -1,0 +1,50 @@
+<section class="brand-carousel"
+    data-slick='{
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 1,
+        "lazyLoad": "anticipated",
+        "slide": ".js-brand-slide",
+        "prevArrow": ".js-brand-prev-arrow",
+        "nextArrow": ".js-brand-next-arrow",
+        "responsive": [
+            {
+                "breakpoint": 800,
+                "settings": {
+                    "slidesToShow": 5,
+                    "slidesToScroll": 1
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToShow": 3,
+                    "slidesToScroll": 1
+                }
+            }
+        ]
+    }'
+    data-dots-labels='{
+        "dotAriaLabel": "{{lang 'carousel.dotAriaLabel'}}",
+        "activeDotAriaLabel": "{{lang 'carousel.activeDotAriaLabel'}}"
+    }'>
+
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}}" class="js-brand-prev-arrow slick-prev slick-arrow">brand-prev-arrow</button>
+
+    {{#for 1 (lang 'custom.other.brand-carousel.number-of-brands')}}
+    <a href="{{lang (concat (concat 'custom.other.brand-carousel.brand-' $index)'.link')}}" class="js-brand-slide" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'common.carousel_slide_number' slide_number=(add @index 1)}}{{/if}}">
+        <div class="brand-carousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}brand-carousel-slide--first{{/if}}">
+            <div class="brand-carousel-image-wrapper">
+                    {{#if (lang (concat (concat 'custom.other.brand-carousel.brand-' $index)'.image')) '===' ' '}}
+                        <img class="lazyload brand-carousel__image" data-src="http://via.placeholder.com/400x400.png?text=Brand+Placeholder+Image+{{$index}}" src="{{cdn 'img/loading.svg'}}" alt="{{lang (concat (concat 'custom.other.brand-carousel.brand-' $index)'.image_alt_text')}}">
+                    {{else}}
+                        <img class="lazyload brand-carousel__image" data-src="{{cdn (lang (concat (concat 'custom.other.brand-carousel.brand-' $index)'.image'))}}" src="{{cdn 'img/loading.svg'}}" alt="{{lang (concat (concat 'custom.other.brand-carousel.brand-' $index)'.image_alt_text')}}">
+                    {{/if}}
+            </div>
+        </div>
+    </a>
+    {{/for}}
+
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}}" class="js-brand-next-arrow slick-next slick-arrow">brand-next-arrow</button>
+
+</section>

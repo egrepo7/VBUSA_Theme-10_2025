@@ -1,0 +1,18 @@
+.home-blog {
+    @include breakpoint('medium') {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr auto;
+    }
+}
+
+.home-blog__link {
+    justify-self: end;
+    margin: 0 auto;
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+.home-blog .blog {
+    border-top: none;
+}

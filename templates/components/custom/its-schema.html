@@ -1,0 +1,90 @@
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "LocalBusiness",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "",
+            "addressRegion": "",
+            "postalCode": "",
+            "streetAddress": ""
+        },
+        "description": "",
+        "name": "{{settings.store_name}}",
+        "url":"{{urls.home}}",
+        "telephone": "{{settings.phone_number}}",
+        "image": "{{getImage settings.store_logo.image 'logo_size'}}"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "{{urls.home}}",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{urls.home}}search.php?search_query={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "url": "{{urls.home}}",
+        "logo": "{{getImage settings.store_logo.image 'logo_size'}}"
+    }
+</script>
+{{#if page_type '==' 'blog_post'}}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": "{{blog.post.url}}",
+            {{#if blog.post.thumbnail}}
+                "image": "{{getImage blog.post.thumbnail 'theme_settings.blog_size'}}",
+                {{else}}
+                    "image": "{{getImage settings.store_logo.image 'logo_size'}}",
+            {{/if}}
+            "headline": "{{blog.post.title}}",
+            {{#if blog.post.author}}
+                "author": {
+                    "@type": "Person",
+                    "name": "{{blog.post.author}}"
+                },
+            {{/if}}
+            "publisher": {
+                "@type": "Organization",
+                "name": "{{settings.store_name}}"
+            },
+            "datePublished": "{{blog.post.date_published}}",
+            "articleBody": "{{blog.post.body}}"
+        }
+    </script>
+{{/if}}
+{{#if page_type '==' 'product'}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{product.title}}",
+    "image": [
+        "{{getImage product.main_image 'zoom_size'}}"
+    ],
+    "description": "{{product.description}}",
+    "sku": "{{product.sku}}",
+    "brand": {
+        "@type": "Brand",
+        "name": "{{product.brand.name}}"
+    },
+    "offers": {
+        "@type": "Offer",
+        "priceCurrency": "{{currency_selector.active_currency_code}}",
+        "price": "{{product.price.value}}",
+        "availability": "https://schema.org/{{#if product.in_stock}}InStock{{else}}OutOfStock{{/if}}",
+        "url": "{{product.url}}"
+    }
+}
+</script>
+{{/if}}

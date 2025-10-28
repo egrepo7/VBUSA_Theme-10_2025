@@ -1,0 +1,29 @@
+<nav class="sidebarNav">
+    {{#if category.subcategories}}
+        <div class="sidebarBlock categoryBlock form-select">
+            {{!-- <!-- <h2 class="sidebarBlock-heading">{{category.name}}</h2> --> --}}
+            <h2 class="sidebarBlock-heading h3" data-collapsible="custom-id" data-collapsible-disabled-breakpoint="medium">Categories</h2>
+            <ul class="navList" id="custom-id" aria-hidden="true" tabindex="-1">
+                {{#each category.subcategories}}
+                <li class="navList-item">
+                    <a class="navList-action" href="{{url}}" title="{{name}}">{{name}}</a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    {{/if}}
+
+    {{#if category.faceted_search_enabled}}
+        {{> components/faceted-search/index category}}
+    {{else}}
+        {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+    {{/if}}
+</nav>
+
+<div class="category__sidebar-image">
+    {{#if in_development}}
+        <!-- <img class="lazyload" data-src="https://via.placeholder.com/300x600.png?text=Sidebar+Promo+Placeholder" src="{{cdn 'img/loading.svg'}}"> -->
+    {{else}}
+        {{{region name="sidebar_image"}}}
+    {{/if}}
+</div>

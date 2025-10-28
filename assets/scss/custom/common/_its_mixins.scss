@@ -1,0 +1,8 @@
+@mixin container {
+    $cPaddingLeftRight: 1rem;
+
+    // calc ensures that $max-width is always the correct width; without it, we loose x.rem of content space due to padding.
+    max-width: calc(#{$max-width} + #{$cPaddingLeftRight} * 2);
+    margin: 0 auto;
+    padding: 0 $cPaddingLeftRight;
+}

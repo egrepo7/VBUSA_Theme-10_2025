@@ -1,0 +1,15 @@
+{{#if theme_settings.its.category_view_toggle}}
+{{inject 'defaultViewType' theme_settings.product_list_display_mode}}
+    <div class="category__view-toggle">
+        <button aria-label="Toggle Product List View" class="category__toggle-view js-category__toggle-view {{#if type 'list'}}active-category-view{{/if}}" data-view-type="list">
+                <span class="icon icon--list">
+                <svg><use xlink:href="#icon-list"></use></svg>
+            </span>
+        </button>
+        <button aria-label="Toggle Product Grid View" class="category__toggle-view js-category__toggle-view {{#if type 'grid'}}active-category-view{{/if}}" data-view-type="grid">
+                <span class="icon icon--th">
+                <svg><use xlink:href="#icon-th"></use></svg>
+            </span>
+        </button>
+    </div>
+{{/if}}

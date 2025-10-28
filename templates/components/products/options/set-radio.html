@@ -1,0 +1,44 @@
+<div class="form-field" data-product-attribute="set-radio" role="radiogroup" aria-labelledby="radio-group-label-{{id}}{{id_suffix}}">
+    <span class="form-label form-label--alternate form-label--inlineSmall" id="radio-group-label-{{id}}{{id_suffix}}">
+        {{ this.display_name }}{{#if required}} <span style="color:red">*</span>{{/if}}
+    </span>
+
+    <input
+        class="form-radio"
+        type="radio"
+        id="attribute_radio_{{id}}_placeholder{{id_suffix}}"
+        name="attribute[{{id}}]"
+        value=""
+        {{#unless required}}checked{{/unless}}
+        style="display:none;"
+        disabled
+    >
+    <label class="form-label form-label--placeholder" for="attribute_radio_{{id}}_placeholder{{id_suffix}}" style="font-weight:bold; opacity:0.7; cursor:default;">{{lang 'products.choose_options'}}</label>
+
+    {{#unless required}}
+        <input
+            class="form-radio"
+            type="radio"
+            id="attribute_radio_{{id}}_none{{id_suffix}}"
+            name="attribute[{{id}}]"
+            value=""
+            checked="{{#if defaultValue '==' ''}}checked{{/if}}"
+        >
+        <label class="form-label" for="attribute_radio_{{id}}_none{{id_suffix}}">{{lang 'products.none'}}</label>
+    {{/unless}}
+
+    {{#each this.values}}
+        <input
+            class="form-radio"
+            type="radio"
+            id="attribute_radio_{{../id}}_{{id}}{{../id_suffix}}"
+            name="attribute[{{../id}}]"
+            value="{{id}}"
+            {{#if selected}}
+                checked
+                data-default
+            {{/if}}
+            {{#if ../required}}required{{/if}}>
+        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_radio_{{../id}}_{{id}}{{../id_suffix}}">{{this.label}}</label>
+    {{/each}}
+</div>

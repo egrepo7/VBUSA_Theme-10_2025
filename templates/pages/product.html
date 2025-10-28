@@ -1,0 +1,55 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+
+{{#partial "page"}}
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div itemscope itemtype="https://schema.org/Product">
+        {{> components/products/product-view schema=true  }}
+
+        {{{region name="product_below_content"}}}
+
+        <div class="product-below-content">
+            <div class="container">
+            {{#if product.videos.list.length}}
+                {{!> components/products/videos product.videos}}
+            {{/if}}
+    
+            {{#if theme_settings.its.pdp_carousel_tabs}}
+                {{> components/products/tabs}}
+            {{else}}
+                {{#if product.related_products}}
+                    <h2 class="productCarousel-heading productCarousel-heading--related">{{lang 'products.related_products'}}</h2>
+                    {{#if settings.data_tag_enabled}}
+                        {{> components/products/carousel products=product.related_products columns=4 list="Related Products"}}
+                    {{else}}
+                        {{> components/products/carousel products=product.related_products columns=4 }}
+                    {{/if}}
+                {{/if}}
+                {{#if product.similar_by_views}}
+                    <h2 class="productCarousel-heading productCarousel-heading--similar">{{lang 'products.similar_by_views'}}</h2>
+                    {{> components/products/carousel products=product.similar_by_views columns=4 list="Customers Also Viewed" }}
+                {{/if}}
+            {{/if}}
+            {{{region name="product_below_related"}}}
+            {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+                {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+            {{/all}}
+            </div>
+        </div>
+    </div>
+    {{> components/custom/photoswipe}}
+{{/partial}}
+{{> layout/base container_active=false}}

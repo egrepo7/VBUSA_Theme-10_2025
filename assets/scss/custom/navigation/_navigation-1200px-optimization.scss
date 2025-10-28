@@ -1,0 +1,189 @@
+// ========================================
+// NAVIGATION OPTIMIZATION FOR 1200PX VIEWPORTS
+// ========================================
+
+// Optimize navigation for better display on 1200px screens
+// This provides a balance between readability and space efficiency
+
+@media only screen and (min-width: 1200px) and (max-width: 1299px) {
+    
+    // Reduce font size slightly for better fit
+    .navPages-item > a.navPages-action {
+        font-size: 11px !important;
+        font-weight: 600;
+        height: 48px;
+        line-height: 1.2;
+    }
+    
+    // Optimize padding for navigation links
+    .navPages-list.links .navPages-item > a {
+        padding: 8px 8px !important; // Reduced from 8px 10px
+        
+        // Adjust spacing for icon
+        .icon.navPages-action-moreIcon {
+            margin: auto 8px; // Reduced from auto 10px
+        }
+    }
+    
+    // Special handling for first item (Shop All)
+    .navPages-list.links .navPages-item:first-of-type > a {
+        padding: 16px 12px !important; // Reduced from 16px 14px
+    }
+    
+    // Optimize container max-width for 1200px screens
+    .navPages {
+        max-width: 100%;
+        justify-content: flex-start; // Allow items to flow naturally
+    }
+    
+    // Improve mega menu positioning for 1200px
+    .navPages-item:hover .navPages-action--toplevel.has-subMenu + .navPage-subMenu {
+        max-width: 95rem; // Slightly reduced from 97rem
+    }
+    
+    // Adjust mega menu content width
+    .navPage-megaMenu-list.is-open {
+        width: calc(85vw - 410px); // Optimized for 1200px
+        max-width: 800px;
+    }
+    
+    // Optimize search field width
+    .header-2__nav-search.dropdown.dropdown--quickSearch {
+        padding-right: 20px; // Reduced from 24px
+    }
+    
+    // Adjust container padding
+    .header-2__mid {
+        padding-left: 28px; // Reduced from 32px
+    }
+    
+    // Fine-tune user actions area
+    .navUser-item.navUser-item--cart {
+        padding-right: 28px !important; // Reduced from 32px
+    }
+    
+    // Optimize sub-menu width
+    .navPages .navPage-subMenu-list {
+        min-width: 360px; // Reduced from 390px
+    }
+}
+
+// Additional optimizations for screens between 1200px-1400px
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+    
+    // Ensure navigation items don't wrap by using horizontal scroll if needed
+    .navPages .navPages-list.links {
+        flex-wrap: nowrap; // Prevent wrapping
+        overflow-x: auto; // Allow horizontal scroll if absolutely necessary
+        overflow-y: hidden;
+        scrollbar-width: none; // Hide scrollbar on Firefox
+        -ms-overflow-style: none; // Hide scrollbar on IE/Edge
+        
+        &::-webkit-scrollbar {
+            display: none; // Hide scrollbar on WebKit browsers
+        }
+    }
+    
+    // Ensure all navigation items are visible
+    .navPages-list .navPages-item {
+        flex-shrink: 0; // Prevent items from shrinking
+    }
+    
+    // Optimize text for better readability at smaller sizes
+    .navPages-item > a.navPages-action {
+        white-space: nowrap; // Prevent text wrapping
+        text-overflow: ellipsis; // Add ellipsis if text is too long
+        overflow: hidden;
+    }
+}
+
+// Enhanced responsive behavior for 1200px screens
+@media only screen and (min-width: 1200px) {
+    
+    // Optimize contact info display
+    .store-contact__link {
+        .store-contact__label {
+            font-size: 16px; // Slightly smaller
+        }
+        .store-contact__phone-number {
+            font-size: 16px; // Slightly smaller
+        }
+    }
+    
+    // Better spacing for account/cart area
+    .navUser-item.navUser-item--account,
+    .navUser-item.navUser-item--cart {
+        padding: 10px 10px 10px 0; // Reduced padding
+    }
+    
+    // Optimize search field
+    .header-2__nav-search.dropdown.dropdown--quickSearch {
+        .form-field .form-input {
+            padding: 8px 12px; // Reduce input padding
+            font-size: 18px; // Slightly smaller font
+        }
+    }
+}
+
+// Compact mode for very tight 1200px layouts
+@media only screen and (min-width: 1200px) and (max-width: 1250px) {
+    
+    // Ultra-compact navigation
+    .navPages-item > a.navPages-action {
+        font-size: 10px !important;
+        padding: 8px 6px !important;
+        
+        .icon.navPages-action-moreIcon {
+            margin: auto 6px;
+            width: 12px;
+            height: 6px;
+        }
+    }
+    
+    // Compact first item
+    .navPages-list.links .navPages-item:first-of-type > a {
+        padding: 16px 10px !important;
+    }
+    
+    // Hide less critical elements if space is very tight
+    .store-contact__label span:not(:first-child) {
+        display: none; // Hide extra contact text
+    }
+}
+
+// Hover effects optimization for 1200px
+@media only screen and (min-width: 1200px) {
+    
+    // Faster hover transitions for better UX on smaller screens
+    .navPages-item > a.navPages-action {
+        transition: all 0.2s ease; // Faster transitions
+    }
+    
+    // Optimize hover states
+    .navPages-item:hover .navPages-action--toplevel.has-subMenu + .navPage-subMenu {
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+    
+    // Better mega menu performance
+    .navPage-megaMenu-list {
+        will-change: transform, opacity; // Optimize for animations
+        transition: all 0.25s ease;
+    }
+}
+
+// Debug helper (remove in production)
+.navigation-debug-1200 {
+    @media only screen and (min-width: 1200px) and (max-width: 1299px) {
+        &::before {
+            content: "1200px Mode Active";
+            position: fixed;
+            top: 0;
+            right: 0;
+            background: #ff0000;
+            color: white;
+            padding: 4px 8px;
+            font-size: 12px;
+            z-index: 9999;
+        }
+    }
+}

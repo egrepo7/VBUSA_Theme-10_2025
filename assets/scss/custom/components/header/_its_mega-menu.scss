@@ -1,0 +1,9 @@
+.mega-menu {
+    @media only screen and (max-width: 1024px) {
+        display: none;
+    }
+}
+
+.mega-menu__image {
+    width: 100%;
+}

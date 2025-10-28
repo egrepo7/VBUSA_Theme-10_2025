@@ -1,0 +1,454 @@
+.page--page .breadcrumbs-bar {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    
+    @include breakpoint('medium') {
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+.page--page .body {
+    margin-top: remCalc(15px);
+    @include breakpoint('medium') {
+        // 801px and up
+        margin-bottom: 10rem;
+    }
+}
+
+.page-content--centered {
+    @include breakpoint('medium') {
+        // 801px and up
+        width: 80%;
+    }
+}
+
+.page--page .page-heading {
+    padding-bottom: 15px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid $color-alt--hover;
+    line-height: 33px;
+    
+    @include breakpoint('medium') {
+        // 801px and up
+        padding: 0;
+        margin-bottom: 32px;
+        border: 0;
+        line-height: 50px;
+    }
+}
+
+// How to - Court builder page 
+.divider {
+    display: inline-block;
+    height: 1px;
+    width: 100%;
+    background-color: #E6E6E6;
+    margin: 40px 0 8px;
+}
+.page--page .triplecourt {
+    display: grid;
+    align-items: center;
+    margin-bottom: 40px;
+    justify-items: center;
+    gap: 24px;
+}
+
+.triplecourt iframe {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 100%;
+    max-width: 402px;
+}
+
+.step-heading {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.page--page .stepsImg {
+    display: grid;
+    margin-bottom: 32px;
+    justify-items: center;
+    row-gap: 24px;
+
+    @include breakpoint('large') {
+        // 1261px and up
+        column-gap: 24px;
+    }
+}
+.col-full {
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 32px;
+}
+.col-1 {
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 32px;
+}
+
+.col-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+.col-2 a {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.col-2 a img {
+    display: block;
+}
+
+.col-3 {
+    grid-template-columns: 1fr;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+.col-4 {
+    grid-template-columns: 1fr;
+    // column-gap: 24px;
+
+    @include breakpoint('medium') {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.col-5 {
+    grid-template-columns: 1fr;
+    // column-gap: 24px;
+
+    @include breakpoint('medium') {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+.row-2 {
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 24px;
+}
+
+.itemContent,
+.EdgeItemContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+ 
+.page--page .steps a,
+.page--page .triplecourt a {
+    height: 100%;
+    display: block;
+    max-width: fit-content;
+}
+
+.triplecourt img {
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.page--page .steps figure {
+    margin: 0;
+}
+.page--page .steps figcaption {
+    margin: 0;
+}
+
+.stepsImg a {
+    text-align: center;
+}
+
+.steps img {
+    max-height: 360px;
+    width: auto;
+    display: block;
+    text-align: center;
+    margin: 0 auto 24px;
+    object-fit: cover;
+    @include breakpoint('small') {
+        // 551px and up
+    }
+}
+
+.steps .col-4 img {
+    height: 296px;
+    width: 296px;
+}
+
+.bazookaInstructions a {
+    width: 100%;
+    text-align: center;
+}
+
+.itemTitle {
+    text-align: center;
+    margin-bottom: 40px;
+    gap: 24px;
+}
+
+.courtGallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include breakpoint('small') {
+        // 551px and up
+        
+    }
+}
+
+.galleryPic {
+    text-align: center;
+}
+
+.galleryPic img {
+    width: 616px;
+    height: 320px;
+    margin: 0 0 8px;
+    object-fit: cover;
+}
+
+.galleryPic figure {
+    margin-bottom: 0;
+}
+
+.galleryPic a {
+    text-align: center;
+    height: initial !important;
+}
+
+
+
+figcaption {
+    text-align: center;
+    margin-bottom: 1rem;
+    display: block;
+    color: #333333;
+    margin-top: 24px;
+}
+
+.col-1 img {
+    display: block;
+    margin: 0 auto 24px;
+}
+
+.shopAllBtn {
+    background-color: red;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    padding: 16px 32px;
+    display: block;
+    width: fit-content;
+    margin: 2rem auto;
+}
+
+  .hero-img-full {
+    background-image: url('https://cdn11.bigcommerce.com/s-kh9m56pybj/images/stencil/original/image-manager/college-court-construction.jpg');
+    background-size: cover;
+    background-position: 50% 46%;
+    border: transparent;
+    height: 500px;
+    width: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .college-court-heading {
+    background-color:	#ed1c24;
+    position: absolute;
+    padding: 16px;
+    top: 40%;
+    @include breakpoint('small') {
+        width: 70%;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+  }
+  
+  .college-court-heading h2 {
+      font-size: 32px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-family: Exo,sans-serif;
+      color: #fff;
+      line-height: 40px;
+      font-weight: 700;
+      text-align: center;
+      text-shadow: 0 1px 6px #000;
+      @include breakpoint('small') {
+          line-height: 1.2em;
+          font-size:48px;
+    }
+  }
+
+  .college-nav {
+    background: white;
+    padding: 15px 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .college-nav p {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .college-nav-links {
+    list-style-type: none;
+    max-width: 960px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: -1px;
+    padding-left: 0;
+    margin: 0 auto;
+  }
+
+  .college-nav-links a:visited {
+    color: #333;
+  }
+  .college-nav-links li {
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: .25em 0;
+    padding: 0 1em;
+    text-align: center;
+    border-left: 1px solid #ccc;
+    background-color: #fff;
+  }
+
+  .college-nav-links li:first-child {
+    border-left: none;
+  }
+  .sandTableHeader {
+    font-size: 28px;
+    margin: 5px 0;
+    padding-left: 5px;
+    text-align: left;
+}
+  .sandformCenter {
+    margin-top: 20px;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 70%;
+    background: #f7f4ec;
+    border-radius: 5px;
+  }
+
+  .sandformCenter h3,
+  .sandformCenter p {
+    text-align: center;
+  }
+
+  .sandformCenter {
+    max-width:95%;
+    margin: 0 auto;
+  }
+  .sand-pure-form {
+    margin: 30px auto;
+}
+  .pure-controls input {
+    width: 43%;
+    text-align: center;
+  }
+  .pure-form-aligned .pure-control-group {
+    margin-bottom: 0.5em;
+}
+
+.pure-form-aligned .pure-control-group label {
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+    width: 10em;
+    margin: 0 1em 0 0;
+}
+  
+  .pure-control-group input {
+    width: 43%;
+    text-align: center;
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    @include breakpoint('small') {
+        width: 100%;
+        text-align: left;
+    }
+  }
+
+  .pure-form-aligned .pure-controls {
+    margin: 1.5em 0 0 11em;
+}
+
+.pure-button {
+    font-family: inherit;
+    font-size: 100%;
+    padding: 0.5em 1em;
+    color: #444;
+    color: rgba(0,0,0,.8);
+    border: 1px solid #999;
+    border: transparent;
+    background-color: #E6E6E6;
+    text-decoration: none;
+    border-radius: 2px;
+    display: inline-block;
+    zoom: 1;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #0078e7;
+    color: #fff;
+}
+
+.court-page-container {
+    text-align: center;
+}
+
+.page--page .page-content  {
+    float: none !important;
+}

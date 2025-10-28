@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ resourceHints }}}
+        
+        {{!-- Preload critical Google Fonts to prevent CLS --}}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2" crossorigin>
+        <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLCz7Z1xlFd2JQEk.woff2" crossorigin>
+        <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLBT5Z1xlFd2JQEk.woff2" crossorigin>
+        <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLDD4Z1xlFd2JQEk.woff2" crossorigin>
+        
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script>
+            {{!-- Change document class from no-js to js so we can detect this in css --}}
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+            
+            {{!-- Splunk RUM stub to prevent initialization errors --}}
+            window.SplunkRum = window.SplunkRum || {
+                init: function(config) {
+                    console.log('SplunkRum.init() called with config:', config);
+                    // Stub implementation - does nothing but prevents errors
+                    return {
+                        setGlobalAttributes: function() {},
+                        setGlobalAttribute: function() {},
+                        removeGlobalAttribute: function() {}
+                    };
+                }
+            };
+        </script>
+
+        {{> components/common/polyfill-script }}
+        <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
+
+        {{!-- Load Lazysizes script ASAP so images will appear --}}
+        <script>
+            {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
+            window.lazySizesConfig = window.lazySizesConfig || {};
+            window.lazySizesConfig.loadMode = 1;
+        </script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+        <script>
+            WebFont.load({
+                google: {
+                    families: ['Poppins:100,200,300,400,500,600,700,800,900']
+                },
+                custom: {
+                    families: ['Karla', 'Roboto', 'Source Sans Pro']
+                },
+                classes: false,
+                display: 'swap' // Prevent CLS from font loading
+            });
+        </script>
+
+        <!-- CRITICAL CLS PREVENTION STYLES - Only the most essential for first paint -->
+        <style>
+            /* Core layout structure to prevent major shifts */
+            .productGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+            .listItem { display: flex; align-items: flex-start; margin-bottom: 0; }
+            .listItem-figure { flex: 0 0 150px; margin-right: 15px; }
+            .listItem-body { flex: 1; }
+            
+            /* Mobile responsive */
+            @media (max-width: 767px) {
+                .productGrid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+                .listItem { flex-direction: column; }
+                .listItem-figure { flex: none; width: 100%; margin-right: 0; margin-bottom: 15px; max-width: 200px; align-self: center; }
+                .listItem-body { flex: none; width: 100%; }
+            }
+        </style>
+
+        <!-- Preload critical fonts to reduce CLS -->
+        <link rel="preload" href="{{cdn 'assets/fonts/clearsans-regular-webfont.woff2'}}" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="{{cdn 'assets/fonts/clearsans-bold-webfont.woff2'}}" as="font" type="font/woff2" crossorigin>
+
+        {{ getFontsCollection }}
+        {{#and (if theme_settings.its.kitchen_sink) (if in_development)}}
+            {{{stylesheet '/assets/css/its_kitchen-sink.css'}}}
+        {{else}}
+            {{{stylesheet '/assets/css/theme.css'}}}
+        {{/and}}
+
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+        <!-- Slick Carousel CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+        {{{head.scripts}}}
+
+        {{~inject 'itsConfig' theme_settings.its}}
+
+        {{~inject 'zoomSize' theme_settings.zoom_size}}
+        {{~inject 'productSize' theme_settings.product_size}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceModeSettings' settings.maintenance}}
+        {{~inject 'adminBarLanguage' (langJson 'admin')}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'channelId' settings.channel_id}}
+        {{~inject 'template' template}}
+        {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
+        {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
+        {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
+        {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
+        {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
+        {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
+
+        {{#if in_development}}
+            {{inject 'inDevelopment' true}}
+        {{/if}}
+
+        <!-- jQuery (required for Slick) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    </head>
+    <body class="{{> components/attributes/body-classes }}" data-graphql="{{ settings.storefront_api.token }}">
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+        {{> components/custom/header-2/header-2 }}
+        {{{region name="category_hero"}}}
+        {{#and (if theme_settings.its.kitchen_sink) (if in_development)}}
+            {{> components/custom/kitchen-sink}}
+        {{else}}
+            {{> components/common/body container_active=container_active}}
+        {{/and}}
+        {{> components/custom/footer-1 }}
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <!-- Slick Carousel JS -->
+        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script>
+            {{!-- Exported in app.js --}}
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+        </script>
+
+        {{{footer.scripts}}}
+        {{#block "page_scripts"}} {{/block}}
+        {{> components/custom/its-schema }}
+    </body>
+</html>

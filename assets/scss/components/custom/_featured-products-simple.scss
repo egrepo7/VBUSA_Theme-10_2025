@@ -1,0 +1,45 @@
+// =============================================================================
+// FEATURED PRODUCTS SECTION - Carousel-based featured products
+// =============================================================================
+
+.featured-products-section {
+    padding: 4rem 0;
+    background: #f8f9fa;
+    
+    @media (max-width: 768px) {
+        padding: 3rem 0;
+    }
+    
+    .section-header {
+        text-align: left;
+        margin-bottom: 3rem;
+        
+        @media (max-width: 768px) {
+            margin-bottom: 2.5rem;
+        }
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 1rem;
+        
+        @media (max-width: 768px) {
+            font-size: 2rem;
+        }
+    }
+    
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 600px;
+        line-height: 1.6;
+        
+        @media (max-width: 768px) {
+            font-size: 1rem;
+        }
+    }
+}
+
+// Use default carousel styling from theme

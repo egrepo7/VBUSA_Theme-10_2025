@@ -1,0 +1,217 @@
+{{#if banners.bottom}}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
+<footer class="footer footer-1 footer-1--default" role="contentinfo">
+    <h2 class="footer-title-sr-only">{{lang 'footer.title'}}</h2>
+    <section class="footer-1__top" data-section-type="newsletterSubscription">
+        <div class="footer-1__newsletter-container container">
+            {{#if settings.show_newsletter_box}}
+                {{!> components/common/subscription-form}}
+            {{/if}}
+        </div>
+    </section>
+    <section class="footer-1__mid">
+        <div class="container">
+            <section class="footer-info">
+                {{#for 1 (lang 'custom.footer.number-of-columns')}}
+                    <article class="footer-info-col footer-info-col--small" data-section-type="footer-{{camelcase (lang (concat (concat 'custom.footer.column-'$index)'.title'))}}">
+                        <h3 class="footer-info-heading h3">{{lang (concat (concat 'custom.footer.column-'$index)'.title')}}</h3>
+                        <ul class="footer-info-list">
+                            {{#for 1 (lang (concat (concat 'custom.footer.column-'$index)'.number-of-links'))}}
+                                <li class="footer-info-list__item">
+                                    <a class="footer-info-list__item-link h4" href="{{lang (concat (concat (concat (concat 'custom.footer.column-'../$index)'.link-')$index)'.link')}}">{{lang (concat (concat (concat (concat 'custom.footer.column-'../$index)'.link-')$index)'.text')}}</a>
+                                </li>
+                            {{/for}}
+                        </ul>
+                    </article>
+                {{/for}}
+                <div class="placeholder-container">
+                    <div class="contact-us-placeholder">
+                        <div class="contactform">
+                            <h5 class="footerheaders">Contact Us</h5>
+                            <div class="w-form">
+                             <iframe height="450" allowTransparency="true" frameborder="0" scrolling="no" style="width:100%;border:none"  src="https://volleyballusa.wufoo.com/embed/zxgw4sl15h5s16/"><a href="https://volleyballusa.wufoo.com/forms/zxgw4sl15h5s16/">Fill out my Wufoo form!</a></iframe>
+
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                    <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
+                        <h3 class="footer-info-heading">{{lang 'footer.info'}}</h3>
+                        <div class="footer-info-item">
+                            <p class="footer-1__company-name h4">United Volleyball Supply, LLC</p>
+                            <p class="footer-1__website h4">VolleyballUSA.com</p>
+                            <address class="footer-1__address h4 ">{{lang 'custom.footer.contact.address.line-1'}}</address>
+                            <address class="footer-1__address h4 footer-info-item">{{lang 'custom.footer.contact.address.line-2'}}</address>
+                        </div>
+                        <div class="footer-info-item">
+                            <a href="tel:{{settings.phone_number}}" class="footer-1__phone-number h4">{{lang 'footer.call_us' phone_number=settings.phone_number}}</a>
+                            <a href="tel:{{lang.custom.footer.contact.fax}}" class="footer-1__phone-number h4">{{{lang 'custom.footer.contact.fax.label'}}} {{lang 'custom.footer.contact.fax.number'}}</a>
+                        </div class="footer-info-item">
+
+                        <div class="footer-info-item">
+                            <p class="footer-1__store-hours h4">{{lang 'custom.footer.contact.hours.line-1'}}</p>
+                            <p class="footer-1__store-hours h4">{{lang 'custom.footer.contact.hours.line-2'}}</p>
+                        </div>
+
+
+                        
+                    </article>
+                {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
+                    <article class="footer-info-col
+                        footer-info-col--social
+                        footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
+                        data-section-type="footer-webPages">
+                            <h3 class="footer-info-heading h4">{{lang 'social.connect'}}</h3>
+                            {{> components/common/social-links}}
+                    </article>
+                {{/if}}
+                <div class="footer-wrapper">
+                    <article class="footer-info-col affiliate-message-wrapper">
+                        <p class="footer-info-col prop65-message h4">
+                            {{{lang 'custom.footer.prop65-message'}}}
+                        </p>
+                        <p class="footer-info-col affiliate-message h4">
+                            {{{lang 'custom.footer.affiliate-message'}}}
+                        </p>
+                    </article>
+                    <div class="footer-certs">
+                        
+                        <a href="https://www.bbb.org/us/wa/redmond/profile/sporting-goods-retail/united-volleyball-supply-1296-22029184" target="_blank"><img src="https://cdn11.bigcommerce.com/s-cf8ys9ikz8/images/stencil/original/image-manager/bbb-a-plus.jpg?t=1749163378" style="width: 100px;" /></a>
+                    
+                    </div>
+                </div>
+                {{!-- 
+                    <article class="footer-info-col footer-info-col--small footer-1__store-logo" data-section-type="footer-storeLogo">
+                        {{> components/common/store-logo}}
+                    </article>
+                --}}
+            </section>
+        </div>
+    </section>
+    <section class="footer-1__bottom">
+        <div class="footer-1__bottom-container container">
+            <div class="footer-1__bottom-copyright">
+                <ul class="footer-1__bottom-list">
+                    {{#if theme_settings.show_copyright_footer}}
+                    <li class="footer-1__bottom-list-item">
+                        <div class="footer-copyright">
+                            <p class="powered-by">&copy; {{moment format="YYYY"}} {{lang 'custom.footer.store-name'}} </p>
+                        </div>
+                    </li>
+                    <span class="footer-divider">|</span>
+                    {{!-- 
+                    <!-- <li class="footer-1__bottom-list-item">
+                        <div class="footer-copyright">
+                            <p class="powered-by"><a href="{{lang 'custom.footer.its-copyright.link'}}" rel="nofollow">{{lang 'custom.footer.its_copyright.text'}}</a></p>
+                        </div>
+                    </li> -->
+                    --}}
+                    {{/if}}
+                    <li class="footer-1__bottom-list-item">
+                        <div class="footer-copyright">
+                            <p class="powered-by"><a href="{{urls.sitemap}}" rel="nofollow">{{lang 'sitemap.page_title'}}</a></p>
+                        </div>
+                    </li>
+                    <span class="footer-divider">|</span>
+                    <li class="footer-1__bottom-list-item">
+                        <div class="footer-copyright">
+                            <p class="powered-by"><a href="/privacy-policy" rel="nofollow">{{lang 'optimized_checkout.privacy_policy.heading'}}</a></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-1__bottom-payment">
+                {{> components/common/payment-icons}}
+            </div>
+        </div>
+    </section>
+</footer>
+
+{{!-- Leftover elements --}}
+
+{{!--
+{{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
+    <article class="footer-info-col
+        footer-info-col--social
+        footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
+        data-section-type="footer-webPages">
+            <h3 class="footer-info-heading h4">{{lang 'social.connect'}}</h3>
+            {{> components/common/social-links}}
+    </article>
+{{/if}}
+
+<article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+    <h3 class="footer-info-heading">{{lang 'footer.navigate'}}</h3>
+    <ul class="footer-info-list">
+        {{#each pages}}
+            <li class="footer-info-list__item">
+                <a class="footer-info-list__item-link" href="{{url}}">{{name}}</a>
+            </li>
+        {{/each}}
+        <li>
+            <a class="footer-info-list__item-link" href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
+        </li>
+    </ul>
+</article>
+
+<article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
+    <h3 class="footer-info-heading">{{lang 'footer.categories'}}</h3>
+    <ul class="footer-info-list">
+        {{#each categories}}
+            <li class="footer-info-list__item">
+                <a class="footer-info-list__item-link" href="{{url}}">{{name}}</a>
+            </li>
+        {{/each}}
+    </ul>
+</article>
+
+{{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
+    <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
+        <h3 class="footer-info-heading">{{lang 'footer.brands'}}</h3>
+        <ul class="footer-info-list">
+            {{#each shop_by_brand}}
+                <li class="footer-info-list__item">
+                    <a class="footer-info-list__item-link" href="{{url}}">{{name}}</a>
+                </li>
+            {{/each}}
+            <li>
+                <a class="footer-info-list__item-link" href="{{urls.brands}}">{{lang 'common.view_all'}}</a>
+            </li>
+        </ul>
+    </article>
+{{/and}}
+
+
+{{#if theme_settings.show_powered_by}}
+    <div class="footer-copyright">
+        <p class="powered-by">{{lang 'footer.powered_by'}} <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a></p>
+    </div>
+{{/if}}
+
+{{#if settings.paypal_commerce_credit_message}}
+    <p class="paypal-credit">{{nl2br settings.paypal_commerce_credit_message}}</p>
+{{/if}}
+
+{{#if theme_settings.geotrust_ssl_common_name}}
+<div class="footer-geotrust-ssl-seal">
+    {{!> components/common/geotrust-ssl-seal}}
+</div>
+{{/if}}
+--}}

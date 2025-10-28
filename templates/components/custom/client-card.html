@@ -1,0 +1,16 @@
+<div class="client-card {{class}}" data-category="{{category}}">
+    <h3 class="client-card__name">{{name}}</h3>
+    <p class="client-card__location">{{location}}</p>
+    <!-- Debug: Show if data exists -->
+    <p style="color: red; font-size: 12px;">Debug: {{name}} - {{category}}</p>
+    {{#if badges}}
+        <div class="client-card__badges">
+            {{#each badges}}
+                <span class="client-card__badge client-card__badge--{{this}}">{{this}}</span>
+            {{/each}}
+        </div>
+    {{/if}}
+    {{#if since}}
+        <p class="client-card__since">Partner since {{since}}</p>
+    {{/if}}
+</div>

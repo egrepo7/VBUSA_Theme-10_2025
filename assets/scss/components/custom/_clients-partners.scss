@@ -1,0 +1,480 @@
+// =============================================================================
+// CLIENTS PARTNERS (CSS) - Side-by-side Layout with Sticky Filters
+// =============================================================================
+
+.clients-partners {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); // Seamless continuation from WE SERVE section
+    position: relative;
+    // Remove overflow: hidden to allow sticky positioning to work properly
+    
+    // Add subtle background overlay for consistency
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.2); // Subtle overlay
+        z-index: 1;
+    }
+    
+    // Ensure content is above background elements and allows sticky positioning
+    > * {
+        position: relative;
+        z-index: 3; // Higher z-index to ensure content is above backgrounds
+    }
+    
+    // Container to isolate the content from background effects
+    .container {
+        position: relative;
+        z-index: 4; // Even higher for the main container
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: 2rem; // Reduced from 3rem to 2rem
+
+        h2 {
+            // Override theme's h2 styles with higher specificity
+            &.h2 {
+                color: #ffffff; // White text for dark background
+                font-size: 2.5rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                line-height: 1.2;
+                margin-bottom: 32px; // Reduced from 64px to 32px
+
+                @media (max-width: 768px) {
+                    font-size: 2rem;
+                    margin-bottom: 24px; // Reduced from 48px to 24px
+                }
+            }
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.125rem;
+            font-weight: 400;
+            margin: 0 auto;
+            max-width: 600px;
+            line-height: 1.6;
+
+            @media (max-width: 768px) {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    // Side-by-side layout container
+    &__content {
+        display: flex;
+        gap: 3rem;
+        align-items: flex-start;
+
+        @media (max-width: 1024px) {
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 2rem;
+        }
+    }
+
+    // Left sidebar for sticky filters
+    &__sidebar {
+        flex: 0 0 320px; // Fixed width sidebar
+        position: sticky;
+        top: 120px; // Account for header height plus padding
+        max-height: calc(100vh - 140px);
+        overflow-y: auto;
+        background: rgba(45, 55, 72, 0.95);
+        border-radius: 16px;
+        padding: 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        z-index: 10; // Ensure sidebar stays above other content
+
+        @media (max-width: 1024px) {
+            flex: 0 0 280px;
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            position: static;
+            flex: none;
+            max-height: none;
+            overflow-y: visible;
+            background: rgba(45, 55, 72, 0.8);
+            padding: 1.5rem;
+        }
+
+        // Custom scrollbar styling
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+        }
+    }
+
+    // Right main content area
+    &__main {
+        flex: 1;
+        min-width: 0;
+        position: relative;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        position: relative;
+        transition: height 0.3s ease;
+
+        // === OPTION 1: 4-CARD LAYOUT (Alternative) ===
+        // More cards visible, slightly more compressed
+        // @media (min-width: 1400px) {
+        //     grid-template-columns: repeat(4, 1fr);
+        //     gap: 18px; // Slightly smaller gap for 4 cards
+        // }
+
+        // === OPTION 2: 3-CARD LAYOUT (Currently Active for Testing) ===
+        // Uncomment below and comment out Option 1 for larger, more spacious cards
+        @media (min-width: 1400px) {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px; // Larger gap for better spacing with fewer cards
+        }
+
+        @media (max-width: 1200px) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        // Loading state for infinite scroll
+        &.loading-more {
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: -40px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 32px;
+                height: 32px;
+                border: 3px solid rgba(255, 255, 255, 0.3);
+                border-top: 3px solid #ffffff;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+                z-index: 10;
+            }
+        }
+
+        // Fade-out gradient overlay effect
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 320px;
+            background: linear-gradient(
+                to bottom, 
+                rgba(45, 55, 72, 0) 0%,
+                rgba(45, 55, 72, 0.2) 20%,
+                rgba(45, 55, 72, 0.5) 50%,
+                rgba(45, 55, 72, 0.8) 80%,
+                rgba(45, 55, 72, 0.98) 100%
+            );
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease, height 0.3s ease;
+            
+            @media (max-width: 768px) {
+                height: 250px;
+            }
+            
+            @media (max-width: 480px) {
+                height: 200px;
+            }
+        }
+
+        // When there's more content to show
+        &.has-more-content::after {
+            opacity: 1;
+        }
+
+        // When all content is shown
+        &.all-content-shown::after {
+            opacity: 0.15;
+            height: 100px;
+            transition: opacity 0.8s ease 0.6s, height 0.8s ease 0.6s;
+            
+            @media (max-width: 768px) {
+                height: 80px;
+            }
+            
+            @media (max-width: 480px) {
+                height: 60px;
+            }
+        }
+    }
+
+    // Filters styling
+    &__filters {
+        margin: 0;
+    }
+
+    &__filter-group {
+        margin-bottom: 2.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__filter-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 0.75rem;
+
+        @media (max-width: 768px) {
+            font-size: 1.125rem;
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__filter-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+
+        @media (max-width: 768px) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+    }
+
+    // Scroll hint
+    &__scroll-hint {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        padding: 1rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.875rem;
+        font-style: italic;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+
+        &::before {
+            content: '↓';
+            margin-right: 8px;
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+        }
+
+        &.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}
+
+// Filter toggle buttons
+.filter-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    min-height: 48px;
+
+    @media (max-width: 768px) {
+        padding: 12px 16px;
+        font-size: 0.8125rem;
+        width: auto;
+        justify-content: center;
+        text-align: center;
+        min-height: 44px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 10px 14px;
+        font-size: 0.75rem;
+        min-height: 40px;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.4);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        
+        .filter-toggle__count {
+            color: rgba(255, 255, 255, 0.9);
+        }
+    }
+
+    &--active {
+        background: #ed1c24;
+        color: #ffffff;
+        border-color: #ed1c24;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); // Changed from red shadow to neutral
+        
+        .filter-toggle__count {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        &:hover {
+            background: #ff4b52;
+            border-color: #ff4b52;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); // Changed from red shadow to neutral
+            
+            .filter-toggle__count {
+                color: rgba(255, 255, 255, 1);
+            }
+        }
+        
+        // Court type specific colors
+        &[data-environment="Indoor"] {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+            
+            &:hover {
+                background: #2563eb;
+                border-color: #2563eb;
+            }
+        }
+        
+        &[data-environment="Outdoor"] {
+            background: #10b981;
+            border-color: #10b981;
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+            
+            &:hover {
+                background: #059669;
+                border-color: #059669;
+            }
+        }
+        
+        &[data-environment="Sand Supplier"] {
+            background: #f97316;
+            border-color: #f97316;
+            box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+            
+            &:hover {
+                background: #ea580c;
+                border-color: #ea580c;
+            }
+        }
+    }
+
+    &__text {
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        text-align: inherit;
+    }
+
+    &__count {
+        font-size: 0.75rem;
+        opacity: 0.8;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.7);
+        transition: color 0.3s ease;
+        margin-left: 12px;
+        flex-shrink: 0;
+
+        @media (max-width: 768px) {
+            font-size: 0.7rem;
+            margin-left: 8px;
+        }
+    }
+
+    &:active {
+        transform: translateY(-1px);
+    }
+}
+
+.filter-no-options {
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    font-size: 0.875rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+// Keyframe animations
+@keyframes spin {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+// =============================================================================
+// ACCESSIBILITY & REDUCED MOTION SUPPORT
+// =============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+    // No animations to disable - all animations have been removed
+}

@@ -1,0 +1,184 @@
+{{!-- SEO-Friendly Category FAQ Component with Reusable Item Components --}}
+{{!-- This component renders FAQ content server-side using reusable faq-item components --}}
+
+{{#partial "head"}}
+    {{!-- FAQ structured data will be generated dynamically based on visible category FAQs --}}
+    <script type="application/ld+json" id="faq-schema">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": []
+    }
+    </script>
+{{/partial}}
+
+{{!-- Main FAQ Section - Server-side rendered for SEO --}}
+{{!-- Only display if there are category-specific FAQs that match the URL --}}
+<section class="category-faq" style="min-height: 400px; display: none;" data-category-faq>
+    <div class="container">
+        <h2 class="category-faq__title">Frequently Asked Questions</h2>
+        
+        {{!-- Server-side rendered FAQ content using reusable components --}}
+        <div class="faq-list" data-category="server-rendered">
+            
+            {{!-- Volleyball Nets FAQs --}}
+            {{#contains category.url "nets"}}
+                {{> components/custom/faq-item question="How does your net stand out compared to other competitors?" answer="Our nets are handmade in the USA from top-quality materials. For example, our beach nets (PBN4) use heavy-duty UV and mildew-resistant fabrics and strong knotted nylon to endure years of use. Likewise, our indoor nets are reinforced with high-strength #36 nylon (Kevlar optional) and ultra-strong tensioning, ensuring exceptional durability. We even screen-print custom logos and color designs directly onto the netting with care, so the graphics last the lifetime of the net. All these features – domestic construction, heavy-gauge materials, and careful printing – make our volleyball nets stand out in quality and longevity." id="nets-quality" categoryClass="volleyball-nets-faq"}}
+                
+                {{> components/custom/faq-item question="What's the difference between indoor and outdoor volleyball nets?" answer="Indoor and outdoor nets differ mainly in their materials and construction. Indoor competition nets typically have a 2″ vinyl border (usually white) and #36 high-strength nylon netting. They are designed for gym play and meet NCAA/USAV specs. Outdoor (beach/backyard) nets use wider 4″ vinyl tape, color options, and thicker netting (e.g. #42 gauge) to handle sun and weather. We use UV and mildew-resistant materials on outdoor nets to prevent fading and damage. In short, beach nets have heavier border tapes and protective coatings for the elements, whereas indoor nets use lighter 2″ tapes for gym play." id="nets-indoor-outdoor" categoryClass="volleyball-nets-faq"}}
+                
+                {{> components/custom/faq-item question="What's the lifespan of your volleyball nets with regular use?" answer="Our nets are built to last. They use high-strength knotted nylon and reinforced stitching to resist tearing, and durable border tapes to withstand tension. Outdoor nets add UV-protection and mildew-resistant coatings so they won't deteriorate in sun or moisture. In practice, a properly installed net should provide many seasons (even years) of regular play before showing wear. Since we use top materials and craftsmanship, customers typically get long service life out of our nets." id="nets-lifespan" categoryClass="volleyball-nets-faq"}}
+                
+                {{> components/custom/faq-item question="What is the standard size of a volleyball net?" answer="An official regulation net is 32 feet long × 39 inches tall. For play, the net height is 7′ 11⅝″ for men's competition and 7′ 4⅛″ for women's. We sell standard 32′×39″ nets (with options for custom widths if needed). All our nets ship at standard size unless you request a custom size." id="nets-size" categoryClass="volleyball-nets-faq"}}
+                
+                {{> components/custom/faq-item question="Do your nets meet AVP, NCAA, or USAV standards?" answer="Yes. Our nets are manufactured to official dimensions and specifications. They meet NCAA, high-school (NFHS), and USA Volleyball (USAV, formerly USVBA) standards. For example, our SenComp indoor competition net meets all NCAA/USAV rules on size and construction. Outdoor beach nets use the same 32′×39″ size as pro tours like the AVP. In short, you'll have official-size nets that comply with AVP, NCAA, USAV and other governing bodies." id="nets-standards" categoryClass="volleyball-nets-faq"}}
+                
+                {{> components/custom/faq-item question="Can I order a custom printed net with my logo?" answer="Absolutely. We offer fully custom-printed volleyball nets. Simply provide your artwork or logo, and our team will print it onto the netting (or borders) with professional quality. Each custom net is printed with care so that the colors last the life of the net. You can choose custom colors, logos, and designs on both indoor and outdoor nets. Whether it's a school name, team logo, or business brand, we can print it right onto the net for you." id="nets-custom" categoryClass="volleyball-nets-faq"}}
+                
+                {{> components/custom/faq-item question="Can I install a volleyball net in my backyard or driveway?" answer="Yes – our nets and systems are great for home use. Many customers set up our outdoor nets in their backyard, driveway or beach courts. We even carry portable backyard volleyball sets specifically designed for grass or sand play. You just need enough space (about a 32×60 foot area for full court) and poles/sleeves. Our outdoor nets and portable pole systems make it easy to enjoy volleyball at home or park." id="nets-backyard" categoryClass="volleyball-nets-faq"}}
+                
+                {{> components/custom/faq-item question="How long does it take to receive a custom printed volleyball net?" answer="Custom nets require additional production time. In our store options, non-stock colors and custom graphics have about a 2-week lead time for printing. In other words, once you order a custom-printed net, it takes roughly two weeks to make (since we print it by hand) before we ship it. After printing, we ship out promptly. In-stock nets ship in 2–3 business days, but custom-printed nets add that extra production time." id="nets-custom-timing" categoryClass="volleyball-nets-faq"}}
+                
+                {{> components/custom/faq-item question="Can I return or exchange a net if it doesn't fit my setup?" answer="Yes, with conditions. For standard, stock nets in new condition, we allow returns within 30 days for a full refund (minus shipping). You would need to contact us for a return authorization and ship the net back unused. However, custom-ordered nets cannot be returned. Custom nets include any special width, custom colors, or printed logo, and those are non-refundable once ordered. If you order a regular net and it doesn't fit, just return it (in resalable condition) within 30 days. But if you've asked for a custom size or print, please choose carefully since custom jobs are final." id="nets-returns" categoryClass="volleyball-nets-faq"}}
+            {{/contains}}
+            
+            {{!-- Volleyball Poles FAQs --}}
+            {{#contains category.url "poles"}}
+                {{> components/custom/faq-item question="How deep should volleyball poles be installed?" answer="Standard installation depth is 3-4 feet for safety and stability. Permanent installations typically require concrete footings extending below the frost line. The exact depth may vary based on local building codes, soil conditions, and pole height specifications." id="poles-depth" categoryClass="volleyball-poles-faq"}}
+                
+                {{> components/custom/faq-item question="What's the difference between permanent and portable volleyball poles?" answer="Permanent poles are installed with concrete foundations and offer maximum stability for competitive play. Portable poles use weighted bases or ground sleeves, allowing for easy setup and removal. Portable systems are ideal for recreational use, schools, and facilities that need flexibility in court layout." id="poles-types" categoryClass="volleyball-poles-faq"}}
+                
+                {{> components/custom/faq-item question="Do volleyball poles come with height adjustment features?" answer="Many of our volleyball pole systems include height adjustment mechanisms. These allow you to quickly change net height for different age groups or game types. Professional systems often feature gear-driven winches or ratchet systems for precise height control and easy adjustment." id="poles-adjustment" categoryClass="volleyball-poles-faq"}}
+                
+                {{> components/custom/faq-item question="What materials are volleyball poles made from?" answer="Our poles are primarily made from galvanized steel or aluminum. Galvanized steel offers maximum strength and durability for permanent installations. Aluminum poles are lighter weight, making them ideal for portable systems while still providing excellent stability and corrosion resistance." id="poles-materials" categoryClass="volleyball-poles-faq"}}
+            {{/contains}}
+            
+            {{!-- Complete Systems FAQs --}}
+            {{!-- {{#contains category.url "systems"}}
+                {{> components/custom/faq-item question="What's included in a complete volleyball system?" answer="Complete systems include poles, professional-grade nets, tensioning hardware, guy wires, ground anchors, installation hardware, and often carrying cases. Many systems also include boundary tapes, referee stands, and adjustment tools. Everything needed for a regulation volleyball court setup is included." id="systems-included" categoryClass="complete-systems-faq"}}
+                
+                {{> components/custom/faq-item question="How long does it take to set up a complete volleyball system?" answer="Portable systems can be set up in 30-60 minutes with 2-3 people. Permanent installations typically require 1-2 days including concrete curing time. Semi-permanent systems with ground sleeves can be installed in 2-4 hours once the sleeves are in place." id="systems-setup" categoryClass="complete-systems-faq"}}
+                
+                {{> components/custom/faq-item question="Do complete systems meet official volleyball regulations?" answer="Yes, our complete systems are designed to meet or exceed FIVB, USA Volleyball, and NCAA regulations. This includes proper court dimensions, net specifications, pole placement, and safety requirements for competitive play at all levels." id="systems-regulations" categoryClass="complete-systems-faq"}}
+            {{/contains}}
+             --}}
+        </div>
+    </div>
+</section>
+
+{{!-- Enhanced FAQ Accordion JavaScript --}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if current category has FAQs and show section if it does
+    checkAndShowFAQSection();
+    
+    // Initialize FAQ accordion functionality
+    initializeFAQAccordion();
+    
+    // Generate structured data from server-rendered content
+    generateStructuredData();
+});
+
+function checkAndShowFAQSection() {
+    const faqSection = document.querySelector('[data-category-faq]');
+    const currentUrl = window.location.pathname;
+    
+    // Check if we have FAQs for this category by looking for category-specific FAQ items
+    const hasCategoryFAQs = document.querySelector('.volleyball-nets-faq, .volleyball-poles-faq, .complete-systems-faq, .volleyball-shoes-faq, .volleyball-apparel-faq, .volleyball-equipment-faq');
+    
+    if (faqSection && hasCategoryFAQs) {
+        faqSection.style.display = 'block';
+        console.log('FAQ section displayed for category with FAQs');
+    } else if (faqSection) {
+        console.log('FAQ section hidden - no FAQs for this category');
+        // Keep hidden (display: none is already set in CSS)
+    }
+}
+
+function initializeFAQAccordion() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    const faqSection = document.querySelector('[data-category-faq]');
+    
+    // Exit early if no FAQ section exists or is hidden
+    if (faqQuestions.length === 0 || !faqSection || faqSection.style.display === 'none') {
+        console.log('No FAQ section found or no FAQs for this category');
+        return;
+    }
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector('.faq-question__icon');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            // Close other FAQs (accordion behavior)
+            faqQuestions.forEach(otherQuestion => {
+                if (otherQuestion !== this) {
+                    const otherAnswer = otherQuestion.nextElementSibling;
+                    const otherIcon = otherQuestion.querySelector('.faq-question__icon');
+                    otherQuestion.setAttribute('aria-expanded', 'false');
+                    otherAnswer.setAttribute('aria-hidden', 'true');
+                    otherIcon.textContent = '+';
+                }
+            });
+            
+            // Toggle this FAQ
+            this.setAttribute('aria-expanded', !isExpanded);
+            answer.setAttribute('aria-hidden', isExpanded);
+            icon.textContent = !isExpanded ? '−' : '+';
+        });
+    });
+}
+
+function generateStructuredData() {
+    const faqSection = document.querySelector('[data-category-faq]');
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    // Exit early if no FAQ section or section is hidden
+    if (!faqSection || faqSection.style.display === 'none' || faqItems.length === 0) {
+        // Remove schema if no FAQs exist for this category
+        const schemaScript = document.querySelector('#faq-schema');
+        if (schemaScript) {
+            schemaScript.remove();
+            console.log('Removed FAQ schema - no FAQs present for this category');
+        }
+        return;
+    }
+    
+    const mainEntity = [];
+    
+    faqItems.forEach(item => {
+        const questionElement = item.querySelector('.faq-question__text');
+        const answerElement = item.querySelector('.faq-answer__content');
+        
+        if (questionElement && answerElement) {
+            mainEntity.push({
+                "@type": "Question",
+                "name": questionElement.textContent.trim(),
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": answerElement.textContent.trim()
+                }
+            });
+        }
+    });
+    
+    // Update the existing structured data script
+    const schemaScript = document.querySelector('#faq-schema');
+    if (schemaScript && mainEntity.length > 0) {
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": mainEntity
+        };
+        
+        schemaScript.textContent = JSON.stringify(structuredData);
+        
+        console.log(`Generated structured data for ${mainEntity.length} FAQ items`);
+    } else if (schemaScript) {
+        // Remove schema if no FAQs exist
+        schemaScript.remove();
+        console.log('Removed FAQ schema - no FAQs present for this category');
+    }
+}
+</script>

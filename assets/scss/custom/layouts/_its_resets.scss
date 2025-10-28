@@ -1,0 +1,31 @@
+// Smooth scrolling for anchor links - sitewide implementation
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height, 80px); // Account for dynamic header height
+}
+
+// Respect user's motion preferences for accessibility
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+// Enhanced smooth scrolling for specific elements
+.clients-partners__grid {
+    scroll-margin-top: var(--header-height, 80px);
+}
+
+.card--alternate:hover .card-body {
+    background-color: #fff;
+}
+
+.navPages-action:hover svg, 
+.navPages-action.activePage svg {
+    fill: #333;
+}
+
+.navPages-action svg {
+    stroke: none;
+    // width: 14px;
+}

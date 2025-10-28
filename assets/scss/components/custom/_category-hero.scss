@@ -1,0 +1,515 @@
+// =============================================================================
+// CATEGORY HERO SECTION - Dynamic hero for product categories
+// =============================================================================
+
+// When no hero is present, add proper top spacing to page content
+.page--category.no-hero {
+    .page-content {
+        padding-top: 2rem;
+        
+        @media (max-width: 768px) {
+            padding-top: 1.5rem;
+        }
+    }
+    
+    .category-page-title {
+        margin-top: 2rem;
+        
+        @media (max-width: 768px) {
+            margin-top: 1.5rem;
+        }
+    }
+    
+    // Also ensure proper spacing for subcategory grids when no hero
+    .category-grid {
+        padding-top: 3rem;
+        
+        @media (max-width: 768px) {
+            padding-top: 2rem;
+        }
+    }
+}
+
+.category-hero {
+    position: relative;
+    height: 75vh; // Same as about page
+    min-height: 600px; // Same as about page - CLS prevention
+    aspect-ratio: 16/9; // CLS prevention - consistent aspect ratio
+    overflow: hidden;
+    margin-top: 0;
+    width: 100vw; // Full viewport width
+    margin-left: calc(50% - 50vw); // Center and extend to edges
+    margin-right: calc(50% - 50vw); // Center and extend to edges
+
+    @media (min-width: 2560px) {
+        // Cap the hero at 2560px for ultra-wide displays
+        max-width: 2560px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+        min-height: 500px; // CLS prevention on mobile
+    }
+
+    &__background {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%; // Ensure background covers full width
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        // Background will be set inline via template when category has an image
+        // No default background needed since hero won't show without image
+    }
+
+    &__content {
+        text-align: center;
+        color: white;
+        max-width: 900px; // Same as about page
+        margin: 0 auto;
+        padding: 0 20px; // Same as about page
+        z-index: 2;
+        position: relative;
+    }
+
+    &__title {
+        // Override theme's h1 styles with higher specificity - matches about page
+        &.h1 {
+            color: white;
+            font-size: 4.5rem; // Much larger, impactful size - same as about
+            font-weight: 600; // Same as about page
+            margin: 0 0 24px 0; // Same as about page
+            line-height: 1.1;
+            letter-spacing: -2px; // Same as about page
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); // Same as about page
+
+            @media (max-width: 1024px) {
+                font-size: 3.5rem; // Slightly smaller for tablets
+            }
+
+            @media (max-width: 768px) {
+                font-size: 2.5rem; // Same as about page
+                letter-spacing: 1px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 2.25rem; // Same as about page
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+
+    &__subtitle {
+        font-size: 1.25rem; // Same as about page
+        margin: 0 0 2rem 0; // Bottom margin for stats
+        color: white;
+        opacity: 0.95; // Same as about page
+        font-weight: 400; // Same as about page
+        letter-spacing: 0.5px; // Same as about page
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); // Same as about page
+        line-height: 1.4; // Same as about page
+
+        @media (max-width: 768px) {
+            font-size: 1.125rem; // Same as about page
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 1rem; // Same as about page
+        }
+    }
+
+    &__stats {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 30px;
+        padding: 1rem 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            padding: 0.75rem 1.5rem;
+        }
+    }
+
+    &__count {
+        font-size: 1rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        letter-spacing: 0.5px;
+        color: #ffffff;
+
+        @media (max-width: 768px) {
+            font-size: 0.9rem;
+        }
+    }
+
+    &__cta {
+        margin-top: 2rem;
+
+        .button {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+
+            &--primary {
+                background-color: #d32f2f;
+                color: white;
+                border: 2px solid #d32f2f;
+
+                &:hover {
+                    background-color: #b71c1c;
+                    border-color: #b71c1c;
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            margin-top: 1.5rem;
+
+            .button {
+                padding: 0.75rem 1.25rem; // More compact padding
+                font-size: 0.85rem; // Smaller font
+            }
+        }
+        
+        @media (max-width: 480px) {
+            margin-top: 1.25rem;
+
+            .button {
+                padding: 0.625rem 1rem; // Even more compact
+                font-size: 0.8rem; // Smallest font size
+            }
+        }
+    }
+
+    // Scroll Down Arrow
+    &__scroll-arrow {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        z-index: 3;
+
+        @media (max-width: 768px) {
+            margin-top: 1.5rem;
+        }
+    }
+
+    &__scroll-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        cursor: default; /* Non-interactive scroll indicator */
+        transition: all 0.3s ease;
+        animation: bounce 2s infinite;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        &:active {
+            transform: translateY(-1px);
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2.5px;
+        }
+
+        @media (max-width: 768px) {
+            width: 50px;
+            height: 50px;
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+
+    // Floating Breadcrumbs
+    &__breadcrumbs {
+        position: absolute;
+        top: 2rem;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        
+        .breadcrumbs {
+            display: inline-block;
+            
+            .breadcrumb {
+                color: rgba(255, 255, 255, 0.9);
+                font-weight: 500;
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+                transition: all 0.3s ease;
+                text-decoration: none;
+                padding: 0.25rem 0.5rem;
+                border-radius: 4px;
+                
+                &:hover {
+                    color: white;
+                    background: rgba(255, 255, 255, 0.15);
+                    backdrop-filter: blur(8px);
+                    -webkit-backdrop-filter: blur(8px);
+                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+                }
+                
+                &.is-current {
+                    color: rgba(255, 255, 255, 0.7);
+                    font-weight: 400;
+                    cursor: default;
+                    
+                    &:hover {
+                        background: transparent;
+                        color: rgba(255, 255, 255, 0.7);
+                    }
+                }
+            }
+            
+            .breadcrumb-separator {
+                color: rgba(255, 255, 255, 0.6);
+                margin: 0 0.25rem;
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            top: 1rem;
+            
+            .breadcrumbs {
+                .breadcrumb {
+                    font-size: 0.875rem;
+                    padding: 0.2rem 0.4rem;
+                }
+            }
+        }
+    }
+
+    // Content positioning - no layout-shifting animations
+    &__content {
+        text-align: center;
+        color: white;
+        max-width: 900px; // Same as about page
+        margin: 0 auto;
+        padding: 0 20px; // Same as about page
+        z-index: 2;
+        position: relative;
+        // Removed fade-in animation to prevent CLS
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-8px);
+        }
+        60% {
+            transform: translateY(-4px);
+        }
+    }
+
+    // Responsive adjustments
+    @media (max-width: 480px) {
+        .category-hero {
+            &__content {
+                padding: 0 15px;
+            }
+
+            &__stats {
+                padding: 0.5rem 1rem;
+            }
+
+            &__count {
+                font-size: 0.85rem;
+            }
+
+            &__title {
+                margin-bottom: 0.75rem;
+            }
+
+            &__subtitle {
+                margin-bottom: 1.25rem;
+            }
+        }
+    }
+
+    // Prevent CLS during hero load
+    & {
+        // Reserve space to prevent layout shift
+        aspect-ratio: 16/9; // Fallback ratio
+        min-height: 70vh; // Changed to 70vh as requested
+        height: 70vh; // Set explicit height to 70vh
+        
+        @media (min-width: 769px) {
+            aspect-ratio: 21/9; // Wider on desktop
+            min-height: 70vh; // Maintain 70vh height
+            height: 70vh;
+        }
+        
+        @media (max-width: 768px) {
+            min-height: 60vh; // Shorter on mobile
+        }
+        
+        @media (max-width: 480px) {
+            min-height: 100vh; // Even shorter on small mobile
+        }
+    }
+    
+    // Prevent content animation from causing layout shift
+    &__content {
+        // CLS compliance - no animations that affect initial layout
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    // Ensure background loads without layout shift
+    &__background {
+        // Ensure background has dimensions immediately
+        min-height: inherit;
+        
+        // Prevent background image load from causing shifts
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    // Navigation CTA Buttons (for category exploration)
+    &__cta-group {
+        margin: 2rem 0;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        @media (max-width: 768px) {
+            margin: 1.5rem 0;
+            gap: 0.75rem;
+        }
+        
+        @media (max-width: 480px) {
+            margin: 1.25rem 0;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    }
+
+    &__cta-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        min-width: 160px;
+        text-align: center;
+
+        // White ghost button styling for hero overlays
+        &.button--white-ghost {
+            background-color: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                color: white; // Ensure text stays white on hover
+            }
+        }
+
+        @media (max-width: 768px) {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.85rem;
+            min-width: 140px;
+        }
+        
+        @media (max-width: 480px) {
+            padding: 0.75rem 1rem;
+            font-size: 0.8rem;
+            min-width: 120px;
+            width: auto;
+            max-width: 200px;
+        }
+    }
+
+    // ...existing code...
+}
+
+// =============================================================================
+// CATEGORY HERO MODIFIERS
+// =============================================================================
+
+// Filter tabs variation - shorter hero for product-focused pages
+.category-hero--filter-tabs {
+    height: 50vh; // Fixed height for filter tabs
+    min-height: 500px; // CLS prevention - match height
+    
+    @media (max-width: 768px) {
+        height: 400px; // Keep consistent on mobile
+        min-height: 400px; // CLS prevention on mobile
+    }
+    
+    @media (max-width: 480px) {
+        height: 400px; // Keep consistent on small mobile
+        min-height: 400px; // CLS prevention on small mobile
+    }
+    
+    // Override H1 font size specifically for filter tabs
+    .category-hero__title.h1 {
+        font-size: 4rem; // Smaller than default for filter tabs
+        
+        @media (max-width: 1024px) {
+            font-size: 3rem; // Proportionally adjusted for tablets
+        }
+        
+        @media (max-width: 768px) {
+            font-size: 2.25rem; // Proportionally adjusted for mobile
+        }
+        
+        @media (max-width: 480px) {
+            font-size: 2rem; // Proportionally adjusted for small mobile
+        }
+    }
+}

@@ -1,0 +1,126 @@
+/* Contact Form Submit Button Fix */
+/* Ensure submit button is always visible and properly styled */
+
+/* Emergency override - most specific possible */
+form[data-contact-form] .form-actions--contact-submit .contact-submit-btn {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 9999 !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 150px !important;
+    min-height: 40px !important;
+    padding: 12px 24px !important;
+    margin: 10px auto !important;
+    background-color: #d41e1e !important; /* VBUSA brand red */
+    color: white !important;
+    border: 2px solid #d41e1e !important;
+    border-radius: 4px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    line-height: normal !important;
+    overflow: visible !important;
+    clip: auto !important;
+    
+    &:hover {
+        background-color: #b71c1c !important;
+        border-color: #b71c1c !important;
+    }
+    
+    &:focus {
+        outline: 2px solid #d41e1e !important;
+        outline-offset: 2px !important;
+    }
+}
+
+.page--contact-us {
+    .form-actions {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        margin-top: 1.5rem !important;
+        text-align: center !important;
+        clear: both !important;
+        
+        input[type="submit"],
+        .button {
+            display: inline-block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+    }
+}
+
+/* Specific targeting for the enhanced contact form */
+.form-actions--contact-submit {
+    display: block !important;
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+    padding: 2rem 0 !important;
+    border-top: 1px solid #e0e0e0 !important;
+    background-color: #f9f9f9 !important; /* Make it more visible */
+    text-align: center !important;
+    clear: both !important;
+    width: 100% !important;
+    
+    .contact-submit-btn {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
+        overflow: visible !important;
+        position: relative !important;
+        z-index: 10 !important;
+    }
+}
+
+/* General form button fix - catch any other issues */
+form[data-contact-form] {
+    .form-actions {
+        display: block !important;
+        
+        input[type="submit"] {
+            display: inline-block !important;
+        }
+    }
+}
+
+/* Contact form container fix */
+#contact-us-page {
+    .form-actions {
+        margin-top: 2rem !important;
+        padding: 1rem 0 !important;
+        border-top: 1px solid #e0e0e0 !important;
+    }
+}
+
+/* Emergency fallback - if everything else fails */
+input[value*="Submit"],
+input[value*="submit"],
+input[value*="Send"],
+input[value*="send"] {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 999 !important;
+}
+
+/* Additional debug styles */
+.form-actions--contact-submit {
+    border: 3px solid red !important; /* Temporary debug border */
+    min-height: 100px !important;
+}
+
+.form-actions--contact-submit::before {
+    content: "SUBMIT BUTTON AREA" !important;
+    display: block !important;
+    color: red !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    padding: 10px !important;
+}

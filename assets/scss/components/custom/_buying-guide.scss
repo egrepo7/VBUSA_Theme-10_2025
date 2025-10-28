@@ -1,0 +1,228 @@
+/* Buying Guide Section Wrapper - CLS compliant */
+.buying-guide-section {
+    padding: 2rem 0;
+    margin: 0;
+    min-height: 470px; // CLS prevention - reserve space immediately
+    
+    @media (max-width: 768px) {
+        min-height: 300px;
+    }
+}
+
+/* Buying Guide Card - Reusing category card styles with full-width layout */
+.buying-guide__card {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    aspect-ratio: 21/9; /* Wide aspect ratio for full-width layout */
+    height: auto;
+    max-height: 470px;
+
+    &:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
+        
+        .buying-guide__image {
+            transform: scale(1.007);
+        }
+        
+        .category-card__button {
+            background: #dc2626;
+            transform: translateX(4px);
+            
+            svg {
+                transform: translate(2px, -2px);
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        &:hover {
+            transform: none;
+            .buying-guide__image {
+                transform: scale(1.01);
+            }
+        }
+    }
+}
+
+.buying-guide__image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 21/9; // CLS prevention - match parent aspect ratio
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Fallback gradient */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    // Add subtle overlay for better text contrast
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 60%, transparent 100%);
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    .category-card__content {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+/* Enhanced text contrast for background images */
+.category-card__content {
+    max-width: 650px;
+}
+/* Override category card text colors for buying guide - white text with shadows for background images */
+.buying-guide__card .buying-guide__image .category-card__content {
+    /* Override absolute positioning for flexbox centering */
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin-left: 2rem;
+    
+    .category-card__title {
+        color: white;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 0 0 16px rgba(0, 0, 0, 0.5);
+        font-weight: 800;
+        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    }
+    
+    .category-card__subtitle {
+        color: rgba(255, 255, 255, 0.95);
+        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7), 0 0 12px rgba(0, 0, 0, 0.4);
+        font-weight: 500;
+        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    }
+    
+    @media (max-width: 768px) {
+        margin-left: 1.5rem;
+    }
+    
+    @media (max-width: 480px) {
+        margin-left: 1.25rem;
+    }
+}
+
+/* Responsive Design - Mobile adjustments for buying guide layout */
+@media (max-width: 768px) {
+    .buying-guide-section {
+        margin: 3rem 0;
+    }
+
+    .buying-guide__card {
+        border-radius: 12px;
+        aspect-ratio: 16/9; /* Less wide on mobile */
+        
+        &:hover {
+            transform: translateY(-2px);
+            .buying-guide__image {
+                transform: scale(1.02);
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .buying-guide-section {
+        margin: 2rem 0;
+    }
+
+    .buying-guide__card {
+        border-radius: 8px;
+        aspect-ratio: 4/3; /* More square on small mobile */
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .buying-guide__card {
+        transition: box-shadow 0.3s ease;
+        
+        &:hover {
+            transform: none;
+            
+            .buying-guide__image {
+                transform: none;
+            }
+        }
+    }
+}
+
+/* Enhanced button styling for buying guide - better visibility over images */
+.buying-guide__card .category-card__button {
+    /* Default enabled state - enhanced for better visibility */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    
+    /* Disabled state styling */
+    &:not([style*="cursor: pointer"]) {
+        background: rgba(226, 232, 240, 0.95) !important;
+        color: #64748b !important;
+        cursor: not-allowed !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+        border: 2px solid rgba(203, 213, 225, 0.8);
+        backdrop-filter: blur(4px);
+        
+        &:hover {
+            background: rgba(226, 232, 240, 0.95) !important;
+            color: #64748b !important;
+            transform: none !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+            
+            svg {
+                transform: none !important;
+            }
+        }
+        
+        svg {
+            opacity: 0.6;
+        }
+    }
+    
+    /* Enhanced enabled state for buying guide context */
+    &[style*="cursor: pointer"] {
+        background: rgba(5, 150, 105, 0.95) !important;
+        color: white !important;
+        border: 2px solid #059669;
+        box-shadow: 0 4px 16px rgba(5, 150, 105, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+        backdrop-filter: blur(4px);
+        
+        &:hover {
+            background: rgba(4, 120, 87, 0.95) !important;
+            border-color: #047857;
+            box-shadow: 0 6px 20px rgba(4, 120, 87, 0.5), 0 3px 12px rgba(0, 0, 0, 0.3) !important;
+            transform: translateX(4px);
+            
+            svg {
+                transform: translate(2px, -2px);
+            }
+        }
+    }
+}
+
+/* Override card hover button animation for disabled state */
+.buying-guide__card:hover .category-card__button:not([style*="cursor: pointer"]) {
+    background: rgba(226, 232, 240, 0.95) !important;
+    transform: none !important;
+    
+    svg {
+        transform: none !important;
+    }
+}

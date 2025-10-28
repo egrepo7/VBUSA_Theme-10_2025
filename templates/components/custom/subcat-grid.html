@@ -1,0 +1,19 @@
+{{#if category.subcategories}}
+<div class="category__subcat-grid {{subcat-grid}}">
+    {{#each category.subcategories}}
+        <div class="category__subcat-grid-item ">
+            {{#if image '===' null}}
+                <a href="{{url}}">
+                    <img class="lazyload category__subcat-img" data-src="{{getImage ../settings.store_logo.image 'logo_size'}}" src="{{cdn 'img/loading.svg'}}" alt="{{name}}">
+                    <p class="category__subcat-text h2">{{name}}</p>
+                </a>
+            {{else}}
+                <a href="{{url}}" class="has-image">
+                    <img class="lazyload category__subcat-img" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'zoom_size'}}" alt="{{name}}">
+                    <p class="category__subcat-text h2">{{name}}</p>
+                </a> 
+            {{/if}}
+        </div>
+    {{/each}}
+</div>
+{{/if}}

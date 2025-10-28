@@ -1,0 +1,90 @@
+{
+  "volleyball-shoes": [
+    {
+      "id": "shoes-fit",
+      "question": "How should volleyball shoes fit?",
+      "answer": "Volleyball shoes should fit snugly but not tight. You want about a thumb's width of space between your longest toe and the front of the shoe. The shoe should feel secure around your heel and midfoot without any sliding or movement."
+    },
+    {
+      "id": "shoes-surface",
+      "question": "What's the difference between indoor and outdoor volleyball shoes?",
+      "answer": "Indoor volleyball shoes have gum rubber soles designed for gym floors, providing excellent grip and court feel. Outdoor shoes have more durable rubber compounds to handle rough surfaces like sand, concrete, or asphalt."
+    },
+    {
+      "id": "shoes-replace",
+      "question": "How often should I replace my volleyball shoes?",
+      "answer": "Replace volleyball shoes every 6-12 months depending on usage frequency. Signs it's time to replace include worn tread, compressed midsole cushioning, or visible wear on the upper materials."
+    },
+    {
+      "id": "shoes-brands",
+      "question": "Which volleyball shoe brands are most popular?",
+      "answer": "Popular volleyball shoe brands include ASICS, Mizuno, Nike, Adidas, and Under Armour. ASICS and Mizuno are particularly well-regarded for their volleyball-specific technologies and court performance."
+    }
+  ],
+  "volleyball-apparel": [
+    {
+      "id": "apparel-sizing",
+      "question": "How do volleyball jerseys and shorts typically fit?",
+      "answer": "Volleyball apparel should fit athletic and close to the body without being restrictive. Jerseys should allow full range of motion for serving and spiking, while shorts should be comfortable for diving and quick movements."
+    },
+    {
+      "id": "apparel-materials",
+      "question": "What materials are best for volleyball clothing?",
+      "answer": "Look for moisture-wicking synthetic fabrics like polyester or nylon blends. These materials keep you dry, are lightweight, and maintain their shape. Avoid cotton as it retains moisture and becomes heavy when wet."
+    },
+    {
+      "id": "apparel-care",
+      "question": "How should I care for my volleyball uniforms?",
+      "answer": "Wash in cold water with similar colors, avoid fabric softeners which can reduce moisture-wicking properties, and air dry when possible. Turn jerseys inside out to protect numbers and logos from fading."
+    },
+    {
+      "id": "apparel-regulations",
+      "question": "Are there specific uniform regulations for volleyball?",
+      "answer": "Yes, official volleyball has strict uniform regulations including jersey numbering (1-99), color coordination among teammates, and specific guidelines for logos and advertising. Check with your league or organization for specific requirements."
+    }
+  ],
+  "volleyball-equipment": [
+    {
+      "id": "equipment-ball",
+      "question": "What's the difference between indoor and outdoor volleyballs?",
+      "answer": "Indoor volleyballs are made of leather or synthetic leather with a softer feel for better control. Outdoor volleyballs use more durable materials to withstand weather and rougher surfaces, often with a slightly different weight and texture."
+    },
+    {
+      "id": "equipment-net",
+      "question": "What are the standard volleyball net dimensions?",
+      "answer": "Official volleyball nets are 32 feet long and 39 inches wide. Men's net height is 7 feet 11⅝ inches (2.43m), while women's is 7 feet 4⅛ inches (2.24m). Beach volleyball uses the same dimensions but may have different materials."
+    },
+    {
+      "id": "equipment-accessories",
+      "question": "What volleyball accessories do I need as a beginner?",
+      "answer": "Essential accessories include knee pads for protection, ankle braces for support, a volleyball bag for gear transport, and proper athletic socks. Advanced players may add finger tape, sports drinks, and specialized training equipment."
+    },
+    {
+      "id": "equipment-maintenance",
+      "question": "How do I maintain my volleyball equipment?",
+      "answer": "Keep volleyballs properly inflated and store in a cool, dry place. Clean knee pads regularly, inspect nets for wear, and replace equipment when safety is compromised. Store leather balls away from extreme temperatures."
+    }
+  ],
+  "general": [
+    {
+      "id": "shipping-info",
+      "question": "What are your shipping options and costs?",
+      "answer": "We offer standard shipping (5-7 business days) for $5.99, expedited shipping (2-3 business days) for $12.99, and free standard shipping on orders over $75. Express overnight shipping is available for $24.99."
+    },
+    {
+      "id": "returns-policy",
+      "question": "What is your return policy?",
+      "answer": "We accept returns within 30 days of purchase for unused items in original packaging. Return shipping is free for defective items, otherwise customer is responsible for return shipping costs. Refunds are processed within 5-7 business days."
+    },
+    {
+      "id": "size-exchanges",
+      "question": "Can I exchange items for different sizes?",
+      "answer": "Yes! We offer free size exchanges within 30 days for unworn items. Simply contact our customer service team to initiate an exchange. We'll send you a prepaid return label and ship the new size once we receive the original item."
+    },
+    {
+      "id": "customer-support",
+      "question": "How can I contact customer support?",
+      "answer": "Our customer support team is available Monday-Friday 9AM-6PM EST. Reach us by phone at 1-800-VBUSA-01, email at support@volleyballusa.com, or through our live chat feature on the website."
+    }
+  ]
+}

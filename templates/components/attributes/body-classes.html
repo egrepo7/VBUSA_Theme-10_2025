@@ -1,0 +1,24 @@
+{{#contains page_type 'account'}}
+    page--account
+{{/contains}}
+
+page--{{ page_type }}
+
+{{#if page_type '===' 'category'}}
+    category--{{category.id}}
+{{else if page_type '===' 'product'}}
+    product--{{product.id}}
+{{else if page_type '===' 'page'}}
+    page--{{#replace ' ' (dashcase page.title)}}{{else}}{{dashcase page.title}}{{/replace}}
+{{/if}}
+
+{{#if customer}}
+    logged-in
+    customer-group-{{#if customer_group_id}}{{customer_group_id}}{{else}}null{{/if}}
+{{else}}
+    not-logged-in
+{{/if}}
+
+{{#and (if theme_settings.its.kitchen_sink) (if in_development)}}
+    show-kitchen-sink
+{{/and}}

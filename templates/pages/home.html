@@ -1,0 +1,77 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+---
+{{#partial "hero"}}
+    {{{region name="home_below_menu"}}}
+    {{#and carousel carousel.slides.length}}
+        {{!> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
+    {{/and}}
+    {{{region name="home_below_carousel"}}}
+{{/partial}}
+
+{{#partial "page"}}
+
+    {{#each shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+<div class="main full">
+    {{> components/custom/hero-video }}
+    {{!-- 
+    {{#if products.featured}}
+        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+    {{/if}}
+    {{{region name="home_below_featured_products"}}}
+
+    {{#if products.top_sellers}}
+        {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
+    {{/if}}
+    {{{region name="home_below_top_products"}}}
+
+    {{#if products.new}}
+        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
+    {{/if}}
+    --}}
+
+    <div class="container">
+        {{> components/custom/court-builder-cta }}
+    </div>
+    {{> components/custom/court-construction-cta }}
+
+    <div class="container" id="hero-anchor">
+        <h2 class="page-heading h1">{{lang 'custom.home.manfactured-heading'}}</h2>
+        {{> components/custom/home-cta-wide name='custom-printed-products'}}
+        {{> components/custom/home-cta-grid name='volleyball-systems' }}
+        {{> components/custom/home-cta-wide name='portable-outdoor-systems'}}
+        {{> components/custom/home-cta-grid name='net-accessories' }}
+        {{> components/custom/home-cta-wide name='Volleyballs'}}
+        {{> components/custom/home-cta-grid name='accessories' }}
+
+        {{#if theme_settings.its.brand_carousel}}
+            {{> components/custom/brand-carousel }}
+        {{/if}}
+        {{{region name="home_below_new_products"}}}
+    
+        {{#if theme_settings.its.home_blogs}}
+            {{> components/custom/home-blog}}
+        {{/if}}
+    </div>
+
+        {{> components/custom/overlap-cta }}
+    <div class="container">
+        {{> components/custom/home-callouts }}
+        {{> components/custom/testimonials }}
+    </div>
+</div>
+{{/partial}}
+{{> layout/base container_active=false}}

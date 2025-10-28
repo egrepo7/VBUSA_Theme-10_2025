@@ -1,0 +1,16 @@
+{{#if social_media}}
+    <ul class="socialLinks socialLinks--alt">
+        {{#each social_media}}
+            <li class="socialLinks-item">
+                <a class="socialLinks-link" href="{{url}}" target="_blank" rel="noopener">
+                    <span class="icon icon--{{display_name}}">
+                        <svg><use xlink:href="#icon-{{display_name}}"></use></svg>
+                    </span>
+                    <span class="socialLinks-label h6">
+                        {{display_name}}
+                    </span>
+                </a>
+            </li>
+        {{/each}}
+    </ul>
+{{/if}}

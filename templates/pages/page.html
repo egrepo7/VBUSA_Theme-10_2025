@@ -1,0 +1,68 @@
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    <!-- <div class="court-page-container">
+        <h2 class="court-heading">We strive to provide the most comprehensive service and supply in the country when constructing a volleyball court.<h2/>
+        <p class="court-text">With outdoor
+            volleyball courts we are the only company providing everything from the ground up. This includes site specific
+            drainage drawings, sand preservation fabric, volleyball sand, artificial turf, Edge Guard, poles, nets, pads,
+            antennas, court banners and netting enclosures all manufactured in the USA, most of it in our shop. We also
+            provide foot candle illustrations and lighting packages for customers who wish to play at night. <br />
+            <br />With indoor courts we'll educate you or your contractor of choice on how to install volleyball sockets
+            properly or we can send out an experienced contractor we've worked with in the past to help you with the job.
+            &nbsp;We can provide new or used sports surface tiles and in addition design and supply wall / column
+            padding.&nbsp; If your facility needs netting enclosures / dividers to provide containment within a volleyball
+            court, we manufacture those too.</p>
+        <p class="court-text">With outdoor volleyball
+            courts we are the only company providing everything from the ground up. This includes site specific drainage
+            drawings, sand preservation fabric, volleyball sand, artificial turf, Edge Guard, poles, nets, pads, antennas,
+            court banners and netting enclosures all manufactured in the USA, most of it in our shop. We also provide foot
+            candle illustrations and lighting packages for customers who wish to play at night. <br /> <br />With indoor
+            courts we'll educate you or your contractor of choice on how to install volleyball sockets properly or we can
+            send out an experienced contractor we've worked with in the past to help you with the job. &nbsp;We can provide
+            new or used sports surface tiles and in addition design and supply wall / column padding.&nbsp; If your facility
+            needs netting enclosures / dividers to provide containment within a volleyball court, we manufacture those too.
+        </p>
+    </div> -->
+
+
+    {{#unless theme_settings.hide_page_heading }}
+        <h1 class="page-heading">{{ page.title }}</h1>
+    {{/unless}}
+{{#unless page.title "===" "Volleyball Court Construction"}}
+    {{#if page.sub_pages}}
+    <nav class="navBar navBar--sub">
+        <ul class="navBar-section account-navigation">
+        {{#each page.sub_pages}}
+            <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+        {{/each}}
+        </ul>
+    </nav>
+    {{/if}}
+{{/unless}}
+    {{{region name="page_builder_content"}}}
+
+    <div class="page-content page-content--centered">
+        {{#replace '%%Syndicate%%' page.content}}
+            {{> components/page/rss_feed}}
+        {{else}}
+            <p>{{{page.content}}}</p>
+        {{/replace}}
+    </div>
+
+    {{#if page.feed}}
+        <ul>
+            {{#each page.feed}}
+                <li>
+                    <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                    <p>{{content}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</section>
+
+{{/partial}}
+
+{{> layout/base container_active=true}}

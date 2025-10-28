@@ -1,0 +1,86 @@
+---
+blog:
+    posts:
+        limit: 9
+        pages: 3
+        summary: 200
+---
+
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+{{#unless theme_settings.its.custom_blog}}
+    <section class="page">
+        {{#unless theme_settings.hide_blog_page_heading }}
+            <h1 class="page-heading">{{ blog.name }}</h1>
+        {{/unless}}
+
+        {{#each blog.posts}}
+            {{> components/blog/post post=this}}
+        {{/each}}
+
+        {{> components/common/paginator
+            pagination.blog
+            page_type=page_type
+            show_dropdown=theme_settings.its.paginator_dropdown
+        }}
+    </section>
+{{else}}
+    <section class="page page--blog-custom">
+        <aside class="blog-sidebar">
+            {{> components/custom/blog/blog-sidebar-block
+                partial='blog-sidebar-recent-posts'
+                sidebar_title=(lang 'custom.blog.sidebar.recent-posts.heading')
+            }}
+            {{!> components/custom/blog/blog-sidebar-block
+                partial='blog-sidebar-newsletter'
+                sidebar_title=(lang 'custom.blog.sidebar.newsletter.heading')
+            }}
+        </aside>
+        <section class="blog-top">
+            {{#unless theme_settings.hide_blog_page_heading }}
+                <!-- <h1 class="page-heading">{{ blog.name }}</h1> -->
+                <h1 class="page-heading">Blog</h1>
+            {{/unless}}
+            <div class="blog-top__content">
+                {{#if (lang 'custom.blog.top.page-builder') '===' 'true'}}
+                    {{{region name="blog_top_content"}}}
+                {{else}}
+                    {{#or
+                        (if (length (lang 'custom.blog.top.image-mobile')))
+                        (if (length (lang 'custom.blog.top.image-desktop')))
+                    }}
+                        {{#if (lang 'custom.blog.top.image-mobile') '===' 'webdav:/img/blog/placeholder'}}
+                            <img class="blog-top__content-img blog-top__content-img--mobile lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://via.placeholder.com/600x400" alt="This is a placeholder image">
+                        {{else}}
+                            <img class="blog-top__content-img blog-top__content-img--mobile lazyload" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn (lang 'custom.blog.top.image-mobile')}}" alt="{{lang 'custom.blog.top.image-alt-text'}}">
+                        {{/if}}
+
+                        {{#if (lang 'custom.blog.top.image-desktop') '===' 'webdav:/img/blog/placeholder'}}
+                            <img class="blog-top__content-img blog-top__content-img--desktop lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://via.placeholder.com/1240x215" alt="This is a placeholder image">
+                        {{else}}
+                            <img class="blog-top__content-img blog-top__content-img--desktop lazyload" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn (lang 'custom.blog.top.image-desktop')}}" alt="{{lang 'custom.blog.top.image-alt-text'}}">
+                        {{/if}}
+                    {{/or}}
+
+                    <p class="blog-top__content-description">{{lang 'custom.blog.top.description'}}</p>
+                {{/if}}
+            </div>
+        </section>
+        <section class="blog-posts">
+            <div class="blog-posts__container">
+                {{#each blog.posts}}
+                    {{> components/custom/blog/blog-post-card post=this store_logo=../settings.store_logo.image}}
+                {{/each}}
+            </div>
+            {{> components/common/paginator
+                pagination.blog
+                page_type=page_type
+                show_dropdown=theme_settings.its.paginator_dropdown
+            }}
+        </section>
+    </section>
+{{/unless}}
+{{/partial}}
+{{> layout/base container_active=true}}

@@ -1,0 +1,13 @@
+{{#if is_ajax}}
+    {{#each blog.recent_posts}}
+        <li class="blog-sidebar__recent-list-item">
+            <a href="{{url}}">{{title}}</a>
+        </li>
+    {{/each}}
+{{else}}
+    {{#for 1 5}}
+        <li class="blog-sidebar__recent-list-skeleton">
+            &nbsp;
+        </li>
+    {{/for}}
+{{/if}}

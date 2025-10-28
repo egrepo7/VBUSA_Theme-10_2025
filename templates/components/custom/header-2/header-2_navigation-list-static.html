@@ -1,0 +1,182 @@
+{{#if (lang 'custom.header.static.navigation-list.shop-all.is-enabled' '===' 'true')}}
+<li class="navPages-item navPages-item__shop-all">
+    <a class="navPages-action has-subMenu navPages-action--toplevel"
+        data-collapsible="navigation-item__shop-all"
+        data-collapsible-disabled-breakpoint="medium">
+        <span>
+            {{lang 'custom.header.static.navigation-list.shop-all.name'}}
+        </span>
+        <span class="icon icon--chevron-down navPages-action-moreIcon">
+            <svg>
+                <use xlink:href="#icon-chevron-down"></use>
+            </svg>
+        </span>
+    </a>
+    <div class="navPage-subMenu" id="navigation-item__shop-all" aria-hidden="true" tabindex="-1">
+        <ul class="navPage-subMenu-list">
+            {{#for 1 (lang 'custom.header.static.navigation-list.shop-all.number-of-items')}}
+            <li 
+                class="navPage-subMenu-item {{#if (lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.has-sub-items')) '===' 'true'}}has-submenu{{/if}}" 
+                data-mega-menu-toggle="{{lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.mega-menu.heading')}}" 
+                data-collapsible="{{lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.mega-menu.heading')}}"
+                data-collapsible-disabled-breakpoint="medium" 
+                tabindex="-1" 
+            >
+                {{#if (lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.has-sub-items')) '===' 'true'}}
+                <a class="navPage-subMenu-action navPages-action has-subMenu"
+                    href="{{lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.url')}}">
+                    <span>
+                        {{lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.name')}}
+                    </span>
+                    <span class="icon icon--chevron-down">
+                        <svg>
+                            <use xlink:href="#icon-chevron-down"></use>
+                        </svg>
+                    </span>
+                </a>
+                <a class="megaMenu-toggle icon icon--chevron-down" href="##">
+                    <svg>
+                        <use xlink:href="#icon-chevron-down"></use>
+                    </svg>
+                </a>
+                {{else}}
+                <a class="navPage-subMenu-action navPages-action"
+                    href="{{lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.url')}}">
+                    <span>
+                        {{lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.name')}}
+                    </span>
+                </a>
+                {{/if}}
+            </li>
+            {{/for}}
+        </ul>
+        <ul class="navPage-megaMenu-list" style="float: right;">
+            {{#for 1 (lang 'custom.header.static.navigation-list.shop-all.number-of-items')}}
+                {{#if (lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.mega-menu.is-enabled')) '===' 'true'}}
+                <li class="navPage-megaMenu" data-mega-menu-item="{{lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.mega-menu.heading')}}" id="{{lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.mega-menu.heading')}}">
+                    <span class="navPage-megaMenu__heading">
+                        {{lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.mega-menu.heading')}}
+                    </span>
+                    <div class="navPage-megaMenu__content">
+                        {{#for 1 (lang (concat (concat 'custom.header.static.navigation-list.shop-all.item-' $index)'.mega-menu.number-of-mega-menu-items'))}}
+                        <div class="navPage-megaMenu__column">
+                            <a class="navPage-megaMenu__column-link"
+                                href="{{lang (concat (concat (concat (concat 'custom.header.static.navigation-list.shop-all.item-' ../$index)'.mega-menu.mega-menu-item-') $index) ".url")}}">
+                                <img class="navPage-megaMenu__image"
+                                    src="{{lang (concat (concat (concat (concat 'custom.header.static.navigation-list.shop-all.item-' ../$index)'.mega-menu.mega-menu-item-') $index) ".imageUrl")}}"
+                                    alt="{{lang (concat (concat (concat (concat 'custom.header.static.navigation-list.shop-all.item-' ../$index)'.mega-menu.mega-menu-item-') $index) ".imageAltText")}}">
+                                <span>
+                                    {{lang (concat (concat (concat (concat 'custom.header.static.navigation-list.shop-all.item-'../$index)'.mega-menu.mega-menu-item-') $index) ".name")}}
+                                </span>
+                            </a>
+                            {{lang (concat (concat (concat (concat 'custom.header.static.navigation-list.shop-all.item-'../$index)'.mega-menu.mega-menu-item-') $index) ".name")}}
+                            <ul>
+                                {{#for 1 (lang (concat (concat (concat (concat 'custom.header.static.navigation-list.shop-all.item-'../$index)'.mega-menu.mega-menu-item-') $index) ".number-of-sub-items"))}}
+                                    <li class="mega-menu-sub-item">
+                                        <a href="{{lang (concat (concat (concat (concat (concat (concat 'custom.header.static.navigation-list.shop-all.item-'../../$index)'.mega-menu.mega-menu-item-') ../$index) '.sub-item-') $index) '.url')}}">{{lang (concat (concat (concat (concat (concat (concat 'custom.header.static.navigation-list.shop-all.item-'../../$index)'.mega-menu.mega-menu-item-') ../$index) '.sub-item-') $index) '.name')}}</a>
+                                    </li>
+                                {{/for}}
+                            </ul>
+                        </div>
+                        {{/for}}
+                    </div>
+                </li>
+                {{/if}}
+            {{/for}}
+        </ul>
+    </div>
+</li>
+{{/if}}
+{{!-- loops through all main navigation items defined in config/lang files --}}
+{{#for 1 (lang 'custom.header.static.navigation-list.navigation-items.number-of-items')}}
+<li class="navPages-item no-megaMenu">
+    {{#if (lang (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' $index)'.has-sub-items')) '===' 'true'}}
+     {{!-- Renders a top-level navigation item that has sub-items. --}}
+    <a class="navPages-action has-subMenu no-megaMenu"
+        href="{{lang (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' $index)'.url')}}" 
+        data-collapsible="navigation-item__item-{{$index}}"
+        data-collapsible-disabled-breakpoint="medium">
+        <div class="navPages-action__wrapper">
+            <span>
+                {{lang (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' $index)'.name')}}
+            </span>
+            <span class="icon icon--chevron-down navPages-action-moreIcon">
+                <svg>
+                    <use xlink:href="#icon-chevron-down"></use>
+                </svg>
+            </span>
+        </div>
+    </a>
+    <!-- Category Subitems -->
+    <div class="navPage-subMenu" id="navigation-item__item-{{$index}}" aria-hidden="true" tabindex="-1">
+        <ul class="navPage-subMenu-list">
+            {{#for 1 (lang (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' $index)'.number-of-sub-items'))}}
+            {{#if (lang (concat (concat (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' ../$index)'.sub-item-')$index)'.has-sub-items')) '===' 'true'}}
+            <li class="navPage-subMenu-item">
+                <!-- poles/padding -->
+                <a 
+                    class="navPage-subMenu-action navPages-action no-megaMenu"
+                    href="{{lang (concat (concat (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' ../$index)'.sub-item-') $index) '.url')}}"
+                >
+                    <div class="navPage-subMenu-action__wrapper">
+                        <span>
+                            {{lang (concat (concat (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' ../$index)'.sub-item-') $index) '.name')}}
+                        </span>
+                        <span class="collapsible-icon-wrapper"
+                            data-collapsible="navPages__item-{{../$index}}--sub-item-{{$index}}"
+                            data-collapsible-disabled-breakpoint="medium"
+                            data-collapsible-disabled-state="open"
+                            data-collapsible-enabled-state="closed"
+                        >
+                            {{!-- <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                                <svg><use xlink:href="#icon-chevron-down" /></svg>
+                            </i> --}}
+                        </span>
+                    </div>
+                </a>
+                <ul class="navPage-childList" id="navPages__item-{{../$index}}--sub-item-{{$index}}">
+                    {{#for (lang (concat (concat (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' ../$index)'.sub-item-')$index)'.number-of-sub-items'))}}
+                    <li class="navPage-childList-item">
+                        <a class="navPage-childList-action navPages-action no-megaMenu"
+                            href="{{lang (concat (concat (concat (concat (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' ../../$index)'.sub-item-')../$index)'.sub-item-')$index)'.url')}}"
+                            aria-label="{{lang (concat (concat (concat (concat (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' ../../$index)'.sub-item-')../$index)'.sub-item-')$index)'.name')}}"
+                        >
+                            <div class="navPage-childList-action__wrapper">
+                                {{lang (concat (concat (concat (concat (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' ../../$index)'.sub-item-')../$index)'.sub-item-')$index)'.name')}}
+                            </div>
+                        </a>
+                    </li>
+                    {{/for}}
+                </ul>
+            </li>
+            {{else}}
+            <!-- everything but poles/padding -->
+            <li class="navPage-subMenu-item">
+                <a 
+                    class="navPage-subMenu-action navPages-action no-megaMenu"
+                    href="{{lang (concat (concat (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' ../$index)'.sub-item-') $index) '.url')}}"
+                >
+                    <div class="navPage-subMenu-action__wrapper">
+                        <span>
+                            {{lang (concat (concat (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' ../$index)'.sub-item-') $index) '.name')}}
+                        </span>
+                    </div>
+                </a>
+            </li>
+            {{/if}}
+            {{/for}}
+        </ul>
+    </div>
+    <!-- end category sub items -->
+    {{else}}
+    <a class="navPages-action has-subMenu no-megaMenu" href="{{lang (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' $index)'.url')}}">
+        <div class="navPages-action__wrapper">
+            <span>
+                {{lang (concat (concat 'custom.header.static.navigation-list.navigation-items.item-' $index)'.name')}}
+            </span>
+        </div>
+    </a>
+    {{/if}}
+</li>
+{{/for}}
+

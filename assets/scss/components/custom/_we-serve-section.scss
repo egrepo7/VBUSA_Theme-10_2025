@@ -1,0 +1,427 @@
+// =============================================================================
+// WE SERVE SECTION (CSS) - Nike-inspired dynamic hero section with auto-cycling
+// =============================================================================
+
+.we-serve-section {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    margin-left: calc(-50vw + 50%); // Break out of container constraints
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%); // Gradient that transitions seamlessly to clients section
+    position: relative;
+    overflow: hidden; // Ensure all content stays within section bounds
+    z-index: 1; // Normal z-index, not covering header
+    contain: layout style paint; // Contain all effects within this section
+    
+    // Mobile viewport handling - account for browser UI changes
+    @supports (-webkit-appearance: none) and (display: -webkit-box) {
+        // iOS Safari specific - handle dynamic viewport
+        height: -webkit-fill-available;
+        min-height: -webkit-fill-available;
+    }
+    
+    // Mobile specific adjustments
+    @media (max-width: 768px) {
+        // Use dynamic viewport units when available
+        height: 100dvh;
+        min-height: 100dvh;
+        
+        // Fallback for older browsers
+        @supports not (height: 100dvh) {
+            height: calc(100vh - env(safe-area-inset-bottom, 0px));
+            min-height: calc(100vh - env(safe-area-inset-bottom, 0px));
+        }
+    }
+    
+    // Tablet specific adjustments
+    @media (min-width: 769px) and (max-width: 1024px) {
+        height: 100vh;
+        min-height: 100vh;
+    }
+    
+    // Dark overlay for text contrast
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+    }
+
+    &__container {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        transition: transform 0.15s ease-out;
+        
+        // Ensure container is fully visible and centered
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh; // Full viewport height for proper centering
+    }
+
+    &__text {
+        color: #ffffff;
+        font-weight: 900;
+        font-size: clamp(3rem, 12vw, 8rem);
+        line-height: 0.85; // Much tighter line height for almost touching text
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        margin: 0;
+        width: 100%;
+        
+        // Add text shadow for better contrast
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        
+        // Responsive sizing
+        @media (max-width: 1200px) {
+            font-size: clamp(2.5rem, 10vw, 6rem);
+            line-height: 0.85;
+        }
+        
+        @media (max-width: 768px) {
+            font-size: 4rem; // Fixed 4rem size as requested
+            letter-spacing: -0.02em;
+            line-height: 1.1; // Slightly more line height for better readability
+            // Ensure text fits within mobile viewport and wraps properly
+            padding: 0 1rem;
+            max-width: calc(100vw - 2rem);
+            word-wrap: break-word; // Allow words to break if too long
+            overflow-wrap: break-word; // Modern syntax
+            hyphens: auto; // Enable hyphenation for better text breaking
+        }
+        
+        @media (max-width: 480px) {
+            font-size: 3.5rem; // Slightly smaller on very small screens but still prominent
+            line-height: 1.15;
+            // Tighter spacing on small screens
+            padding: 0 0.5rem;
+            max-width: calc(100vw - 1rem);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        // Handle landscape orientation on mobile
+        @media (max-width: 768px) and (orientation: landscape) {
+            font-size: 3rem; // Still prominent but smaller for landscape
+            line-height: 1.0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+    }
+
+    &__static {
+        display: block;
+        margin-bottom: 0.5rem; // Add 1.5rem spacing under "WE SERVE"
+        
+        // Initially hidden until section becomes active
+        opacity: 0;
+        transform: translateY(50px);
+        visibility: hidden;
+        transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        
+        &.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+    }
+
+    &__dynamic {
+        position: relative;
+        display: inline-block;
+        min-height: 1em;
+        min-width: 300px; // Wider to accommodate longer words
+        vertical-align: baseline;
+        
+        // Initially hidden until section becomes active
+        opacity: 0;
+        visibility: hidden;
+        transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        
+        &.animate-in {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &__word {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0; // Start hidden
+        visibility: hidden; // Completely hidden
+        white-space: nowrap; // Keep nowrap for desktop
+        width: max-content;
+        
+        // Fast transition for quick cycling
+        transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+        
+        // Allow wrapping on mobile devices
+        @media (max-width: 768px) {
+            white-space: normal; // Allow text wrapping on mobile
+            width: auto; // Don't use max-content on mobile
+            max-width: 95vw; // Constrain to viewport width
+            text-align: center; // Center multi-line text
+        }
+        
+        // Animated gradient text effect - smooth and subtle
+        color: #ed1c24; // Fallback
+        background: linear-gradient(90deg, #ffffff 20%, #ed1c24 50%, #ffffff 80%); // More subtle gradient
+        background-size: 300% 100%; // Larger size for smoother movement
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: smoothGradientFlow 6s ease-in-out infinite; // Much slower - 6 seconds
+        
+        // Text properties to match static text
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        
+        // Fallback for browsers without background-clip support
+        @supports not (-webkit-background-clip: text) {
+            color: #ed1c24;
+            -webkit-text-fill-color: #ed1c24;
+        }
+        
+        // Only the active word is visible
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+// Keyframe animations
+@keyframes volleyballFloat {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translate(-52%, -48%) rotate(2deg) scale(1.05);
+    }
+    50% {
+        transform: translate(-48%, -52%) rotate(-1deg) scale(0.95);
+    }
+    75% {
+        transform: translate(-50%, -46%) rotate(1deg) scale(1.02);
+    }
+}
+
+@keyframes textGradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes nikeGradientFlow {
+    0%, 100% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 0%;
+    }
+}
+
+@keyframes fastGradientFlow {
+    0%, 100% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 200% 0%;
+    }
+}
+
+@keyframes smoothGradientFlow {
+    0%, 100% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 0%;
+    }
+}
+
+// =============================================================================
+// ADDITIONAL KEYFRAMES FOR TEXT EFFECTS
+// =============================================================================
+
+@keyframes textGlitch {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-2px);
+    }
+    40% {
+        transform: translateX(2px);
+    }
+    60% {
+        transform: translateX(-1px);
+    }
+    80% {
+        transform: translateX(1px);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-2px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(2px);
+    }
+}
+
+// Transition effects when leaving section
+.we-serve-section.transitioning-out {
+    .we-serve-section__text {
+        transform: scale(0.95);
+        opacity: 0.7;
+        transition: all 0.8s ease-out; // Shortened from 1s
+    }
+}
+
+// =============================================================================
+// MOBILE OPTIMIZATIONS
+// =============================================================================
+
+@media (max-width: 768px) {
+    .we-serve-section {
+        // Ensure proper height on mobile accounting for viewport issues
+        min-height: 100vh;
+        min-height: 100dvh; // Use dynamic viewport height if supported
+        
+        &__container {
+            padding: 1rem;
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+        
+        &__text {
+            // Ensure text is not cut off on mobile
+            max-width: 100%;
+        }
+        
+        &__dynamic {
+            min-height: 2em; // More space on mobile
+            min-width: 250px; // Adjusted for mobile
+        }
+        
+        &__word {
+            max-width: 95vw; // More room on mobile
+            white-space: normal; // Allow text wrapping on mobile
+            text-align: center; // Center multi-line text
+            word-wrap: break-word; // Break long words if necessary
+            overflow-wrap: break-word; // Modern syntax
+            hyphens: auto; // Enable hyphenation
+            line-height: 1.1; // Match the main text line height
+            
+            &.active {
+                transform: translateX(-50%);
+            }
+            
+            &.exiting {
+                transform: translateX(-50%);
+            }
+        }
+    }
+}
+
+// =============================================================================
+// ACCESSIBILITY & REDUCED MOTION
+// =============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+    .we-serve-section {
+        &__word {
+            transition: opacity 0.5s ease !important;
+            animation: none !important; // Disable gradient animation for reduced motion
+            
+            &.active {
+                transform: translateX(-50%) !important;
+            }
+            
+            &.exiting {
+                transform: translateX(-50%) !important;
+            }
+        }
+    }
+}
+
+// =============================================================================
+// HIGH CONTRAST MODE SUPPORT
+// =============================================================================
+
+@media (prefers-contrast: high) {
+    .we-serve-section {
+        background: #000000;
+        
+        &::before {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        &__word {
+            background: #ffffff !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: #ffffff !important;
+            background-clip: unset !important;
+        }
+        
+        &__dynamic::after {
+            background: #ffffff;
+        }
+    }
+}
+
+// =============================================================================
+// PERFORMANCE OPTIMIZATIONS
+// =============================================================================
+
+.we-serve-section {
+    // Use contain for better performance
+    contain: layout style;
+    
+    // Optimize animations
+    .we-serve-section__word {
+        will-change: transform, opacity;
+    }
+    
+    &.transitioning-out .we-serve-section__word {
+        will-change: auto;
+    }
+}
+
+// =============================================================================
+// WE SERVE WORD ELEMENTS - Dynamic cycling text
+// =============================================================================
+
+// Make sure dynamic container has proper setup for Nike-style cycling
+.we-serve-section__dynamic {
+    position: relative;
+    display: inline-block;
+    min-height: 1.2em; // Prevent height collapse
+    min-width: 300px; // Ensure minimum width to prevent jumping - wider for longer words
+    vertical-align: baseline;
+    overflow: visible; // Allow words to be positioned absolutely
+}

@@ -1,0 +1,70 @@
+// =============================================================================
+// CLS PREVENTION UTILITIES
+// =============================================================================
+// General utilities to prevent Cumulative Layout Shift across the theme
+
+// Font display swap for better loading performance
+@font-face {
+    font-display: swap;
+}
+
+// Prevent layout shifts from web fonts
+* {
+    font-display: swap;
+}
+
+// Image loading CLS prevention
+img {
+    height: auto;
+    max-width: 100%;
+    
+    &[width][height] {
+        aspect-ratio: attr(width) / attr(height);
+    }
+}
+
+// Prevent shifts from lazy-loaded images
+img[loading="lazy"] {
+    aspect-ratio: var(--aspect-ratio, auto);
+}
+
+// Reserve space for iframe content
+iframe {
+    aspect-ratio: 16/9;
+    width: 100%;
+}
+
+// Prevent button/form element shifts
+button, input, select, textarea {
+    box-sizing: border-box;
+}
+
+// Smooth transitions that don't affect layout
+.cls-safe-transition {
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+// Safe hover effects that don't cause layout shift
+.cls-safe-hover {
+    &:hover {
+        transform: translateY(-2px);
+        // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+// Skeleton placeholder for loading content
+.cls-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    
+    @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+        background: #f0f0f0;
+    }
+}

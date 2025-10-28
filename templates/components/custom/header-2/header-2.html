@@ -1,0 +1,74 @@
+<a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
+{{#if banners.top}}
+<div class="banners" data-banner-location="top">
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+        <div data-event-type="promotion-click">
+            {{{this.content}}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+
+
+<header class="header header-2 header-2--default" role="banner">
+    <div class="header-2__top">
+        {{> components/custom/header-2/header-2_top-nav}}
+    </div>
+    
+    <div class="header-2__mid">
+        <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+            <span class="mobileMenu-toggleIcon">Toggle menu</span>
+        </a>
+            {{!-- Static Header Top Navigation - Store Logo --}}
+            <div class="top-navigation__store-logo">
+                {{#if page_type '===' 'default'}}
+                    <h1 class="header-logo">
+                        {{> components/common/store-logo}}
+                    </h1>
+                {{else}}
+                    <div class="header-logo">
+                        {{> components/common/store-logo}}
+                    </div>
+                {{/if}}
+            </div>
+            {{!-- Static Header Top Navigation - Store Contact --}}
+            <div class="top-navigation__store-contact">
+                <a class="store-contact__link">
+                    <span class="store-contact__label">
+                        <span class="icon icon--phone">
+                            <svg><use xlink:href="#icon-phone"></use></svg>
+                        </span>
+                        <span>
+                            {{lang 'custom.header.static.top-navigation.store-contact.label'}}&nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <a href="tel:{{settings.phone_number}}" class="store-contact__phone-number">
+                        {{settings.phone_number}}
+                    </a>
+                </a>
+            </div>
+        <div class="dropdown dropdown--quickSearch header-2__nav-search" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close>
+            {{> components/common/quick-search name='nav-quick-search'}}
+        </div>
+        
+        {{!-- Mobile Search Dropdown --}}
+        <div class="mobile-search-dropdown" id="mobile-search-dropdown" aria-hidden="true">
+            <div class="mobile-search-dropdown__content">
+                <div class="mobile-search-dropdown__form">
+                    {{> components/common/quick-search name='mobile-quick-search'}}
+                </div>
+            </div>
+        </div>
+        
+        {{> components/custom/header-2/header-2_navigation}}
+    </div>
+    
+    <div class="navPages-container" id="menu" data-menu>
+        {{> components/custom/header-2/header-2_navigation-menu}}
+    </div>
+</header>
+
+{{{region name="header_bottom--global"}}}
+{{{region name="header_bottom"}}}

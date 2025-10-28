@@ -1,0 +1,139 @@
+<!-- Dynamic Category FAQ Component -->
+<section class="category-faq">
+    <div class="container">
+        <h2 class="category-faq__title">Frequently Asked Questions</h2>
+        <div class="faq-list">
+            <!-- FAQs will be populated dynamically from JSON -->
+        </div>
+    </div>
+</section>
+
+<script>
+// Dynamic FAQ System - Loads data from JSON file
+document.addEventListener('DOMContentLoaded', function() {
+    loadDynamicFAQs();
+});
+
+// Main function to load and display FAQs
+async function loadDynamicFAQs() {
+    try {
+        // Load FAQ data from JSON file
+        const allFAQData = await loadFAQData();
+        if (!allFAQData) {
+            console.warn('FAQ data could not be loaded');
+            return;
+        }
+        
+        // Determine category from current URL
+        const categoryKey = getCategoryFromUrl(window.location.pathname);
+        if (!categoryKey) {
+            console.log('No FAQ category found for current URL');
+            return;
+        }
+        
+        // Get FAQs for this category
+        const categoryFAQs = allFAQData[categoryKey];
+        if (!categoryFAQs || categoryFAQs.length === 0) {
+            console.log(`No FAQ data found for category: ${categoryKey}`);
+            return;
+        }
+        
+        // Populate and initialize FAQs
+        populateFAQs(categoryFAQs);
+        initializeFAQHandlers();
+        
+        console.log(`Loaded ${categoryFAQs.length} FAQs for category: ${categoryKey}`);
+        
+    } catch (error) {
+        console.error('Error loading dynamic FAQs:', error);
+    }
+}
+
+// Load FAQ data from JSON file
+async function loadFAQData() {
+    try {
+        const response = await fetch('{{cdn "assets/content/faq-data.json"}}');
+        if (!response.ok) {
+            throw new Error(`Failed to load FAQ data: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Failed to load FAQ data:', error);
+        return null;
+    }
+}
+
+// Determine category key from URL
+function getCategoryFromUrl(url) {
+    const urlMappings = {
+        'volleyball-nets': ['volleyball-nets', 'nets'],
+        'volleyball-poles': ['volleyball-poles', 'poles'], 
+        'complete-systems': ['complete-systems', 'systems'],
+        'outdoor-systems': ['outdoor-systems', 'outdoor'],
+        'portable-systems': ['portable-systems', 'portable']
+    };
+    
+    // Check each category mapping
+    for (const [category, patterns] of Object.entries(urlMappings)) {
+        if (patterns.some(pattern => url.includes(pattern))) {
+            return category;
+        }
+    }
+    
+    return null;
+}
+
+// Generate FAQ HTML from data
+function populateFAQs(faqs) {
+    const faqContainer = document.querySelector('.faq-list');
+    if (!faqContainer) {
+        console.error('FAQ container not found');
+        return;
+    }
+    
+    const faqHTML = faqs.map((faq, index) => `
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-${index}" type="button">
+                <span class="faq-question__text">${faq.question}</span>
+                <span class="faq-question__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-${index}" aria-hidden="true">
+                <div class="faq-answer__content">
+                    ${faq.answer}
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    faqContainer.innerHTML = faqHTML;
+}
+
+// Initialize FAQ accordion functionality
+function initializeFAQHandlers() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector('.faq-question__icon');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            // Close other FAQs (accordion behavior - only one open at a time)
+            faqQuestions.forEach(otherQuestion => {
+                if (otherQuestion !== this) {
+                    const otherAnswer = otherQuestion.nextElementSibling;
+                    const otherIcon = otherQuestion.querySelector('.faq-question__icon');
+                    otherQuestion.setAttribute('aria-expanded', 'false');
+                    otherAnswer.setAttribute('aria-hidden', 'true');
+                    otherIcon.textContent = '+';
+                }
+            });
+            
+            // Toggle this FAQ
+            this.setAttribute('aria-expanded', !isExpanded);
+            answer.setAttribute('aria-hidden', isExpanded);
+            icon.textContent = !isExpanded ? '−' : '+';
+        });
+    });
+}
+</script>

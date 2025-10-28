@@ -1,0 +1,856 @@
+$screen-custom: 400px;
+$border-color-alt: #DF4444;
+// temporary to get rid of the banner blocking stuff
+// =======================================
+//  PAGE WIDE
+// =======================================
+// .page--default .body {
+//     padding-top: 88px;
+
+//     @media only screen and (min-width: 333px) {
+//         padding-top: 66px;
+//     }
+
+//     @media only screen and (min-width: 632px) {
+//         padding-top: 46px;
+//     }
+// }
+
+.banners {
+    display: none;
+}
+
+.page--default .body {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.page-heading.h1 {
+    line-height: 33px;
+}
+
+.cta-2 {
+    margin-bottom: 24px;
+}
+
+.cta-2:first-of-type {
+    @include breakpoint('medium') {
+        // 801px and up
+        margin-bottom: 48px;
+    }
+}
+
+.cta-2__content-container {
+    min-height: 200px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        min-height: 300px;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        min-height: 471px;
+    }
+}
+
+.cta-2__content-container .cta-2__title,
+.cta-4__title {
+    color: $color-white;
+}
+
+// CTA WIDE
+.cta-2 {
+    min-height: 200px;
+    background-size: cover;
+}
+
+.cta-4__content {
+    background-size: cover;
+    background-position: center;
+}
+
+.home-cta-grid.cta-4.accessories .cta-4__content {
+    min-height: 376px;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        min-height: 456px;
+    }
+}
+
+// =======================================
+//  HERO VIDEO SECTION
+// =======================================
+.hero-video-section {
+    position: relative;
+    height: 75vh;
+    width: 100%;
+    text-align: center;
+    max-width: 2560px;
+    margin: 0 auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    
+    // Add gradient overlay
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    .hero-video-section-video {
+        grid-column: 1 / 4;
+        grid-row: 1 / 4;
+    }
+
+    .cta-2__content-container {
+        grid-column: 1 / 4;
+        grid-row: 1 / 4;
+        z-index: 2; // Ensure content appears above gradient
+        
+        @include breakpoint('medium') {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+        }
+    }
+    
+    @include breakpoint('medium') {
+        // 801px and up
+        margin-bottom: 86px;
+        min-height: 526px;
+
+        .cta-2__content-container {
+            min-height: 471px;
+        }
+    }
+}
+
+.hero-video-section-video {
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-video-section .cta-2__title,
+.hero-video-section .cta-2__sub-title {
+    color: $color-white;
+}
+
+.hero-video-section .cta-2__title {
+    &.h1 {
+        font-size: 6rem; // Match about page hero size
+        font-weight: 500;
+        line-height: 1.1;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin: 0 0 24px 0;
+
+        @media (max-width: 768px) {
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 2rem;
+            letter-spacing: 0.5px;
+        }
+    }
+}
+
+.hero-video-section .cta-2__sub-title {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.4;
+    margin: 0 0 32px 0;
+    
+    @media (max-width: 768px) {
+        font-size: 1.125rem;
+        white-space: normal; // Remove nowrap on mobile for better readability
+    }
+
+    @media (max-width: 480px) {
+        font-size: 1rem;
+    }
+
+    @include breakpoint('medium') {
+        white-space: nowrap;
+    }
+}
+
+// =======================================
+//  COURT BUILDER CTA
+// =======================================
+.court-builder-cta {
+    padding: 32px 0 48px 0;
+    background-color: none;
+    text-align: center;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        text-align: left;
+        padding: 0;
+    }
+}
+
+// .court-builder-cta .cta-1__image {
+//     margin-bottom: 48px;
+// }
+
+.court-builder-cta .cta-1__content-container {
+    row-gap: 48px;
+    @include breakpoint('medium') {
+        // 801px and up
+        column-gap: 50px;
+        grid-template-columns: 5fr 3fr;
+    }
+}
+
+.court-builder-cta .cta-1__title {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 32px;
+    padding: 0 1.25rem;
+    line-height: 32px;
+    color: #333333;
+
+    @media only screen and (max-width: $screen-xsmall) {
+        padding: 0 1rem;
+        font-size: 1.5rem;
+    }
+
+    @include breakpoint('medium') {
+        // 801px and up
+        font-size: 40px;
+        text-align: left;
+        padding: 0;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        line-height: 40px;
+    }
+}
+
+.court-builder-cta .cta-1__text {
+    // text-align: center;
+    margin-bottom: 32px;
+    padding: 0 2rem;
+    color: #333;
+    @include breakpoint('medium') {
+        // 801px and up
+        padding: 0;
+    }
+}
+
+.court-builder-cta .button {
+    margin-bottom: 0;
+}
+
+.court-builder-cta .cta-1__text-container {
+    max-width: 515px;
+}
+
+.court-builder-cta-button-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    @media only screen and (min-width: $screen-custom) {
+        flex-direction: row;
+    }
+
+    @include breakpoint('medium') {
+        // 801px and up
+        margin: 0;
+        justify-content: left;
+    }
+}
+
+.court-builder-cta .button--primary {
+    margin-bottom: 8px;
+
+    @media only screen and (min-width: $screen-custom) {
+        margin-bottom: 0;
+    }
+}
+.court-builder-cta .button--secondary {
+    @include breakpoint('medium') {
+        // 801px and up
+        margin-left: 16px;
+    }
+}
+
+.court-builder-cta .button--primary,
+.court-builder-cta .button--secondary {
+    width: 100%;
+    @media only screen and (min-width: $screen-custom) {
+        // margin-right: 16px;
+        width: auto;
+    }
+}
+
+// =======================================
+//  COURT CONSTRUCTION CTA
+// =======================================
+.court-construction-cta {
+    padding: 5rem 0;
+    min-height: 300px;
+    padding: 0;
+    background-size: cover;
+    background-position: right;
+    display: flex;
+    align-items: center;
+    // margin: 5rem 0;
+    // max-width: calc(1600px + 1rem * 2);
+    // margin: 0 auto 48px;
+
+    @include breakpoint('small') {
+        // 551px and up
+        min-height: 370px;
+    }
+
+    @include breakpoint('medium') {
+        // 801px and up
+        margin-top: 32px;
+        min-height: 470px;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        padding: 0;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        min-height: 600px;
+        align-items: flex-end;
+        
+    }
+}
+
+.court-builder-container {
+    max-width: calc(1600px + 1rem * 2);
+    margin: 0 auto 48px;
+    @include breakpoint('medium') {
+        // 801px and up
+        padding: 0 1rem;
+        
+    }
+}
+
+.court-construction-cta .cta-2__title {
+    margin-bottom: 24px;
+    
+}
+
+.court-construction-cta .button.button--primary {
+    margin-bottom: 0;
+}
+
+// =======================================
+//  CUSTOM PRINTED CTA
+// =======================================
+.custom-printed-cta {
+    padding: 2.3rem 0;
+    margin-bottom: 24px;
+}
+
+// =============================================================================
+// CTA Grid
+// =============================================================================
+.home-cta-grid.cta-4 {
+    // direction: ltr;
+    margin-bottom: 24px;
+    display: grid;
+    grid-column-gap: 24px;
+
+    @media only screen and (min-width: 700px) {
+        grid-row-gap: 24px;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    @media only screen and (min-width: 750px) {
+        // grid-row-gap: 24px;
+        // grid-template-columns: 1fr 1fr;
+    }
+
+    @include breakpoint('medium') {
+        // grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        direction: ltr;
+        // grid-column-gap: 24px;
+    }
+
+    @include breakpoint('large') {
+        // 1261px and up
+        min-height: 650px;
+    }
+}
+
+.home-cta-grid.cta-4 .cta-4__content {
+    text-align: center;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;    
+
+    @include breakpoint('medium') {
+        // 801px and up
+        align-items: center;
+    }
+}
+
+.home-cta-grid .cta-4__title {
+    margin-bottom: 24px;
+    margin-top: 0;
+}
+
+.home-cta-grid .cta-4__link {
+    color: $color-white;
+    // font-size: $fontSize-largest--mobile;
+    font-weight: 900;
+    font-family: "Mulish", $font-family--heading;
+    @include breakpoint('medium') {
+        // 801px and up
+        // font-size: 34px;
+        
+    }
+}
+
+.home-cta-grid .button.button--primary {
+    margin-bottom: 0;
+}
+
+// =======================================
+//  Volleyball Systems
+// =======================================
+.home-cta-grid.cta-4.volleyball-systems .cta-4__content {
+    &:first-of-type {
+        grid-row: 1 / 3;
+    }
+}
+
+.home-cta-grid.cta-4.net-accessories .cta-4__content {
+    &:last-of-type {
+        @media only screen and (min-width: 700px) {
+            grid-column: 2 / 3;
+            grid-row: 1 / 3;
+        }
+        @include breakpoint('medium') {
+            // 801px and up
+            // grid-column: 2 / 3;
+            // grid-row: 1 / 3;
+        }
+    }
+}
+
+.home-cta-grid.accessories {
+    border-bottom: 1px solid $color-alt--hover;
+    padding-bottom: 32px;
+
+    @include breakpoint('large') {
+        // 1261px and up
+        grid-template-columns: 1fr 1fr 1fr;
+        padding-bottom: 40px;
+        margin-bottom: 56px;
+    }
+}
+
+// =======================================
+//  SEO SECTION
+// =======================================
+
+// .seo-section {
+//     text-align: center;
+//     margin-bottom: 40px;
+//     position: relative;
+//     max-width: calc(1600px + 1rem * 2);
+//     margin: 0 auto 40px;
+
+//     @include breakpoint('medium') {
+//         // 801px and up
+//         display: grid;
+//         grid-template-columns: repeat(12, 1fr);
+//         align-items: center;
+//         justify-content: center;
+//         grid-template-rows: 1fr;
+//         margin-bottom: 56px;
+//     }
+// }
+
+// .seo-section__image-container {
+//     @include breakpoint('medium') {
+//         // 801px and up
+//         display: inline-block;
+//         grid-row: 1;
+//         grid-column: 5 / 13;
+//         margin: 0;
+//     }
+// }
+
+// .seo-section__image {
+//     min-height: 580px;
+//     object-fit: cover;
+// }
+
+// .seo-secion__content {
+//     padding: 0 1rem;
+//     display: inline-block;
+//     background-color: $color-white;
+//     text-align: center;
+//     width: 100%;
+//     max-width: calc(100% - 2rem);
+//     margin: 0 1rem;
+//     margin-top: -180px;
+
+//     @include breakpoint('medium') {
+//         // 801px and up
+//         grid-column: 1;
+//         grid-row: 1;
+//         position: absolute;
+//         width: 50%;
+//         top: 49%;
+//         max-height: 400px;
+//         text-align: left;
+//     }
+
+//     @include breakpoint('large') {
+//         // 1261px and up
+//         width: 42%;
+        
+//     }
+// }
+
+// .seo-section__title,
+// .seo-section__sub-title,
+// .seo-section__description {
+//     max-width: 360px;
+//     margin: 0 auto;
+
+//     @include breakpoint('medium') {
+//         // 801px and up
+//         max-width: none;
+//     }
+// }
+
+// .seo-section__title {
+//     margin-top: 54px;
+//     margin-bottom: 16px;
+
+//     @media only screen and (max-width: $screen-xsmall) {
+//         font-size: 1.75rem;
+//     }
+// }
+
+// .seo-section__sub-title {
+//     margin-top: 0;
+//     margin-bottom: 24px;
+//     font-size: 15px;
+//     color: $color-secondary;
+// }
+
+// .seo-section__description {
+//     margin-bottom: 24px;
+// }
+
+// .seo-section .button.button--primary {
+//     margin-bottom: 40px;
+// }
+
+// =======================================
+//  Home Callouts
+// =======================================
+
+.home-callouts {
+    margin-bottom: 82px;
+    border-bottom: 1px solid $color-alt--hover;
+    display: flex;
+    flex-wrap: wrap;
+    // grid-template-columns: 1fr;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        // grid-template-columns: 1fr 1fr;
+        
+    }
+}
+
+.home-callouts__callout {
+    text-align: right;
+    max-width: 450px;
+    margin: 0 auto;
+
+    &:last-of-type {
+        padding-bottom: 40px;
+    }
+
+    @include breakpoint('medium') {
+        // 801px and up
+        // border: 5px solid red;
+        margin-bottom: 16px;
+    }
+}
+
+.home-callouts__image-container {
+    margin-bottom: 0;
+}
+
+.home-callouts__image-container img {
+    border-top: 6px solid $border-color-alt;
+}
+
+.home-callouts__content {
+    // border: 3px solid red;
+    background-color: #fff;
+    z-index: 50;
+    display: inline-block;
+    width: 88%;
+    text-align: left;
+    margin-top: -40px;
+}
+
+.home-callouts__heading {
+    margin-bottom: 40px;
+}
+
+.home-callouts__card-title {
+    padding: 0 0 0 32px;
+    font-weight: 900;
+    font-size: 21px;
+    color: #333333;
+}
+
+.home-callouts__description {
+    padding: 0 32px;
+}
+
+// =======================================
+//  Testimonials
+// =======================================
+.icon.icon--quote {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    height: 64px;
+    width: 64px;
+}
+
+.button-quote-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include breakpoint('medium') {
+        // 801px and up
+        max-width: 1300px;
+        margin: 0 auto 16px;
+    }
+}
+
+.button-quote-wrapper .slick-prev,
+.button-quote-wrapper .slick-next {
+    position: static;
+    transform: translate(0);
+}
+
+.testimonial-carousel {
+    text-align: center;
+    max-width: 740px;
+    margin: 0 auto;
+}
+
+.testimonial-carousel__testimonial-body {
+    margin-bottom: 32px;
+}
+
+.testimonial-carousel__testimonial-author {
+    margin: 0;
+}
+
+// Hero video buttons container
+.hero-video-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .button {
+        // Ensure both buttons have the same height by normalizing box-sizing and line-height
+        box-sizing: border-box;
+        line-height: 1.2;
+        min-height: calc(1.145rem * 2 + 13px * 1.2 + 4px); // padding-top + padding-bottom + font-size * line-height + border compensation
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        
+        @media (max-width: 768px) {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+    }
+}
+
+// ========================================
+// SCROLL-TRIGGERED HEADER BEHAVIOR
+// ========================================
+.header-2 {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.2s ease,
+                box-shadow 0.2s ease;
+    opacity: 1;
+    
+    // Scroll states
+    &.header--hidden {
+        transform: translateY(-100%);
+        opacity: 0.8;
+        box-shadow: none;
+    }
+    
+    &.header--visible {
+        transform: translateY(0);
+        opacity: 1;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    &.header--scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    // Ensure smooth animations on mobile
+    @media (max-width: 768px) {
+        transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+                    opacity 0.15s ease,
+                    box-shadow 0.15s ease;
+    }
+}
+
+// Add body padding to compensate for fixed header
+body {
+    &.header-padding-active {
+        padding-top: var(--header-height, 80px);
+        transition: padding-top 0.3s ease;
+    }
+}
+
+// Special handling for hero sections with fixed header
+.hero-video-section {
+    // If you want hero to go full screen under header (optional)
+    &.hero--fullscreen {
+        .cta-2__content-container {
+            padding-top: 120px; // Add space for content to be visible below header
+            
+            @media (max-width: 768px) {
+                padding-top: 100px;
+            }
+        }
+    }
+}
+
+// Special product page adjustments for fixed header
+.page--product {
+    .body {
+        padding-top: 0 !important; // Override the global body padding for product pages
+    }
+    
+    .productView {
+        margin-top: 0; // Ensure no extra margin
+        
+        > .container:first-of-type {
+            padding-top: 20px; // Add minimal padding instead of large header compensation
+            
+            @media (max-width: 768px) {
+                padding-top: 15px;
+            }
+        }
+    }
+}
+
+// Adjust product details panel positioning
+.productView-details {
+    // Remove any top margins/padding that might be causing the gap
+    margin-top: 0;
+    padding-top: 0;
+}
+
+// Product image adjustments
+.productView-images {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+// Dynamic details panel positioning for product pages with scroll header
+.productView.split-layout .details-panel {
+    position: sticky;
+    top: var(--panel-top-offset, var(--header-height, 80px)); // Use dynamic offset
+    height: var(--panel-available-height, calc(100vh - var(--header-height, 80px))); // Use dynamic height
+    max-height: var(--panel-available-height, calc(100vh - var(--header-height, 80px))); // Add dynamic max-height
+    transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto; // Allow scrolling within the panel if content is long
+    z-index: 10; // Ensure it stays above other content
+    
+    @media (max-width: 768px) {
+        position: relative; // Don't stick on mobile
+        top: auto;
+        height: auto;
+        max-height: none;
+        transition: none;
+    }
+}
+
+// Additional fallback for when header is hidden (belt and suspenders approach)
+body.header-hidden .productView.split-layout .details-panel {
+    top: 0;
+    height: 100vh;
+    max-height: 100vh;
+    
+    @media (max-width: 768px) {
+        top: auto;
+        height: auto;
+        max-height: none;
+    }
+}
+
+// Ensure the details panel content has proper padding
+.productView.split-layout .details-panel .panel-content,
+.productView.split-layout .details-panel > * {
+    padding: 20px;
+    
+    @media (max-width: 768px) {
+        padding: 15px;
+    }
+}

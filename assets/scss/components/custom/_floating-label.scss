@@ -1,0 +1,114 @@
+// =============================================================================
+// FLOATING LABEL (CSS)
+// =============================================================================
+
+.form-field--floating-label {
+    position: relative;
+    margin-bottom: spacing("base");
+
+    .floating-label-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-select {
+        padding: spacing("half") spacing("half"); // Equal top/bottom padding for centering
+        padding-right: 2.5rem; // Space for dropdown arrow
+        border: 1px solid #d4d4d4;
+        border-radius: 4px;
+        background-color: transparent;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+        &:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+        // Hide default dropdown arrow and add custom one
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+
+        // Specific styling for date dropdowns
+        &.form-select--date {
+            min-width: 120px;
+            margin-right: spacing("quarter");
+            
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .floating-label {
+        position: absolute;
+        left: spacing("half");
+        top: 0;
+        transform: translateY(-50%);
+        background-color: white;
+        border-radius: 4px;
+        padding: 0 spacing("quarter");
+        color: #007bff;
+        font-size: 0.875rem;
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        pointer-events: none;
+        z-index: 1;
+        will-change: transform, font-size, color, top;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    // Show floating label only when option is selected (has value)
+    &.has-selection .floating-label,
+    .form-select.has-value + .floating-label {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    // Required field styling
+    .floating-label span {
+        color: #dc3545;
+    }
+
+    // Error state
+    &.form-field--error {
+        .form-select {
+            border-color: #dc3545;
+
+            &:focus {
+                border-color: #dc3545;
+                box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+            }
+        }
+
+        .floating-label {
+            color: #dc3545;
+        }
+
+        &.has-selection .floating-label,
+        .form-select.has-value + .floating-label {
+            color: #dc3545;
+        }
+    }
+}
+
+// Dark theme support (if applicable)
+@media (prefers-color-scheme: dark) {
+    .form-field--floating-label {
+        .floating-label {
+            background-color: var(--body-bg, white);
+        }
+
+        &.is-floating .floating-label,
+        .form-select:focus + .floating-label,
+        .form-select.has-value + .floating-label {
+            background-color: var(--body-bg, white);
+        }
+    }
+}

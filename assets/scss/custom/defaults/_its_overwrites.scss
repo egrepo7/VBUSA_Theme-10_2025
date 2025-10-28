@@ -1,0 +1,321 @@
+/* ==========================================================
+ * ## Header
+ * ========================================================== */
+
+// Hoverable main menu dropdowns
+@include breakpoint('medium') {
+    .navPages-action--toplevel +.navPage-subMenu {
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        left: 0;
+        // width: 100%;
+        // transform-origin: 0 0;
+        // transform: rotateX(-90deg);
+        // transition: all 0.15s ease-in;
+    }
+
+    .navPages-item:hover .navPages-action--toplevel.has-subMenu +.navPage-subMenu {
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        // transform: rotateX(0deg);
+        transition: all 0.15s ease-in;
+    }
+}
+
+/* ==========================================================
+ * ## Slick Slider
+ * ========================================================== */
+
+.productCarousel {
+    margin: 0;
+}
+
+.slick-prev {
+    left: 0;
+}
+
+.slick-next {
+    right: 0;
+}
+
+.slick-next, .slick-prev {
+    margin-top: 0;
+}
+
+/* ==========================================================
+ * ## Category Compare
+ * ========================================================== */
+
+.category__compare-link {
+    display: none;
+    padding: 1rem;
+    position: fixed;
+    z-index: 1;
+    bottom: 10px;
+    right: 10px;
+    background: $color-primary;
+    width: auto;
+
+    &.show {
+        display: block;
+
+    }
+}
+
+/* ==========================================================
+ * ## Category Toggle List/Grid View
+ * ========================================================== */
+
+.category__view-toggle {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.category__toggle-view {
+    padding: 0.5rem;
+}
+
+.category__toggle-view:first-of-type {
+    margin-right: 0.5rem;
+}
+
+.active-category-view {
+    background-color: transparent;
+
+    svg {
+        fill: $color-primary
+    }
+}
+
+/* ==========================================================
+ * ## Login
+ * ========================================================== */
+
+.login-form,
+.new-customer {
+    padding: 0;
+}
+
+.login-form {
+    @include breakpoint('medium') {
+        // 801px and up
+        padding-right: 0.75rem;
+    }
+}
+
+.new-customer {
+    @include breakpoint('medium') {
+        // 801px and up
+        padding-left: 0.75rem;
+    }
+}
+
+.login-form .form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-customer .panel-body a {
+    margin: 0 auto;
+}
+
+.new-customer-fact-list {
+    margin: 1.5rem;
+    margin-right: 0;
+}
+
+
+/* ==========================================================
+ * ## Header
+ * ========================================================== */
+
+.header-logo__link {
+    z-index: auto;
+}
+
+
+/* ==========================================================
+ * ## Category Page
+ * ========================================================== */
+
+.loadingOverlay--product-listing {
+    text-align: center;
+
+    &::before {
+        top: 10%;
+    }
+}
+
+/* ==========================================================
+ * ## Inputs
+ * ========================================================== */
+
+
+.form-input--incrementTotal {
+    font-size: 1rem;
+    height: 2rem;
+    width: auto;
+}
+
+
+/* ==========================================================
+ * ## SweetAlert
+ * ========================================================== */
+
+.swal2-actions .button {
+    margin: 0.5rem;
+}
+
+/* ==========================================================
+ * ## Search Results
+ * ========================================================== */
+
+.quickSearchResults {
+    margin-top: spacing("single");
+    padding-top: 16px;
+    display: none; // Hidden by default until search input has content
+
+    @include breakpoint("medium") {
+        margin-top: 0;
+    }
+
+    .search-results-close {
+        display: none;
+
+        @include breakpoint("medium") {
+            display: block;
+        }
+    }
+}
+
+.search-results-close {
+    @include square($reveal-close-height);
+    color: stencilColor("icon-color");
+    font-size: 26px;
+    line-height: remCalc($reveal-close-height);
+    padding: 0;
+    position: absolute;
+    top: 1.05rem;
+    right: 0.75rem;
+    text-align: center;
+    text-decoration: none;
+    z-index: zIndex("high");
+
+    @include breakpoint("medium") {
+        font-size: 32px;
+    }
+
+    &:hover {
+        color: stencilColor("icon-color-hover");
+    }
+
+    @include addFocusTooltip;
+
+    &::before, &::after {
+        right: auto;
+        left: 0;
+    }
+}
+
+/* ==========================================================
+ * ## Paginator Dropdown
+ * ========================================================== */
+
+.pagination--dropdown .pagination-list {
+    display: flex;
+
+    .pagination-item {
+        flex: 0.5;
+        margin: 0;
+    }
+
+    .pagination-item--next {
+        text-align: right;
+    }
+
+    .pagination-item--dropdown {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pagination-item__dropdown {
+        // max-width: 50px;
+        margin: 0 0.5rem;
+        cursor: pointer;
+    }
+
+    .pagination-item--previous {
+        text-align:left;
+    }
+
+    .pagination-item--next,
+    .pagination-item--dropdown,
+    .pagination-item--previous {
+        cursor: default;
+    }
+
+    .pagination-link {
+        display: none;
+
+        @include breakpoint('medium') {
+            // 801px and up
+            display: inline-block;
+        }
+    }
+}
+
+/* ==========================================================
+ * ## Card Add to Cart
+ * ========================================================== */
+
+.card-atc--added .card-atc__button {
+    background-color: $alert-success-iconColor;
+    border-color: $alert-success-iconColor;
+}
+
+.card-atc {
+    .card-atc__button {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+.card-atc-increment {
+    display: flex;
+    flex-flow: row;
+    margin-bottom: remCalc(10px);
+
+    .button {
+        margin: 0;
+        flex: 1;
+        padding: remCalc(10px) remCalc(5px);
+    }
+
+    .button + .card-atc__input--total {
+        margin: 0 remCalc(10px);
+    }
+}
+
+.card-atc__input--total {
+    display: inline-block;
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
+    height: auto;
+    min-height: remCalc(40px);
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: remCalc(35px);
+    flex: 2;
+
+}
+
+// Product Grid
+.page-sidebar + .page-content .productGrid .product {
+    width: 100%;
+}

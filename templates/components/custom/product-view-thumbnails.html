@@ -1,0 +1,77 @@
+<ul class="productView-thumbnails" data-slick='{
+        "infinite": false,
+        "mobileFirst": true,
+        "dots": false,
+        "accessibility": false,
+        "slidesToShow": 4,
+        "slidesToScroll": 1
+    }'>
+    {{#or (if product.images.length '>' 1) (if product.videos.list)}}
+    {{#all (if product.images.length '===' 1) (if product.videos.list) (unless video_show)}}
+    {{else}}
+
+        {{#all (if video_show) (if video_pos)}}
+        {{!-- 
+        {{#each product.videos.list}}
+            <li class="productView-thumbnail productView-thumbnail--video">
+                <a
+                    class="productView-thumbnail-link"
+                    data-type="video"
+                    data-index="{{@index}}"
+                    data-video-id="{{id}}"
+                    data-video-gallery-new-image-url="https://img.youtube.com/vi/{{id}}/0.jpg"
+                    data-video-gallery-zoom-image-url="https://img.youtube.com/vi/{{id}}/0.jpg"
+                    data-video-gallery-new-image-srcset="https://img.youtube.com/vi/{{id}}/0.jpg"
+                    data-pswp-content='<div class="pswp-video"><iframe src="https://www.youtube.com/embed/{{id}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>'
+                    data-image-gallery-video>
+                    <img src="{{cdn 'img/loading.svg'}}" data-srcset="https://img.youtube.com/vi/{{id}}/0.jpg" data-src="https://img.youtube.com/vi/{{id}}/0.jpg" data-sizes="auto" class="lazyload" alt="{{title_short}}" title="{{title_long}}">
+                </a>
+            </li>
+        {{/each}}
+        --}}
+        {{/all}}
+
+{{#each product.images}}
+    <li class="productView-thumbnail">
+        <a
+            class="productView-thumbnail-link"
+            href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+            data-type="image"
+            data-index="{{@index}}"
+            data-image-gallery-item
+            data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+            data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+            data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+        >
+        {{> components/common/responsive-img
+            image=this
+            fallback_size=../theme_settings.productview_thumb_size
+            lazyload=../theme_settings.lazyload_mode
+        }}
+        </a>
+    </li>
+{{/each}}
+
+
+        {{#all (if video_show) (unless video_pos)}}
+        {{#each product.videos.list}}
+            <li class="productView-thumbnail productView-thumbnail--video">
+                <a
+                    class="productView-thumbnail-link"
+                    data-type="video"
+                    data-index="{{add (toInt @index) (toInt ../product.images.length)}}"
+                    data-video-id="{{id}}"
+                    data-video-gallery-new-image-url="https://img.youtube.com/vi/{{id}}/0.jpg"
+                    data-video-gallery-zoom-image-url="https://img.youtube.com/vi/{{id}}/0.jpg"
+                    data-video-gallery-new-image-srcset="https://img.youtube.com/vi/{{id}}/0.jpg"
+                    data-pswp-content='<div class="pswp-video"><iframe src="https://www.youtube.com/embed/{{id}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>'
+                    data-image-gallery-video>
+                    <img src="{{cdn 'img/loading.svg'}}" data-srcset="https://img.youtube.com/vi/{{id}}/0.jpg" data-src="https://img.youtube.com/vi/{{id}}/0.jpg" data-sizes="auto" class="lazyload" alt="{{title_short}}" title="{{title_long}}">
+                </a>
+            </li>
+        {{/each}}
+        {{/all}}
+
+    {{/all}}
+    {{/or}}
+</ul>

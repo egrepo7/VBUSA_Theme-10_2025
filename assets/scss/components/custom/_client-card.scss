@@ -1,0 +1,191 @@
+// =============================================================================
+// CLIENT CARD (CSS)
+// =============================================================================
+
+.client-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #e5e7eb; // Add this - default border
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    z-index: 1; // Ensure cards are below fade overlay but above background
+
+    // Animation states for reveal effect
+    &--hidden {
+        display: none;
+    }
+
+    &--revealing {
+        opacity: 0;
+        transform: translateY(30px) scale(0.92);
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform, opacity; // Optimize for animations
+    }
+
+    &--revealed {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    // Animation states for collapse effect
+    &--collapsing {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+        transition: all 0.4s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    }
+    
+
+    // Category-specific left borders - Add these back
+    &[data-category="partnerships"] {
+        border-left-color: #f59e0b; // amber
+    }
+    
+    &[data-category="colleges"] {
+        border-left-color: #3b82f6; // blue
+    }
+    
+    &[data-category="clubs"] {
+        border-left-color: #10b981; // emerald
+    }
+    
+    &[data-category="facilities"] {
+        border-left-color: #8b5cf6; // violet
+    }
+    
+    &[data-category="organizations"] {
+        border-left-color: #ef4444; // red
+    }
+
+    &[data-category="corporate"] {
+        border-left-color: #06b6d4; // cyan
+    }
+
+    &[data-category="schools"] {
+        border-left-color: #f97316; // orange
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border-left-width: 6px; // Make border thicker on hover
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    // Add a subtle glow effect on hover
+    &::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, 
+            rgba(59, 130, 246, 0.1), 
+            rgba(16, 185, 129, 0.1), 
+            rgba(249, 115, 22, 0.1)
+        );
+        border-radius: 14px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    &:hover::before {
+        opacity: 1;
+    }
+
+    &__name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0 0 8px 0;
+        line-height: 1.4;
+    }
+
+    &__location {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin: 0 0 16px 0;
+        line-height: 1.4;
+    }
+
+    &__badges {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: auto;
+    }
+
+    &__badge {
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+
+        &--indoor {
+            background-color: #3b82f6;
+            color: #ffffff;
+        }
+
+        &--outdoor {
+            background-color: #10b981;
+            color: #ffffff;
+        }
+        
+        &--sand-supplier {
+            background-color: #f97316;
+            color: #ffffff;
+        }
+
+        &--grass {
+            background-color: #22c55e;
+            color: #ffffff;
+        }
+    }
+
+    &__since {
+        font-size: 0.75rem;
+        color: #9ca3af;
+        margin: 0;
+        font-style: italic;
+    }
+}
+
+// Hidden cards for show more functionality
+.client-card.hidden {
+    display: none;
+}
+
+// Enhanced animation for cards in the new layout
+@keyframes cardFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+// Add staggered animation delays for better visual effect
+.client-card:nth-child(even) {
+    animation-delay: 0.1s;
+}
+
+.client-card:nth-child(3n) {
+    animation-delay: 0.2s;
+}
+
+.client-card:nth-child(4n) {
+    animation-delay: 0.3s;
+}

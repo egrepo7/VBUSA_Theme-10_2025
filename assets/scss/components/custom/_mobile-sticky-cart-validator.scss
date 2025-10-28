@@ -1,0 +1,211 @@
+/**
+ * Mobile Sticky Cart Validator Styles
+ * 
+ * Notification popup and scroll highlight effects
+ * for the mobile add-to-cart validation feature
+ */
+
+// Notification popup styles - Top positioned like VolleyballUSA
+.required-options-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    max-width: 500px;
+    width: 90%;
+    background: #ffffff;
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    animation: slideInFromTop 0.4s ease-out;
+    
+    .notification-content {
+        display: flex;
+        align-items: flex-start;
+        padding: 16px 20px;
+        color: #6c757d;
+        position: relative;
+    }
+    
+    .notification-icon {
+        font-size: 20px;
+        margin-right: 12px;
+        flex-shrink: 0;
+        margin-top: 1px;
+        color: #f39c12;
+    }
+    
+    .notification-text {
+        flex: 1;
+        
+        strong {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #495057;
+        }
+        
+        p {
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0 0 6px 0;
+            color: #6c757d;
+        }
+        
+        .notification-hint {
+            font-size: 12px;
+            color: #6c757d;
+            font-style: italic;
+        }
+    }
+    
+    .notification-close {
+        position: absolute;
+        top: 12px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #6c757d;
+        font-size: 18px;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        
+        &:hover {
+            opacity: 1;
+        }
+    }
+    
+    // Hover effect
+    &:hover {
+        transform: translateX(-50%) translateY(-2px);
+        transition: transform 0.2s ease;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+}
+
+// Scroll highlight effect - matches notification amber style
+.scroll-highlight {
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        background: rgba(255, 243, 205, 0.8); // Same as notification background
+        border: 2px solid #ffeaa7; // Same as notification border
+        border-radius: 8px;
+        z-index: 1;
+        animation: highlightPulse 2s ease-in-out;
+        pointer-events: none;
+        box-shadow: 0 2px 8px rgba(248, 156, 18, 0.2);
+    }
+    
+    // Ensure form content stays above highlight
+    > * {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+@keyframes highlightPulse {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+// Mobile-specific adjustments
+@media (max-width: 480px) {
+    .required-options-notification {
+        top: 10px;
+        max-width: 350px;
+        width: 95%;
+        
+        .notification-content {
+            padding: 14px 16px;
+        }
+        
+        .notification-icon {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        
+        .notification-text {
+            strong {
+                font-size: 15px;
+                margin-bottom: 3px;
+            }
+            
+            p {
+                font-size: 13px;
+                margin-bottom: 4px;
+            }
+            
+            .notification-hint {
+                font-size: 11px;
+            }
+        }
+        
+        .notification-close {
+            top: 10px;
+            right: 12px;
+            font-size: 16px;
+        }
+    }
+}
+
+// Additional responsive adjustments for very small screens
+@media (max-width: 320px) {
+    .required-options-notification {
+        top: 5px;
+        width: 98%;
+        max-width: none;
+        
+        .notification-content {
+            padding: 12px 14px;
+        }
+        
+        .notification-text {
+            strong {
+                font-size: 14px;
+            }
+            
+            p {
+                font-size: 12px;
+            }
+        }
+    }
+}

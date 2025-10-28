@@ -1,0 +1,59 @@
+{
+  "_note": "Dynamic hero content has been migrated to category-filter-tabs.html front-matter",
+  "_description": "This approach provides better performance and easier maintenance. See DYNAMIC_HERO_IMPLEMENTATION.md for details.",
+  "_template_location": "templates/pages/custom/category/category-filter-tabs.html",
+  "_documentation": "DYNAMIC_HERO_IMPLEMENTATION.md",
+  
+  "_reference_data": {
+    "133": {
+      "enabled": true,
+      "heading": "Professional <strong>Volleyball Nets</strong>",
+      "subheading": "Tournament-grade nets built for every court and skill level. From recreational play to professional tournaments, our nets deliver unmatched durability and performance.",
+      "background_image": "https://cdn11.bigcommerce.com/s-w7u7kzf2dk/images/stencil/1920x800/volleyball-nets-hero.jpg",
+      "show_cta": true,
+      "cta_text": "Shop Premium Nets",
+      "cta_url": "/volleyball-nets/professional",
+      "show_scroll_arrow": true
+    },
+    "25": {
+      "enabled": true,
+      "heading": "Premium <strong>Volleyball Sand</strong>",
+      "subheading": "The perfect playing surface for beach volleyball courts. Our specially graded sand provides optimal drainage, safety, and performance for professional play.",
+      "background_image": "https://cdn11.bigcommerce.com/s-w7u7kzf2dk/images/stencil/1920x800/volleyball-sand-hero.jpg",
+      "show_cta": true,
+      "cta_text": "Order Sand",
+      "cta_url": "/volleyball-sand/premium",
+      "show_scroll_arrow": true
+    },
+    "789": {
+      "enabled": true,
+      "heading": "Complete <strong>Volleyball Systems</strong>",
+      "subheading": "Everything you need for professional volleyball installations. Tournament-ready systems trusted by schools, clubs, and professional venues nationwide.",
+      "background_image": "https://cdn11.bigcommerce.com/s-w7u7kzf2dk/images/stencil/1920x800/volleyball-systems-hero.jpg",
+      "show_cta": true,
+      "cta_text": "View Complete Systems",
+      "cta_url": "/complete-systems",
+      "show_scroll_arrow": true
+    },
+    "101": {
+      "enabled": true,
+      "heading": "Heavy-Duty <strong>Volleyball Poles</strong>",
+      "subheading": "Adjustable, professional-grade poles engineered for lasting performance. Built to withstand intense play and weather conditions.",
+      "background_image": "https://cdn11.bigcommerce.com/s-w7u7kzf2dk/images/stencil/1920x800/volleyball-poles-hero.jpg",
+      "show_cta": true,
+      "cta_text": "Shop Poles",
+      "cta_url": "/volleyball-poles",
+      "show_scroll_arrow": true
+    },
+    "202": {
+      "enabled": true,
+      "heading": "Essential <strong>Volleyball Accessories</strong>",
+      "subheading": "Complete your volleyball setup with our professional accessories. From line judges to maintenance tools, we have everything you need.",
+      "background_image": "https://cdn11.bigcommerce.com/s-w7u7kzf2dk/images/stencil/1920x800/volleyball-accessories-hero.jpg",
+      "show_cta": true,
+      "cta_text": "Browse Accessories",
+      "cta_url": "/volleyball-accessories",
+      "show_scroll_arrow": true
+    }
+  }
+}

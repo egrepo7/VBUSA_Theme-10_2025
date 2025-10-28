@@ -1,0 +1,593 @@
+---
+category:
+  shop_by_price: true
+  products:
+    limit: "{{settings.categorypage_products_per_page}}"
+  subcategories:
+    limit: 50
+    products:
+      limit: 12
+products:
+  featured:
+    limit: 12
+page_type: category
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "categoryId" category.id}}
+{{inject "defaultViewType" theme_settings.product_list_display_mode}}
+{{inject "pageType" "custom-volleyball-poles"}}
+
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+    
+    {{!-- USE BIGCOMMERCE ADMIN META TAGS FIRST, THEN FALLBACK TO CUSTOM --}}
+    {{#if category.meta_description}}
+        <meta name="description" content="{{category.meta_description}}">
+    {{else}}
+        <meta name="description" content="Professional volleyball poles and posts for indoor and outdoor courts. Shop regulation-height poles, portable systems, and tournament-grade posts trusted by schools and pros worldwide.">
+    {{/if}}
+    
+    {{#if category.meta_keywords}}
+        <meta name="keywords" content="{{category.meta_keywords}}">
+    {{else}}
+        <meta name="keywords" content="volleyball poles, volleyball posts, indoor volleyball poles, outdoor volleyball poles, portable volleyball poles, regulation volleyball posts, tournament poles">
+    {{/if}}
+    
+    {{!-- Open Graph tags for social sharing --}}
+    <meta property="og:title" content="{{#if category.page_title}}{{category.page_title}}{{else}}Professional Volleyball Poles & Posts for Every Court | VolleyballUSA{{/if}}">
+    <meta property="og:description" content="{{#if category.meta_description}}{{category.meta_description}}{{else}}Shop professional volleyball poles and posts for indoor and outdoor courts. Regulation-height systems trusted by schools and tournament organizers.{{/if}}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{urls.canonical}}">
+    {{#if category.image}}
+    <meta property="og:image" content="{{getImage category.image 'zoom_size'}}">
+    {{/if}}
+    
+    {{!-- Twitter Card tags --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{#if category.page_title}}{{category.page_title}}{{else}}Professional Volleyball Poles & Posts for Every Court{{/if}}">
+    <meta name="twitter:description" content="{{#if category.meta_description}}{{category.meta_description}}{{else}}Shop professional volleyball poles and posts for indoor and outdoor courts. Regulation-height systems trusted by schools.{{/if}}">
+    
+
+    
+    {{!-- Preload critical hero image to prevent CLS --}}
+    {{#if category.image}}
+        <link rel="preload" as="image" href="{{getImage category.image 'zoom_size'}}" />
+    {{/if}}
+    {{!-- Preload critical buying guide images for volleyball poles --}}
+    <link rel="preload" as="image" href="{{cdn 'assets/img/categories/pole-buying-guide.png'}}" />
+    
+    {{!-- Preload critical Google Fonts to prevent CLS --}}
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLCz7Z1xlFd2JQEk.woff2" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLBT5Z1xlFd2JQEk.woff2" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLDD4Z1xlFd2JQEk.woff2" crossorigin>
+    
+    {{!-- CLS prevention meta --}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    
+    {{!-- Structured data for volleyball poles category --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "{{#if category.page_title}}{{category.page_title}}{{else}}Professional Volleyball Poles & Posts{{/if}}",
+        "description": "{{#if category.meta_description}}{{category.meta_description}}{{else}}Professional volleyball poles and posts for indoor and outdoor courts, trusted by schools and tournament organizers worldwide.{{/if}}",
+        "url": "{{urls.canonical}}",
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Volleyball Poles & Posts Collection",
+            "description": "Professional volleyball poles and posts for every court type",
+            "numberOfItems": "50+"
+        }
+    }
+    </script>
+
+{{/partial}}
+
+{{#partial "page"}}
+{{!-- Add class to indicate if hero is present or not --}}
+<div class="page--category {{#unless category.image}}no-hero{{/unless}}">
+
+<!-- {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}} -->
+
+<!-- Category Hero Section - Only show if category has an image -->
+{{#if category.image}}
+<section class="category-hero">
+    <div class="category-hero__background" 
+         data-category="{{category.url}}"
+         style="background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('{{getImage category.image 'zoom_size'}}') center/cover;">
+        <div class="container">
+            <div class="category-hero__content">
+                <h1 class="category-hero__title h1">Volleyball Poles & Standards — <strong>Outdoor & Indoor</strong></h1>
+                <div class="category-hero__subtitle">Volleyball poles — also called uprights or standards — built for unmatched strength, stability, and long-lasting performance. We carry permanent, semi-permanent, and portable options trusted by athletes nationwide. Competition-ready and built to last, these poles deliver everything you need for a reliable court setup.</div>
+                
+                <!-- Category Navigation Buttons -->
+                <div class="category-hero__cta-group">
+                    <a href="#outdoor-poles" class="button button--white-ghost category-hero__cta-btn scroll-to-section">Shop Outdoor Poles</a>
+                    <a href="#indoor-poles" class="button button--white-ghost category-hero__cta-btn scroll-to-section">Shop Indoor Poles</a>
+                </div>
+                
+                <!-- Scroll Down Arrow -->
+                <div class="category-hero__scroll-arrow">
+                    <div class="category-hero__scroll-btn" aria-label="Scroll to categories">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{/if}}
+
+<!-- Outdoor Volleyball Poles Category Cards -->
+<section class="category-showcase" id="outdoor-poles">
+    <div class="container">
+        <h2 class="category-showcase__title">OUTDOOR VOLLEYBALL POLES</h2>
+        
+        <div class="category-showcase__grid">
+            <!-- Permanent Outdoor Poles -->
+            <a href="/poles/outdoor/in-ground/" class="category-showcase__card category-showcase__card--clickable">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/volleyball-poles/outdoor-in-ground.jpg'}}');">
+                    <div class="category-showcase__overlay">
+                        <div class="category-showcase__content">
+                            <h3 class="category-showcase__card-title">IN-GROUND POLES</h3>
+                            <p class="category-showcase__card-subtitle">Heavy-duty steel and aluminum poles designed for permanent installation. Built to withstand weather and heavy use at parks, schools, and recreational facilities.</p>
+                            <span class="button button--primary">
+                                SHOP IN-GROUND POLES
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Portable Outdoor Poles -->
+            <a href="/poles/outdoor/pole-attachment-hardware/" class="category-showcase__card category-showcase__card--clickable">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/volleyball-poles/pole-attachment-hardware.jpg'}}');">
+                    <div class="category-showcase__overlay">
+                        <div class="category-showcase__content">
+                            <h3 class="category-showcase__card-title">POLE ATTACHMENT HARDWARE</h3>
+                            <p class="category-showcase__card-subtitle">Hardware and accessories for existing volleyball poles, allowing for secure volleyball net attachment.</p>
+                            <span class="button button--primary">
+                                SHOP ATTACHMENT HARDWARE
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Outdoor Volleyball Poles Featured Products -->
+<section class="featured-products-section featured-products-section--outdoor">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Popular Outdoor Volleyball Poles</h2>
+        </div>
+        
+        {{!-- Products will be loaded via JavaScript using specific product IDs --}}
+    </div>
+</section>
+
+<!-- Professional Pole System Featured Section -->
+<section class="category-showcase category-showcase--featured category-showcase--pro-system">
+    <div class="container">
+        <div class="category-showcase__grid category-showcase__grid--single">
+            <!-- Professional Tournament Poles -->
+            <div class="category-showcase__card">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/volleyball-poles/carbon-poles.jpg'}}');">
+                    <div class="category-showcase__overlay">
+                        <div class="category-showcase__content">
+                            <p class="category-showcase__tag">LIGHTWEIGHT, STRONG, PROFESSIONAL QUALITY</p>
+                            <h3 class="category-showcase__card-title">PATRIOT CARBON FIBER POLES — Competition Ready Performance</h3>
+                            <p class="category-showcase__card-subtitle">Our highest-end carbon fiber poles trusted by colleges, high schools, and professional teams. Lightweight yet incredibly strong construction delivers unmatched performance for the most demanding competitive play.</p>
+                            <a href="/patriot-carbon-fiber-volleyball-poles/" class="button button--primary">
+                                VIEW CARBON FIBER POLES
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Indoor Volleyball Poles Category Cards -->
+<section class="category-showcase category-showcase--indoor" id="indoor-poles">
+    <div class="container">
+        <h2 class="category-showcase__title">INDOOR VOLLEYBALL POLES</h2>
+        
+        <div class="category-showcase__grid category-showcase__grid--three-cards">
+            
+            <!-- Steel Indoor Poles -->
+            <a href="/poles/indoor/inground/" class="category-showcase__card category-showcase__card--clickable">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/volleyball-poles/indoor-in-ground.jpg'}}');">
+                    <div class="category-showcase__overlay">
+                        <div class="category-showcase__content">
+                            <h3 class="category-showcase__card-title">IN-GROUND POLES</h3>
+                            <p class="category-showcase__card-subtitle">Indoor poles that anchor directly into the floor. Built for installations in gyms and schools where maximum stability is required.</p>
+                            <span class="button button--primary">
+                                SHOP IN-GROUND POLES
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Free Standing Poles -->
+            <a href="/poles/indoor/above-ground/" class="category-showcase__card category-showcase__card--clickable">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/volleyball-poles/above-ground-poles.jpg'}}');">
+                    <div class="category-showcase__overlay">
+                        <div class="category-showcase__content">
+                            <h3 class="category-showcase__card-title">ABOVE GROUND POLES</h3>
+                            <p class="category-showcase__card-subtitle">Weighted base systems that set up anywhere. Perfect for multi-use gyms and facilities that need flexible court configurations without permanent installation.</p>
+                            <span class="button button--primary">
+                                SHOP ABOVE GROUND POLES
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Roll Away Poles -->
+            <a href="/poles/indoor/wall-to-wall/" class="category-showcase__card category-showcase__card--clickable">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/volleyball-poles/pole-attachment-hardware.jpg'}}');">
+                    <div class="category-showcase__overlay">
+                        <div class="category-showcase__content">
+                            <h3 class="category-showcase__card-title">WALL TO WALL</h3>
+                            <p class="category-showcase__card-subtitle">Wall-mounted systems that maximize court space. Ideal for facilities with limited floor space or where poles would interfere with other activities.</p>
+                            <span class="button button--primary">
+                                SHOP WALL TO WALL ATTACHMENTS
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Indoor Volleyball Poles Featured Products -->
+<section class="featured-products-section featured-products-section--indoor">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Popular Indoor Volleyball Poles</h2>
+        </div>
+        
+        {{!-- Products will be loaded via JavaScript using specific product IDs --}}
+    </div>
+</section>
+
+<!-- Buying Guide Section - Volleyball Poles -->
+<section class="buying-guide-section">
+    <div class="container">
+        {{> components/custom/buying-guide}}
+    </div>
+</section>
+
+<!-- Dynamic FAQ Section - Shows for all supported categories -->
+{{!-- {{> components/custom/category-faq-seo}} --}}
+
+</div> {{!-- End page--category wrapper --}}
+{{/partial}}
+
+{{#partial "page_scripts"}}
+    <script>
+        // Volleyball Poles Product Fetcher
+        var volleyballPoles = {
+            
+            // Configuration for subcategories
+            subcategories: {
+                outdoor: {
+                    // Specify exact product IDs in your preferred display order for outdoor volleyball poles
+                    productIds: [543, 544, 546, 549, 552], // Replace with your actual outdoor pole product IDs
+                    sortBy: 'price-low', // manual, name, price-low, price-high, newest, oldest
+                    sectionClass: 'featured-products-section--outdoor',
+                    products: []
+                },
+                indoor: {
+                    // Specify exact product IDs you want to show for indoor volleyball poles  
+                    productIds: [1393, 540, 538, 199, 552], // Replace with your actual indoor pole product IDs
+                    sortBy: 'price-low', // manual, name, price-low, price-high, newest, oldest
+                    sectionClass: 'featured-products-section--indoor',
+                    products: []
+                }
+            },
+
+            buildQuery: (productIds) => {
+                return `
+                query ProductsByIds {
+                    site {
+                        products(entityIds: [${productIds.join(',')}], first: 12) {
+                            edges {
+                                node {
+                                    entityId
+                                    name
+                                    sku
+                                    path
+                                    defaultImage {
+                                        url(width: 300, height: 300)
+                                        altText
+                                    }
+                                    prices {
+                                        price {
+                                            value
+                                            currencyCode
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                `;
+            },
+
+            /* Fetch products from GraphQL API */
+            fetchProducts: async (query) => {
+                var graphQLToken = $('body').data('graphql');
+                
+                try {
+                    var response = await fetch('/graphql', {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${graphQLToken}`
+                        },
+                        body: JSON.stringify({ query }),
+                    });
+                    
+                    var data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error('Error fetching volleyball poles products:', error);
+                    return null;
+                }
+            },
+
+            /* Get products from a specific subcategory by product IDs */
+            fetchSubcategoryProducts: async (subcategoryKey) => {
+                console.log(`Fetching ${subcategoryKey} volleyball poles...`);
+                var subcategory = volleyballPoles.subcategories[subcategoryKey];
+                var query = volleyballPoles.buildQuery(subcategory.productIds);
+                
+                var json = await volleyballPoles.fetchProducts(query);
+                
+                if (!json || json.errors) {
+                    console.warn(`API errors for ${subcategoryKey} volleyball poles:`, json?.errors);
+                    return;
+                }
+                
+                if (!json.data || !json.data.site || !json.data.site.products) {
+                    console.warn(`No volleyball poles found for ${subcategoryKey}`);
+                    return;
+                }
+
+                var productResults = json.data.site.products;
+                var products = [];
+                
+                console.log(`Found ${productResults.edges.length} products for ${subcategoryKey}`);
+                
+                for (var idx = 0; idx < productResults.edges.length; idx++) {
+                    var node = productResults.edges[idx].node;
+                    products.push({
+                        id: node.entityId,
+                        sku: node.sku,
+                        name: node.name,
+                        path: node.path,
+                        image: node.defaultImage,
+                        price: node.prices?.price?.value || 0
+                    });
+                }
+
+                subcategory.products = products;
+                
+                // Sort products based on sortBy preference
+                volleyballPoles.sortProducts(subcategoryKey);
+                
+                // Render products
+                volleyballPoles.renderProducts(subcategoryKey);
+            },
+
+            /* Sort products based on configuration */
+            sortProducts: (subcategoryKey) => {
+                var subcategory = volleyballPoles.subcategories[subcategoryKey];
+                var sortBy = subcategory.sortBy || 'manual';
+                
+                switch (sortBy) {
+                    case 'name':
+                        subcategory.products.sort((a, b) => a.name.localeCompare(b.name));
+                        break;
+                    case 'price-low':
+                        subcategory.products.sort((a, b) => (a.price || 0) - (b.price || 0));
+                        break;
+                    case 'price-high':
+                        subcategory.products.sort((a, b) => (b.price || 0) - (a.price || 0));
+                        break;
+                    case 'manual':
+                        // Sort by the order specified in productIds array
+                        var idOrder = subcategory.productIds;
+                        subcategory.products.sort((a, b) => {
+                            var aIndex = idOrder.indexOf(a.id);
+                            var bIndex = idOrder.indexOf(b.id);
+                            return aIndex - bIndex;
+                        });
+                        break;
+                    case 'newest':
+                    case 'oldest':
+                        // Note: Would need dateCreated field from GraphQL for this
+                        console.warn(`${sortBy} sorting requires date fields not currently fetched`);
+                        break;
+                    default:
+                        // Use default order
+                        break;
+                }
+            },
+
+            /* Render products in the appropriate container */
+            renderProducts: (subcategoryKey) => {
+                console.log(`Rendering ${subcategoryKey} volleyball poles...`);
+                var subcategory = volleyballPoles.subcategories[subcategoryKey];
+                var section = document.querySelector(`.${subcategory.sectionClass}`);
+                
+                if (!section) {
+                    console.error(`Section .${subcategory.sectionClass} not found`);
+                    return;
+                }
+
+                var container = section.querySelector('.container');
+                if (!container) {
+                    console.error('Container not found in section');
+                    return;
+                }
+
+                if (subcategory.products.length === 0) {
+                    console.warn(`No products to render for ${subcategoryKey}`);
+                    container.innerHTML += '<div class="no-products-message">No volleyball poles found in this category.</div>';
+                    return;
+                }
+
+                console.log(`Rendering ${subcategory.products.length} products for ${subcategoryKey}`);
+
+                // Create product carousel using BigCommerce carousel structure
+                var productsHTML = `
+                <div class="productCarousel" 
+                    data-list-name="${subcategoryKey.charAt(0).toUpperCase() + subcategoryKey.slice(1)} Volleyball Poles"
+                    data-slick='{
+                        "dots": false,
+                        "infinite": false,
+                        "mobileFirst": true,
+                        "slidesToShow": 2,
+                        "slidesToScroll": 2,
+                        "slide": "[data-product-slide]",
+                        "responsive": [
+                            {
+                                "breakpoint": 768,
+                                "settings": {
+                                    "slidesToShow": 3,
+                                    "slidesToScroll": 3
+                                }
+                            },
+                            {
+                                "breakpoint": 1000,
+                                "settings": {
+                                    "slidesToShow": 4,
+                                    "slidesToScroll": 1
+                                }
+                            },
+                            {
+                                "breakpoint": 1260,
+                                "settings": {
+                                    "slidesToShow": 5,
+                                    "slidesToScroll": 1
+                                }
+                            }
+                        ]
+                    }'>`;
+
+                subcategory.products.slice(0, 12).forEach((product, index) => {
+                    var imageUrl = product.image ? product.image.url : '/assets/img/placeholder.png';
+                    var imageAlt = product.image ? product.image.altText : product.name;
+                    var price = product.price || 0;
+                    var formattedPrice = price > 0 ? new Intl.NumberFormat('en-US', { 
+                        style: 'currency', 
+                        currency: 'USD' 
+                    }).format(price) : 'Call for Pricing';
+
+                    productsHTML += `
+                        <div class="productCarousel-slide" data-product-slide>
+                            <article class="card" data-test="card-${product.id}">
+                                <figure class="card-figure">
+                                    <a href="${product.path}" aria-label="${product.name}">
+                                        <div class="card-img-container">
+                                            <img class="card-image lazyload" 
+                                                 data-sizes="auto"
+                                                 src="${imageUrl}" 
+                                                 alt="${imageAlt}"
+                                                 title="${imageAlt}" />
+                                        </div>
+                                    </a>
+                                </figure>
+                                <div class="card-body">
+                                    <h3 class="card-title">
+                                        <a href="${product.path}" aria-label="${product.name}">
+                                            ${product.name}
+                                        </a>
+                                    </h3>
+                                    <div class="card-text" data-test-info-type="price">
+                                        <span class="price price--withoutTax">
+                                            ${formattedPrice}
+                                        </span>
+                                    </div>
+                                    <div class="card-actions">
+                                        <a href="${product.path}" 
+                                           class="button button--primary card-figcaption-button">
+                                            View Product
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    `;
+                });
+
+                productsHTML += '</div>';
+                
+                // Add after section header
+                var sectionHeader = container.querySelector('.section-header');
+                if (sectionHeader) {
+                    sectionHeader.insertAdjacentHTML('afterend', productsHTML);
+                    console.log(`Products HTML added after section header for ${subcategoryKey}`);
+                } else {
+                    container.innerHTML += productsHTML;
+                    console.log(`Products HTML added to container for ${subcategoryKey}`);
+                }
+
+                // Initialize Slick carousel for the newly added products
+                setTimeout(() => {
+                    var newCarousel = container.querySelector('.productCarousel');
+                    if (newCarousel) {
+                        console.log(`Initializing carousel for ${subcategoryKey}`);
+                        if (typeof $(newCarousel).slick === 'function') {
+                            $(newCarousel).slick();
+                            console.log(`Carousel initialized successfully for ${subcategoryKey}`);
+                        } else {
+                            console.error('Slick carousel function not available');
+                        }
+                    } else {
+                        console.error(`Carousel element not found for ${subcategoryKey}`);
+                    }
+                }, 100);
+            },
+
+            /* Initialize fetching for both subcategories */
+            run: async () => {
+                console.log('Starting volleyball poles product fetch...');
+                // Fetch both subcategories of volleyball poles
+                await Promise.all([
+                    volleyballPoles.fetchSubcategoryProducts('outdoor'),
+                    volleyballPoles.fetchSubcategoryProducts('indoor')
+                ]);
+                console.log('Volleyball poles product fetch completed');
+            }
+        };
+
+        // Start when document is ready
+        $(document).ready(function() {
+            console.log('Document ready, starting volleyball poles...');
+            volleyballPoles.run();
+        });
+    </script>
+{{/partial}}
+
+{{> layout/base container_active=false}}

@@ -1,0 +1,163 @@
+// =============================================================================
+// SEARCH COMPONENT TESTS
+// =============================================================================
+
+// Test suite for search component styling and functionality
+.test-search-component {
+    
+    // Test 1: Search suggestion styling
+    .test-search-suggestion {
+        .search-suggestion {
+            // Verify margin-bottom calculation
+            margin-bottom: calc(#{spacing("single")} + #{spacing("third")});
+            
+            > :last-child {
+                margin-bottom: 0;
+            }
+        }
+        
+        .suggestion-title {
+            margin-top: 0;
+            text-transform: inherit;
+        }
+    }
+    
+    // Test 2: Advanced search form layout
+    .test-advanced-search {
+        .advancedSearch-form {
+            margin-bottom: spacing("double");
+            
+            .form-row {
+                margin-bottom: calc(-1 * #{spacing("single")});
+            }
+        }
+        
+        .advancedSearch-separator {
+            display: none;
+        }
+        
+        .advancedSearch-title {
+            margin: 0 0 spacing("single");
+            text-transform: inherit;
+        }
+    }
+    
+    // Test 3: Quick search results complete disabling
+    .test-quick-search-disabled {
+        .quickSearchResults {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            margin-top: spacing("single");
+            
+            @include breakpoint("medium") {
+                margin-top: 0;
+                display: none;
+                visibility: hidden;
+            }
+            
+            .modal-close {
+                display: none;
+                
+                @include breakpoint("medium") {
+                    display: none;
+                }
+            }
+        }
+        
+        .quickSearchMessage {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            height: 0;
+            max-height: 0;
+            overflow: hidden;
+        }
+    }
+    
+    // Test 4: Search price range responsive layout
+    .test-search-price-range {
+        .search-price-range {
+            label {
+                display: inline;
+                
+                input {
+                    display: block;
+                    padding-left: spacing("single");
+                    
+                    @include breakpoint("small") {
+                        display: inline;
+                        width: 6rem;
+                    }
+                }
+                
+                span {
+                    @include breakpoint("small") {
+                        display: inline;
+                        padding-left: spacing("single");
+                        padding-right: spacing("single");
+                    }
+                }
+            }
+        }
+    }
+    
+    // Test 5: Category suggestions grid layout
+    .test-category-suggestions {
+        .category-suggestion-list {
+            @include grid-row($behavior: "nest");
+            list-style-type: none;
+        }
+        
+        .category-suggestion {
+            @include grid-column(4);
+            font-size: fontSize("smaller");
+        }
+    }
+    
+    // Test 6: Search page layout and background
+    .test-search-page-layout {
+        &.page--search {
+            background-color: #fafafa;
+            
+            &, .body {
+                background-color: #fafafa;
+            }
+            
+            .page {
+                @include breakpoint("medium") {
+                    display: flex;
+                }
+            }
+            
+            .page-sidebar {
+                @include breakpoint("medium") {
+                    flex: 0 0 280px;
+                    margin-right: 1rem;
+                    min-width: 280px;
+                }
+            }
+            
+            .page-content {
+                @include breakpoint("medium") {
+                    flex: 1;
+                    min-width: 0;
+                }
+            }
+        }
+    }
+    
+    // Test 7: Faceted search container styling
+    .test-faceted-search-container {
+        &.page--search {
+            #faceted-search-container {
+                display: block;
+                visibility: visible;
+                background-color: #fff;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                transition: box-shadow 0.3s ease;
+                padding: 1rem;

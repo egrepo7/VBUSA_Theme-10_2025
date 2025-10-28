@@ -1,0 +1,14 @@
+<h3 class="home-callouts__heading page-heading h1">{{lang 'custom.home.order-callouts.heading'}}</h3>
+<section class="home-callouts">
+        {{#for 1 (lang 'custom.home.order-callouts.number-of-callouts')}}
+        <div class="home-callouts__callout">
+            <figure class="home-callouts__image-container">
+                <img class="home-callouts__image lazyload" data-src="{{lang (concat (concat 'custom.home.order-callouts.callout-'$index)'.image')}}" src="{{cdn 'img/loading.svg'}}" alt="{{lang (concat (concat 'custom.home.order-callouts.callout-'$index)'.image-alt-text')}}">
+            </figure>
+            <article class="home-callouts__content">
+                <h4 class="home-callouts__card-title h2">{{lang (concat (concat 'custom.home.order-callouts.callout-'$index)'.title')}}</h4>
+                <p class="home-callouts__description">{{lang (concat (concat 'custom.home.order-callouts.callout-'$index)'.description')}}</p>
+            </article>
+        </div>
+        {{/for}}
+</section>

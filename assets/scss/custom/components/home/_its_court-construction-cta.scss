@@ -1,0 +1,52 @@
+.cta-2 {
+    background-position: center;
+}
+
+.cta-2__content-container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    @include breakpoint('small') {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+.cta-2__content {
+    grid-row: 1;
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @include breakpoint('small') {
+        grid-row: 2;
+        grid-column: 2;
+    }
+}
+
+
+// Basic styles to start -- remove for base theme styling
+
+.cta-2--default {
+    height: 300px;
+
+    @include breakpoint('small') {
+        height: 500px;
+    }
+}
+
+.cta-2--default .cta-2__content {
+    padding: 1rem;
+}
+
+.cta-2--default .cta-2__title {
+    color: $color-white;
+    max-width: 300px;
+    text-align: center;
+    margin: 0 0 1rem 0;
+}

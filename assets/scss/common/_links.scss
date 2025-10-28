@@ -1,0 +1,70 @@
+// =============================================================================
+// BASE LINK STYLES - Global anchor tag styling
+// =============================================================================
+//
+// Override normalize.scss and provide consistent link styling across the theme
+// Following DRY principles - all components inherit these base styles
+//
+
+// Base anchor tag styling
+a {
+    font-weight: 500; // Override normalize default
+    transition: all 0.3s ease;
+    
+    &:hover {
+        font-weight: 600; // Consistent hover behavior
+    }
+    
+    &:focus {
+        outline: 2px solid rgba(5, 150, 105, 0.5); // Accessibility
+        outline-offset: 2px;
+    }
+}
+
+// Specific contexts where different font-weight might be needed
+.breadcrumbs a {
+    font-weight: 500;
+    
+    &:hover {
+        font-weight: 600;
+    }
+    
+    &.is-current {
+        font-weight: 400; // Current page is less emphasized
+        cursor: default;
+        
+        &:hover {
+            font-weight: 400; // Don't change on hover for current page
+        }
+    }
+}
+
+// Navigation links
+.navPages-action,
+.navPage-subMenu-action {
+    font-weight: 500;
+    
+    &:hover {
+        font-weight: 600;
+    }
+}
+
+// Button-style links should maintain their own font-weight
+.button,
+.btn,
+[class*="button"] {
+    // These will keep their component-specific font-weight
+    // This selector has lower specificity, so button styles win
+}
+
+// Content links (in rich text areas, descriptions, etc.)
+.page-content a,
+.product-description a,
+.category-description a {
+    font-weight: 500;
+    
+    &:hover {
+        font-weight: 600;
+        text-decoration: underline;
+    }
+}

@@ -1,0 +1,7 @@
+.category__sidebar-image {
+    display: none;
+
+    @include breakpoint('medium') {
+        display: block;
+    }
+}

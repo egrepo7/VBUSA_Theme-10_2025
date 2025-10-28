@@ -1,0 +1,14 @@
+{{!-- Reusable FAQ Item Component --}}
+{{!-- Usage: {{> components/custom/faq-item question="..." answer="..." id="..." categoryClass="..."}} --}}
+
+<div class="faq-item {{#if categoryClass}}{{categoryClass}}{{/if}}">
+    <button class="faq-question" aria-expanded="false" aria-controls="{{id}}" type="button">
+        <span class="faq-question__text">{{question}}</span>
+        <span class="faq-question__icon" aria-hidden="true">+</span>
+    </button>
+    <div class="faq-answer" id="{{id}}" aria-hidden="true">
+        <div class="faq-answer__content">
+            {{answer}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+// =============================================================================
+// FONT OPTIMIZATION - Prevent CLS from font loading
+// =============================================================================
+
+// Font-display swap for all custom fonts to prevent CLS
+@font-face {
+    font-family: 'ClearSans';
+    src: url('../fonts/clearsans-regular-webfont.woff2') format('woff2'),
+         url('../fonts/clearsans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Critical for preventing CLS */
+}
+
+@font-face {
+    font-family: 'ClearSans';
+    src: url('../fonts/clearsans-bold-webfont.woff2') format('woff2'),
+         url('../fonts/clearsans-bold-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap; /* Critical for preventing CLS */
+}
+
+// Fallback font stack to prevent invisible text during font load
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+// Apply custom fonts with proper fallbacks
+.h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'ClearSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+// Ensure proper font metrics to prevent layout shift
+html {
+    font-size: 16px; // Explicit base font size
+    line-height: 1.5; // Consistent line height
+}
+
+// Prevent flash of unstyled text (FOUT) and flash of invisible text (FOIT)
+.wf-loading {
+    // Fonts are loading - keep default system fonts visible to prevent CLS
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.wf-active,
+.wf-inactive {
+    // Show custom fonts once loaded or failed to load
+    visibility: visible;
+}

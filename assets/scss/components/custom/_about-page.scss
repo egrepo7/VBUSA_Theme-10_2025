@@ -1,0 +1,505 @@
+// =============================================================================
+// ABOUT PAGE (CSS)
+// =============================================================================
+
+.about-hero {
+    position: relative;
+    height: 70vh; // Increased height for more impact
+    min-height: 600px; // Ensure minimum height
+    overflow: hidden;
+    margin-top: 0;
+    width: 100vw; // Full viewport width
+    margin-left: calc(50% - 50vw); // Center and extend to edges
+    margin-right: calc(50% - 50vw); // Center and extend to edges
+
+    @media (min-width: 2560px) {
+        // Cap the hero at 2560px for ultra-wide displays
+        max-width: 2560px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__background {
+        position: relative;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+                url('../img/about/about-us-hero.jpg') center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%; // Ensure background covers full width
+    }
+
+    &__content {
+        text-align: center;
+        color: white;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px; // Removed top padding since no breadcrumbs
+        z-index: 2;
+        position: relative;
+    }
+
+    &__title {
+        // Override theme's h1 styles with higher specificity
+        &.h1 {
+            color: white;
+            font-size: 6rem; // Much larger, impactful size
+            font-weight: 500; 
+            margin: 0 0 24px 0;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+            @media (max-width: 768px) {
+                font-size: 2.5rem;
+                letter-spacing: 1px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 2rem;
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+
+    &__subtitle {
+        font-size: 1.25rem;
+        margin: 0;
+        color: white;
+        opacity: 0.95;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        line-height: 1.4;
+
+        @media (max-width: 768px) {
+            font-size: 1.125rem;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 1rem;
+        }
+    }
+
+    // Breadcrumb overlay styles
+    .breadcrumbs-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background: transparent;
+        margin: 0;
+        padding: 20px 0;
+        
+        @media (max-width: 2560px) {
+            max-width: 2560px;
+            margin: 0 auto;
+        }
+
+        ol.breadcrumbs {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: left;
+            display: block;
+        }
+
+        .breadcrumb {
+            .breadcrumb-label {
+                color: rgba(255, 255, 255, 0.8);
+                background: rgba(0, 0, 0, 0.2);
+                padding: 8px 12px;
+                border-radius: 6px;
+                backdrop-filter: blur(10px);
+                transition: all 0.3s ease;
+                
+                &:hover {
+                    color: #ffffff;
+                    background: rgba(255, 255, 255, 0.1);
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                }
+                
+                &:focus {
+                    color: #ffffff;
+                    background: rgba(255, 255, 255, 0.15);
+                    outline: 2px solid rgba(255, 255, 255, 0.3);
+                    outline-offset: 2px;
+                }
+            }
+
+            &.is-active > .breadcrumb-label {
+                color: #ffffff;
+                background: rgba(255, 255, 255, 0.15);
+                font-weight: 600;
+            }
+
+            &:not(:first-child)::before {
+                border-right-color: rgba(255, 255, 255, 0.5);
+                margin: 0 12px;
+            }
+        }
+    }
+}
+
+.about-trusted {
+    padding: 100px 0; // Increased padding for more breathing room
+    background: #ffffff;
+
+    &__content {
+        max-width: 900px; // Slightly wider for better readability
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    &__title {
+        // Override theme's h2 styles with higher specificity
+        &.h2 {
+            font-size: 2.5rem; // Larger, more impactful
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 48px;
+            color: #1a202c; // Darker, more professional
+            line-height: 1.2;
+
+            @media (max-width: 768px) {
+                font-size: 2rem;
+            }
+        }
+    }
+
+    &__text {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        margin: 0 0 32px 0; // Keep spacing
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 1rem;
+        }
+    }
+
+    &__image {
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-top: 48px;
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+.about-designed {
+    padding: 100px 0;
+    background: #f8fafc; // Slightly cooler background
+
+    &__content {
+        max-width: 1100px; // Wider for better content spread
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    &__title {
+        // Override theme's h2 styles with higher specificity
+        &.h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 64px;
+            color: #1a202c;
+            line-height: 1.2;
+
+            @media (max-width: 768px) {
+                font-size: 2rem;
+                margin-bottom: 48px;
+            }
+        }
+    }
+
+    &__columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px; // Increased gap for better separation
+        text-align: left;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 32px;
+            text-align: center;
+        }
+    }
+
+    &__column p {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        margin: 0;
+
+        @media (max-width: 768px) {
+            font-size: 1rem;
+        }
+    }
+
+    &__images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 48px;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+    }
+
+    &__image-item {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+}
+
+.about-mission {
+    padding: 80px 0;
+    background: #ffffff;
+
+    &__content {
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    &__title {
+        // Override theme's h2 styles with higher specificity
+        &.h2 {
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 32px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a202c;
+            line-height: 1.2;
+
+            @media (max-width: 768px) {
+                font-size: 2rem;
+            }
+        }
+    }
+
+    &__text {
+        max-width: 700px;
+        margin: 0 auto 48px auto;
+
+        p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin: 0 0 24px 0;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    &__image {
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+.about-services {
+    padding: 100px 0;
+    background: #f8fafc;
+
+    &__title {
+        // Override theme's h2 styles with higher specificity
+        &.h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 80px;
+            color: #1a202c;
+            line-height: 1.2;
+
+            @media (max-width: 768px) {
+                font-size: 2rem;
+                margin-bottom: 64px;
+            }
+        }
+    }
+
+    &__grid {
+        display: flex;
+        flex-direction: column;
+        gap: 100px; // Increased gap for more breathing room
+
+        @media (max-width: 768px) {
+            gap: 64px;
+        }
+    }
+}
+
+.about-service {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px; // Increased gap
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    &:nth-child(even) {
+        .about-service__image {
+            order: 2;
+        }
+        .about-service__content {
+            order: 1;
+        }
+
+        @media (max-width: 768px) {
+            .about-service__image {
+                order: 1;
+            }
+            .about-service__content {
+                order: 2;
+            }
+        }
+    }
+
+    &__image {
+        border-radius: 12px; // Slightly less rounded for modern look
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    &__content {
+        padding: 32px;
+
+        @media (max-width: 768px) {
+            padding: 24px;
+            text-align: center;
+        }
+    }
+
+    &__title {
+        // Override theme's h3 styles with higher specificity
+        &.h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            color: #1a202c;
+            line-height: 1.2;
+        }
+    }
+
+    &__description {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        margin: 0 0 32px 0;
+
+        @media (max-width: 768px) {
+            font-size: 1rem;
+        }
+    }
+
+    &__button {
+        display: inline-block;
+        background: #e53e3e;
+        color: white;
+        padding: 16px 32px;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); // Changed from red shadow to neutral
+
+        // Mobile responsive sizing
+        @media (max-width: 768px) {
+            padding: 12px 20px; // Reduced padding on mobile
+            font-size: 0.875rem; // Smaller font size
+        }
+        
+        @media (max-width: 480px) {
+            padding: 10px 16px; // Even smaller on very small screens
+            font-size: 0.8rem;
+        }
+
+        &:hover {
+            background: #c53030;
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); // Changed from red shadow to neutral
+        }
+    }
+}

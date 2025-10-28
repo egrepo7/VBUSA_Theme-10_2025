@@ -1,0 +1,522 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "categoryId" category.id}}
+{{inject "defaultViewType" "list"}}
+
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+    {{!-- Preload critical hero image to prevent CLS --}}
+    {{#if category.image}}
+        <link rel="preload" as="image" href="{{getImage category.image 'zoom_size'}}" />
+    {{/if}}
+    {{!-- CLS prevention meta --}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{/partial}}
+
+
+{{#partial "page"}}
+{{!-- Add class to indicate if hero is present or not --}}
+<div class="page--category {{#unless category.image}}no-hero{{/unless}}">
+
+<!-- Category Hero Section - Only show if category has an image -->
+{{#if category.image}}
+<section class="category-hero category-hero--filter-tabs">
+    <div class="category-hero__background" 
+         data-category="{{category.url}}"
+         style="background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('{{getImage category.image 'zoom_size'}}') 50% 60%/cover;">
+        <div class="container">
+            <div class="category-hero__content">
+                {{!-- Dynamic content based on category URL - careful syntax --}}
+                {{#contains category.url "outdoor-volleyball-nets-test/"}}
+                    <h1 class="category-hero__title h1">Make Your Net Stand Out with <strong>Custom Branding</strong></h1>
+                    <div class="category-hero__subtitle">From college teams to beach tournaments and sports bars, our printed nets combine pro-grade durability with full-color branding that turns heads.</div>
+
+                    {{!-- CTA Button --}}
+                    <div class="category-hero__cta">
+                        <button class="button button--primary" onclick="activateCategoryTab('custom printed nets (test)')" aria-label="Browse Products">Browse Products</button>
+                    </div>
+                    <!-- Scroll Down Arrow -->
+                    {{!-- <div class="category-hero__scroll-arrow">
+                        <div class="category-hero__scroll-btn" aria-label="Scroll indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div> --}}
+                {{/contains}}
+                {{#contains category.url "indoor-volleyball-nets"}}
+                    <h1 class="category-hero__title h1">Make Your Net Stand Out with <strong>Custom Branding</strong></h1>
+                    <div class="category-hero__subtitle">From middle schools to Division 1 colleges, our printed nets combine pro-grade durability with full-color branding that turns heads.</div>
+
+                    {{!-- CTA Button --}}
+                    <div class="category-hero__cta">
+                        <button class="button button--primary" onclick="activateCategoryTab('custom printed indoor nets')" aria-label="Browse Products">Browse Products</button>
+                    </div>
+                    <!-- Scroll Down Arrow -->
+                    {{!-- <div class="category-hero__scroll-arrow">
+                        <div class="category-hero__scroll-btn" aria-label="Scroll indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div> --}}
+                {{/contains}}
+                {{#contains category.url "volleyball-poles"}}
+                    <h1 class="category-hero__title h1">Heavy-Duty <strong>Volleyball Poles</strong></h1>
+                    <div class="category-hero__subtitle">Adjustable, professional-grade poles engineered for lasting performance. Built to withstand intense play and weather conditions.</div>
+                    
+                    <div class="category-hero__cta">
+                        <button class="button button--primary" onclick="activateCategoryTab()">Shop Poles</button>
+                    </div>
+                    <!-- Scroll Down Arrow -->
+                    <div class="category-hero__scroll-arrow">
+                        <div class="category-hero__scroll-btn" aria-label="Scroll indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                {{/contains}}
+                {{#contains category.url "sand"}}
+                    <h1 class="category-hero__title h1">Premium <strong>Volleyball Sand</strong></h1>
+                    <div class="category-hero__subtitle">The perfect playing surface for beach volleyball courts. Our specially graded sand provides optimal drainage, safety, and performance for professional play.</div>
+                    
+                    <div class="category-hero__cta">
+                        <button class="button button--primary" onclick="activateCategoryTab()">Shop Sand</button>
+                    </div>
+                    <!-- Scroll Down Arrow -->
+                    <div class="category-hero__scroll-arrow">
+                        <div class="category-hero__scroll-btn" aria-label="Scroll indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                {{/contains}}
+                {{#contains category.url "accessories"}}
+                    <h1 class="category-hero__title h1">Essential <strong>Volleyball Accessories</strong></h1>
+                    <div class="category-hero__subtitle">Complete your volleyball setup with our professional accessories. From line judges to maintenance tools, we have everything you need.</div>
+                    
+                    <div class="category-hero__cta">
+                        <button class="button button--primary" onclick="activateCategoryTab()">Browse Accessories</button>
+                    </div>
+                    <!-- Scroll Down Arrow -->
+                    <div class="category-hero__scroll-arrow">
+                        <div class="category-hero__scroll-btn" aria-label="Scroll indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                {{/contains}}
+                {{#contains category.url "outdoor-systems"}}
+                    <h1 class="category-hero__title h1">Complete <strong>Volleyball Systems</strong></h1>
+                    <div class="category-hero__subtitle">Everything you need for professional volleyball installations. Tournament-ready systems trusted by schools, clubs, and professional venues nationwide.</div>
+                    
+                    {{!-- <div class="category-hero__cta">
+                        <button class="button button--primary" onclick="activateCategoryTab()">View Systems</button>
+                    </div> --}}
+                    <!-- Scroll Down Arrow -->
+                    <div class="category-hero__scroll-arrow">
+                        <div class="category-hero__scroll-btn" aria-label="Scroll indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                {{/contains}}
+                {{#contains category.url "indoor-systems"}}
+                    <h1 class="category-hero__title h1">High-Performance <strong>Volleyball Shoes</strong></h1>
+                    <div class="category-hero__subtitle">Professional volleyball footwear designed for superior traction, comfort, and performance. Shop brands trusted by elite players and teams worldwide.</div>
+                    
+                    <div class="category-hero__cta">
+                        <button class="button button--primary" onclick="activateCategoryTab('roll_away_volleyball_poles ')">Shop Shoes</button>
+                    </div>
+                    <!-- Scroll Down Arrow -->
+                    <div class="category-hero__scroll-arrow">
+                        <div class="category-hero__scroll-btn" aria-label="Scroll indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                {{/contains}}
+                {{#contains category.url "apparel"}}
+                    <h1 class="category-hero__title h1">Premium <strong>Volleyball Apparel</strong></h1>
+                    <div class="category-hero__subtitle">High-quality volleyball clothing and uniforms for players, teams, and fans. From performance jerseys to custom team gear.</div>
+                    
+                    <div class="category-hero__cta">
+                        <button class="button button--primary" onclick="activateCategoryTab()">Shop Apparel</button>
+                    </div>
+                    <!-- Scroll Down Arrow -->
+                    <div class="category-hero__scroll-arrow">
+                        <div class="category-hero__scroll-btn" aria-label="Scroll indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                {{/contains}}
+                {{#contains category.url "equipment"}}
+                    <h1 class="category-hero__title h1">Professional <strong>Volleyball Equipment</strong></h1>
+                    <div class="category-hero__subtitle">Complete volleyball gear for training, competition, and recreational play. Quality equipment trusted by coaches and players at every level.</div>
+                    
+                    <div class="category-hero__cta">
+                        <button class="button button--primary" onclick="activateCategoryTab()">Shop Equipment</button>
+                    </div>
+                    <!-- Scroll Down Arrow -->
+                    <div class="category-hero__scroll-arrow">
+                        <div class="category-hero__scroll-btn" aria-label="Scroll indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                {{/contains}}
+            </div>
+        </div>
+    </div>
+</section>
+{{/if}}
+
+<script>
+// Dynamic scroll and tab activation function for category filter tabs
+// This function is called by both CTA buttons and scroll arrows in the hero section
+</script>
+<div class="page list-full-width">
+    {{#if category.faceted_search_enabled}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/category/sidebar}}
+        </aside>
+    {{else if category.subcategories}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/category/sidebar}}
+        </aside>
+    {{else if category.shop_by_price}}
+        {{#if theme_settings.shop_by_price_visibility}}
+            <aside class="page-sidebar" id="faceted-search-container">
+                {{> components/category/sidebar}}
+            </aside>
+        {{/if}}
+    {{/if}}
+
+    <div class="page-content" >
+        <!-- category filter tabs -->
+        <section class="category__content-container">
+            {{#unless theme_settings.hide_category_page_heading }}
+                <h1 class="page-heading page-heading--category">{{category.name}}</h1>
+                {{{region name="category_below_header"}}}
+                {{!> components/custom/category-overlap-cta }}
+            {{/unless}}
+        </section>
+        <!-- Subcategory filtering -->
+         <!-- <div class="subcategory-tabs">
+            <button class="subcategory-tab active" data-subcategory-id="all" type="button">All Products</button>
+            {{#each category.subcategories}}
+                <button
+                    class="subcategory-tab"
+                    data-subcategory-id="{{toLowerCase name}}"
+                    type="button"
+                >
+                    {{name}}
+                </button>
+            {{/each}}
+        </div> -->
+        <!-- Alternate tab style -->
+        <div class="subcategory-tabs subcategory-tabs--alt">
+            {{#each category.subcategories}}
+                <button
+                    class="subcategory-tab-alt {{#eq @index 0}}active{{/eq}}"
+                    data-subcategory-id="{{toLowerCase name}}"
+                    type="button"
+                >
+                    {{name}}
+                </button>
+            {{/each}}
+        </div>
+        <!-- {{{region name="category_below_heading"}}}
+        {{#if theme_settings.its.category_subcat_cards}}
+            {{> components/custom/subcat-grid}}
+        {{/if}} -->
+        <section id="product-listing-container">
+            {{> components/custom/category/product-listing-tabs }}
+        </section>
+        {{#if category.description}}
+            <div class="category__description-container">
+                {{{category.description}}}
+            </div>
+        {{/if}}
+        <!-- ITS LOADING OVERLAY -->
+        <!-- <div class="loadingOverlay loadingOverlay--product-listing"></div>
+        {{{region name="category_below_content"}}} -->
+    </div>
+</div>
+
+
+<script>
+    // Store current filter state globally
+    let currentActiveFilter = null;
+    let tabFunctionality = null;
+
+    // Function to activate a specific tab or the first available tab and scroll to products
+    function activateCategoryTab(targetTabId = null) {
+        let targetTab = null;
+        
+        // If a specific tab ID is provided, try to find it
+        if (targetTabId) {
+            targetTab = document.querySelector(`[data-subcategory-id="${targetTabId}"]`);
+        }
+        
+        // If no specific tab was found or no target was specified, use the first tab
+        if (!targetTab) {
+            targetTab = document.querySelector('.subcategory-tab-alt');
+        }
+        
+        if (targetTab) {
+            // Remove active class from all tabs
+            const allTabs = document.querySelectorAll('.subcategory-tab-alt');
+            allTabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Add active class to target tab
+            targetTab.classList.add('active');
+            
+            // Get the subcategory name from the target tab
+            const subcatName = targetTab.getAttribute('data-subcategory-id').trim().toLowerCase();
+            
+            // Store the active filter
+            currentActiveFilter = subcatName;
+            sessionStorage.setItem('activeSubcategoryFilter', currentActiveFilter);
+            
+            // Filter products to show only the selected subcategory's products
+            filterProductsBySubcategory(subcatName);
+            
+            console.log(`Activated tab: ${subcatName}`);
+        }
+        
+        // Scroll to product listing
+        const productListing = document.getElementById('product-listing-container');
+        if (productListing) {
+            productListing.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+
+    // Legacy function for backward compatibility (can be removed later)
+    function activateTestCustomNetsTab() {
+        activateCategoryTab('test_custom_nets');
+    }
+
+    // Function to filter products by subcategory
+    function filterProductsBySubcategory(subcatName) {
+        const allProducts = Array.from(document.querySelectorAll('.product'));
+        allProducts.forEach(product => {
+            let prodSubcats = '';
+            const listItem = product.querySelector('.listItem');
+            if (listItem && listItem.getAttribute('data-subcategory-id')) {
+                prodSubcats = listItem.getAttribute('data-subcategory-id').trim();
+            } else if (product.getAttribute('data-subcategory-id')) {
+                prodSubcats = product.getAttribute('data-subcategory-id').trim();
+            }
+            const prodSubcatsArr = prodSubcats.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+            const matched = prodSubcatsArr.some(cat => {
+                const lastSegment = cat.split('/').pop();
+                return subcatName === lastSegment;
+            });
+            if (matched) {
+                product.style.display = '';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+        
+        // Update product count
+        updateProductCount();
+    }
+
+    // Function to update product count display
+    function updateProductCount() {
+        const visibleProducts = document.querySelectorAll('.product:not([style*="display: none"])');
+        const countElement = document.getElementById('product-count');
+        if (countElement) {
+            countElement.textContent = visibleProducts.length;
+        }
+    }
+
+    // Function to restore filter state after view toggle
+    function restoreFilterState() {
+        const storedFilter = sessionStorage.getItem('activeSubcategoryFilter');
+        console.log('Attempting to restore filter state:', storedFilter);
+        
+        if (storedFilter && storedFilter !== 'null') {
+            currentActiveFilter = storedFilter;
+            
+            // Find and activate the stored filter tab
+            const targetTab = document.querySelector(`[data-subcategory-id="${storedFilter}"]`);
+            if (targetTab) {
+                // Remove active class from all tabs
+                const allTabs = document.querySelectorAll('.subcategory-tab-alt');
+                allTabs.forEach(tab => tab.classList.remove('active'));
+                
+                // Add active class to target tab
+                targetTab.classList.add('active');
+                
+                // Apply the filter
+                filterProductsBySubcategory(storedFilter);
+                
+                console.log(`Successfully restored filter state: ${storedFilter}`);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Function to initialize tab functionality
+    function initializeTabFunctionality() {
+        console.log('Initializing tab functionality');
+        
+        // Clean up existing event listeners if any
+        if (tabFunctionality) {
+            console.log('Cleaning up existing tab functionality');
+        }
+        
+        const subcatTabs = document.querySelectorAll('.subcategory-tab');
+        subcatTabs.forEach(tab => {
+            tab.removeEventListener('click', handleTabClick);
+            tab.addEventListener('click', handleTabClick);
+        });
+        
+        // Add JS for alternate tabs
+        const subcatTabsAlt = document.querySelectorAll('.subcategory-tab-alt');
+        subcatTabsAlt.forEach(tab => {
+            tab.removeEventListener('click', handleTabClickAlt);
+            tab.addEventListener('click', handleTabClickAlt);
+        });
+        
+        tabFunctionality = true;
+        console.log('Tab functionality initialized');
+    }
+
+    // Event handler for regular tabs
+    function handleTabClick() {
+        const allTabs = document.querySelectorAll('.subcategory-tab');
+        allTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const subcatName = this.getAttribute('data-subcategory-id').trim().toLowerCase();
+        currentActiveFilter = subcatName;
+        sessionStorage.setItem('activeSubcategoryFilter', currentActiveFilter);
+        filterProductsBySubcategory(subcatName);
+    }
+
+    // Event handler for alternate tabs
+    function handleTabClickAlt() {
+        const allTabs = document.querySelectorAll('.subcategory-tab-alt');
+        allTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const subcatName = this.getAttribute('data-subcategory-id').trim().toLowerCase();
+        currentActiveFilter = subcatName;
+        sessionStorage.setItem('activeSubcategoryFilter', currentActiveFilter);
+        filterProductsBySubcategory(subcatName);
+    }
+
+    // Function to handle initial load
+    function handleInitialLoad() {
+        console.log('Handling initial load');
+        
+        // Initialize tab functionality
+        initializeTabFunctionality();
+        
+        // Always start with the first tab active (don't restore previous state)
+        const firstTab = document.querySelector('.subcategory-tab-alt');
+        if (firstTab) {
+            // Remove active class from all tabs
+            const allTabs = document.querySelectorAll('.subcategory-tab-alt');
+            allTabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Add active class to first tab
+            firstTab.classList.add('active');
+            
+            const firstSubcatName = firstTab.getAttribute('data-subcategory-id').trim().toLowerCase();
+            currentActiveFilter = firstSubcatName;
+            sessionStorage.setItem('activeSubcategoryFilter', currentActiveFilter);
+            filterProductsBySubcategory(firstSubcatName);
+            console.log('Initialized with first tab:', firstSubcatName);
+        }
+    }
+
+    // Function to handle view mode changes
+    function handleViewModeChange() {
+        console.log('View mode changed - preparing to restore filter state');
+        
+        // Use a longer delay to ensure DOM is fully updated
+        setTimeout(() => {
+            console.log('Restoring filter state after view change');
+            
+            // Re-initialize tab functionality for new DOM
+            initializeTabFunctionality();
+            
+            // Restore the previous filter state
+            restoreFilterState();
+        }, 200);
+    }
+
+    // DOM ready handler
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM Content Loaded - category filter tabs');
+        handleInitialLoad();
+        
+        // Listen for the custom events triggered by the view toggle
+        document.body.addEventListener('productViewModeChanged', handleViewModeChange);
+        document.body.addEventListener('categoryFilterTabsRefresh', handleViewModeChange);
+        
+        // Also listen for when the product listing container content changes
+        const productContainer = document.getElementById('product-listing-container');
+        if (productContainer) {
+            const observer = new MutationObserver(function(mutations) {
+                let shouldRestore = false;
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        // Check if significant content was added
+                        for (let node of mutation.addedNodes) {
+                            if (node.nodeType === 1 && (node.classList.contains('category-toolbar') || node.querySelector('.product'))) {
+                                shouldRestore = true;
+                                break;
+                            }
+                        }
+                    }
+                });
+                
+                if (shouldRestore) {
+                    console.log('Product container content significantly changed - restoring filter state');
+                    
+                    // Use a small delay to ensure all DOM updates are complete
+                    setTimeout(() => {
+                        initializeTabFunctionality();
+                        restoreFilterState();
+                    }, 100);
+                }
+            });
+            
+            observer.observe(productContainer, {
+                childList: true,
+                subtree: true
+            });
+        }
+    });
+</script>
+</div> {{!-- End page list-full-width --}}
+
+</div> {{!-- End page--category wrapper --}}
+{{/partial}}
+{{> layout/base container_active=true}}

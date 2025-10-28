@@ -1,0 +1,123 @@
+@mixin __h4($breakpoint) {
+    font-family: $font-family--heading;
+    @if($breakpoint == $screen-large) {
+        font-weight: 900;
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: -0.01em;
+    }
+}
+
+// ================================================
+// Static Header
+// ================================================
+.static-header {
+    display: flex;
+    flex-direction: column;
+    // ================================================
+    // Static Header - Section Top
+    // ================================================
+    .static-header__section-top {
+        display: block;
+    }
+    // ================================================
+    // Static Header - Top Navigation
+    // ================================================
+    .static-header__top-navigation {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    // ================================================
+    // Static Header - Top Navigation - Section 1
+    // ================================================
+    .top-navigation__section[data-top-navigation-section="1"] {
+        display: flex;
+    }
+    // ===========================================================
+    // Static Header - Top Navigation - Store Logo
+    // ===========================================================
+    .top-navigation__store-logo {
+        display: flex;
+        justify-content: center;
+        margin: auto 0;
+    }
+    .header-logo__link
+    .header-logo-image-container {
+        display: flex;
+    }
+    .header-logo__link
+    .header-logo-image-container
+    img {
+        display: flex;
+        margin: auto 0;
+        justify-self: center;
+    }
+    // ===========================================================
+    // Static Header - Top Navigation - Store Contact
+    // ===========================================================
+    .top-navigation__store-contact {
+        display: flex;
+    }
+    .store-contact__link {
+        display: inline;
+        margin: auto 0;
+    }
+    .store-contact__label {
+        @include __static-header__h4($screen-large);
+        color: $color-alt;
+        display: inline;
+    }
+    .store-contact__label
+    svg {
+        height: 15px;
+        width: 15px;
+        fill: $color-alt;
+    }
+    .store-contact__phone-number {
+        @include __static-header__h4($screen-large);
+        color: $color-secondary;
+        // padding-left: 5px;
+        position: relative;
+    }
+    // ================================================
+    // Static Header - Top Navigation - Section 2
+    // ================================================
+    .top-navigation__section[data-top-navigation-section="2"] {
+        display: flex; 
+    }
+    .top-navigation__quick-search {
+        background: none;
+        padding: 0;
+        max-width: none;
+        @include breakpoint("medium") {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+    }
+    .top-navigation__quick-search 
+    .quickSearchResults 
+    .modal-close {
+        display: none;
+        @include breakpoint("medium") {
+            display: block;
+        }
+    }
+    .top-navigation__quick-search 
+    .form {
+        @include breakpoint("medium") {
+            max-width: none;
+        }
+    }
+    .top-navigation__quick-search.dropdown.dropdown--quickSearch.is-open {
+        @media only screen and (min-width: 1025px) {
+            position: static;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+    }
+    
+}

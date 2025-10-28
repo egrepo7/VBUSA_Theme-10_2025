@@ -1,0 +1,52 @@
+{{#if category.subcategories}}
+<div class="category-cards">
+    {{#each category.subcategories}}
+        <div class="category-card">
+            <a href="{{url}}" class="category-card__link">
+                <div class="category-card__image-wrapper">
+                    {{#if image '===' null}}
+                        <img class="lazyload category-card__image" 
+                             data-src="{{getImage ../settings.store_logo.image 'logo_size'}}" 
+                             src="{{cdn 'img/loading.svg'}}" 
+                             alt="{{name}}"
+                             loading="lazy">
+                    {{else}}
+                        <img class="lazyload category-card__image" 
+                             data-sizes="auto" 
+                             src="{{cdn 'img/loading.svg'}}" 
+                             data-src="{{getImage image 'zoom_size'}}" 
+                             alt="{{name}}"
+                             loading="lazy">
+                    {{/if}}
+                    
+                    <!-- Strong gradient overlay for text readability -->
+                    <div class="category-card__gradient"></div>
+                    
+                    <!-- Content overlaid on bottom-left of image -->
+                    <div class="category-card__content">
+                        <h3 class="category-card__title">{{name}}</h3>
+                        <div class="category-card__subtitle" data-description="strip-tags">
+                            {{#if description}}
+                                {{{description}}}
+                            {{else if meta_description}}
+                                {{{meta_description}}}
+                            {{else}}
+                                Premium {{name}} for every level of play
+                            {{/if}}
+                        </div>
+                        <div class="category-card__cta">
+                            <span class="category-card__button">
+                                Shop {{name}}
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {{/each}}
+</div>
+{{/if}}
