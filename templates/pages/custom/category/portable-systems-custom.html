@@ -1,0 +1,152 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "categoryId" category.id}}
+{{inject "defaultViewType" theme_settings.product_list_display_mode}}
+
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+    
+    {{!-- USE BIGCOMMERCE ADMIN META TAGS FIRST, THEN FALLBACK TO CUSTOM --}}
+    {{#if category.meta_description}}
+        <meta name="description" content="{{category.meta_description}}">
+    {{else}}
+        <meta name="description" content="Complete portable volleyball systems for any location. Easy-to-transport, quick-setup volleyball systems perfect for parks, beaches, backyards, and tournaments. Professional-grade portability without compromise.">
+    {{/if}}
+    
+    {{#if category.meta_keywords}}
+        <meta name="keywords" content="{{category.meta_keywords}}">
+    {{else}}
+        <meta name="keywords" content="portable volleyball systems, mobile volleyball equipment, transportable volleyball nets, portable volleyball posts, beach volleyball systems, backyard volleyball sets">
+    {{/if}}
+    
+    {{!-- Open Graph tags for social sharing --}}
+    <meta property="og:title" content="{{#if category.page_title}}{{category.page_title}}{{else}}Portable Volleyball Systems | VolleyballUSA{{/if}}">
+    <meta property="og:description" content="{{#if category.meta_description}}{{category.meta_description}}{{else}}Complete portable volleyball systems for any location. Easy-to-transport, quick-setup systems for parks, beaches, and tournaments.{{/if}}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{urls.canonical}}">
+    {{#if category.image}}
+    <meta property="og:image" content="{{getImage category.image 'zoom_size'}}">
+    {{/if}}
+    
+    {{!-- Twitter Card tags --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{#if category.page_title}}{{category.page_title}}{{else}}Portable Volleyball Systems{{/if}}">
+    <meta name="twitter:description" content="{{#if category.meta_description}}{{category.meta_description}}{{else}}Complete portable volleyball systems for any location. Easy setup, professional quality.{{/if}}">
+    
+    {{!-- Structured data for portable systems category --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "{{#if category.page_title}}{{category.page_title}}{{else}}Portable Volleyball Systems{{/if}}",
+        "description": "{{#if category.meta_description}}{{category.meta_description}}{{else}}Complete portable volleyball systems for easy transport and quick setup at any location.{{/if}}",
+        "url": "{{urls.canonical}}",
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Portable Volleyball Systems Collection",
+            "description": "Professional portable volleyball equipment for any location",
+            "numberOfItems": "30+"
+        }
+    }
+    </script>
+{{/partial}}
+
+{{#partial "page"}}
+
+{{!-- {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}} --}}
+
+{{!-- Hero Section for Portable Systems Category --}}
+{{#if category.image}}
+    <section class="category-hero" style="height: 670px;">
+        <div class="category-hero__background" 
+             style="background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20)), url('{{getImage category.image 'zoom_size'}}') center/cover; height: 670px;">
+            <div class="container">
+                <div class="category-hero__content">
+                    <h1 class="category-hero__title h1">PORTABLE VOLLEYBALL SYSTEMS <strong>FOR ANY LOCATION</strong></h1>
+                    <div class="category-hero__subtitle">Take your game anywhere with our complete portable volleyball systems. Designed for easy transport and quick setup, these professional-quality systems are perfect for parks, beaches, backyards, and tournaments. Get regulation play without the permanent installation.</div>
+
+                    <!-- Scroll Down Arrow -->
+                    <div class="category-hero__scroll-arrow">
+                        <div class="category-hero__scroll-btn" aria-label="Scroll to products">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{{/if}}
+
+ {{!-- Buying Guide Component --}}
+        <div style="max-width: calc(1576px + 1rem * 2); margin: 2rem auto 0 auto; padding: 0 1rem;">
+            {{> components/custom/buying-guide}}
+        </div>
+        
+
+
+<div class="page list-full-width">
+    <div class="page-content" >
+       
+        {{!-- Always show page heading below hero and above products --}}
+        {{#unless theme_settings.hide_category_page_heading }}
+            <section class="category__content-container">
+                <h1 class="page-heading page-heading--category">{{category.name}}</h1>
+                {{{region name="category_below_header"}}}
+                {{!> components/custom/category-overlap-cta }}
+            </section>
+        {{/unless}}
+        {{{region name="category_below_heading"}}}
+        {{#if theme_settings.its.category_subcat_cards}}
+            {{> components/custom/subcat-grid}}
+        {{/if}}
+        <section id="product-listing-container">
+            {{> components/custom/category/full-width-product-listing}}
+        </section>
+        {{#if category.description}}
+            <div class="category__description-container">
+                {{{category.description}}}
+            </div>
+        {{/if}}
+        <!-- ITS LOADING OVERLAY -->
+        <div class="loadingOverlay loadingOverlay--product-listing"></div>
+        {{{region name="category_below_content"}}}
+    </div>
+</div>
+
+{{/partial}}
+
+{{#partial "page_scripts"}}
+    {{#if category.image}}
+        <script>
+            // Smooth scrolling for hero scroll arrow on portable-systems page
+            document.addEventListener('DOMContentLoaded', function() {
+                const scrollArrow = document.querySelector('.category-hero__scroll-btn');
+                if (scrollArrow) {
+                    scrollArrow.addEventListener('click', function() {
+                        const productSection = document.querySelector('#product-listing-container');
+                        if (productSection) {
+                            productSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                }
+            });
+        </script>
+    {{/if}}
+{{/partial}}
+
+{{> layout/base container_active=false}}

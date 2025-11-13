@@ -1025,7 +1025,7 @@
                         "item-1": {
                             "name": "Volleyball Nets",
                             "url": "/volleyball-nets/",
-                            "has-sub-items": "true",
+                            "has-sub-items": "false",
                             "number-of-sub-items": "4",
                             "sub-item-1": {
                                 "name": "Outdoor Nets",
@@ -1079,7 +1079,7 @@
                         "item-3": {
                             "name": "Complete Systems",
                             "url": "/complete-systems/",
-                            "has-sub-items": "true",
+                            "has-sub-items": "false",
                             "number-of-sub-items": "2",
                             "sub-item-1": {
                                 "name": "Indoor Systems",
@@ -1097,7 +1097,7 @@
                         "item-4": {
                             "name": "Court Construction",
                             "url": "/court-construction/",
-                            "has-sub-items": "true",
+                            "has-sub-items": "false",
                             "number-of-sub-items": "4",
                             "sub-item-1": {
                                 "name": "Home/City Outdoor Volleyball Court",
@@ -1133,7 +1133,7 @@
                         "item-6": {
                             "name": "Sleeves",
                             "url": "/sleeves/",
-                            "has-sub-items": "true",
+                            "has-sub-items": "false",
                             "number-of-sub-items": "2",
                             "sub-item-1": {
                                 "name": "Indoor Sleeves/ Floor Anchors",
@@ -1151,7 +1151,7 @@
                         "item-7": {
                             "name": "Volleyball Poles",
                             "url": "/volleyball-poles/",
-                            "has-sub-items": "true",
+                            "has-sub-items": "false",
                             "number-of-sub-items": "2",
                             "sub-item-1": {
                                 "name": "Indoor Poles",
@@ -1189,7 +1189,7 @@
                         "item-8": {
                             "name": "Volleyballs",
                             "url": "/volleyballs/",
-                            "has-sub-items": "true",
+                            "has-sub-items": "false",
                             "number-of-sub-items": "2",
                             "sub-item-1": {
                                 "name": "Outdoor Volleyballs",
@@ -1372,7 +1372,7 @@
                         "item-11": {
                             "name": "Pool Volleyball",
                             "url": "/pool-volleyball/",
-                            "has-sub-items": "true",
+                            "has-sub-items": "false",
                             "number-of-sub-items": "3",
                                 "sub-item-1": {
                                     "name": "Pool Volleyball Poles",

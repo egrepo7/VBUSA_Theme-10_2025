@@ -51,6 +51,19 @@
         @media (max-width: 768px) {
             min-height: 300px; // Smaller minimum on mobile
             padding: 0.5rem;
+            height: 100%; // Full height on mobile
+        }
+    }
+    
+    // Mobile-specific styles for productView-img-container links
+    .productView-img-container {
+        @media (max-width: 768px) {
+            a {
+                height: 100%; // Full height for links on mobile
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
     }
     

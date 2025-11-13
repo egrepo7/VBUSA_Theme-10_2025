@@ -29,6 +29,7 @@
 .overlap-cta__image {
     min-height: 580px;
     object-fit: cover;
+    border-radius: 12px;
 }
 
 .overlap-cta__content {
@@ -40,6 +41,7 @@
     max-width: calc(100% - 2rem);
     margin: 0 1rem;
     margin-top: -180px;
+    border-radius: 0 12px 12px 0;
 
     @include breakpoint('medium') {
         // 801px and up

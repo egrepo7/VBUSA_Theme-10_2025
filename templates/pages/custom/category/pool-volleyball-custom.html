@@ -95,7 +95,16 @@ page_type: category
 <div class="page--category {{#unless category.image}}no-hero{{/unless}}">
 
 <!-- {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}} -->
-
+<!-- Category Description Section - WYSIWYG Content -->
+{{!-- {{#if category.description}}
+<section class="category-description">
+    <div class="container">
+        <div class="category-description__content">
+            {{{category.description}}}
+        </div>
+    </div>
+</section>
+{{/if}} --}}
 <!-- Category Hero Section - Only show if category has an image -->
 {{#if category.image}}
 <section class="category-hero">

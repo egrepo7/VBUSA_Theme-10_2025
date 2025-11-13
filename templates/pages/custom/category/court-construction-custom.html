@@ -1,0 +1,197 @@
+---
+category:
+  shop_by_price: true
+  products:
+    limit: {{theme_settings.categorypage_products_per_page}}
+  subcategories:
+    limit: 50
+    products:
+      limit: 12
+products:
+  featured:
+    limit: 12
+page_type: category
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "categoryId" category.id}}
+{{inject "defaultViewType" theme_settings.product_list_display_mode}}
+{{inject "pageType" "custom-court-construction"}}
+
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+    
+    {{!-- USE BIGCOMMERCE ADMIN META TAGS FIRST, THEN FALLBACK TO CUSTOM --}}
+    {{#if category.meta_description}}
+        <meta name="description" content="{{category.meta_description}}">
+    {{else}}
+        <meta name="description" content="Professional volleyball court construction services and equipment. From home courts to college facilities, indoor gyms to grass courts - build the perfect volleyball court for your needs.">
+    {{/if}}
+    
+    {{#if category.meta_keywords}}
+        <meta name="keywords" content="{{category.meta_keywords}}">
+    {{else}}
+        <meta name="keywords" content="volleyball court construction, volleyball court installation, indoor volleyball courts, outdoor volleyball courts, home volleyball courts, college volleyball courts, grass volleyball courts, turf volleyball courts">
+    {{/if}}
+    
+    {{!-- Open Graph tags for social sharing --}}
+    <meta property="og:title" content="{{#if category.page_title}}{{category.page_title}}{{else}}Professional Volleyball Court Construction | VolleyballUSA{{/if}}">
+    <meta property="og:description" content="{{#if category.meta_description}}{{category.meta_description}}{{else}}Professional volleyball court construction services and equipment for every setting - home courts, college facilities, indoor gyms, and grass courts.{{/if}}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{urls.canonical}}">
+    {{#if category.image}}
+    <meta property="og:image" content="{{getImage category.image 'zoom_size'}}">
+    {{/if}}
+    
+    {{!-- Twitter Card tags --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{#if category.page_title}}{{category.page_title}}{{else}}Professional Volleyball Court Construction{{/if}}">
+    <meta name="twitter:description" content="{{#if category.meta_description}}{{category.meta_description}}{{else}}Build the perfect volleyball court with our professional construction services and equipment.{{/if}}">
+    
+
+    
+    {{!-- Preload critical hero image to prevent CLS --}}
+    {{#if category.image}}
+        <link rel="preload" as="image" href="{{getImage category.image 'zoom_size'}}" />
+    {{/if}}
+    {{!-- Preload critical court construction images --}}
+    <link rel="preload" as="image" href="{{cdn 'assets/img/categories/court-construction/home-courts.jpg'}}" />
+    
+    {{!-- Preload critical Google Fonts to prevent CLS --}}
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLCz7Z1xlFd2JQEk.woff2" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLBT5Z1xlFd2JQEk.woff2" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLDD4Z1xlFd2JQEk.woff2" crossorigin>
+    
+    {{!-- CLS prevention meta --}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {{!-- Structured data for court construction category --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "{{#if category.page_title}}{{category.page_title}}{{else}}Professional Volleyball Court Construction{{/if}}",
+        "description": "{{#if category.meta_description}}{{category.meta_description}}{{else}}Professional volleyball court construction services and equipment for home courts, college facilities, indoor gyms, and grass courts.{{/if}}",
+        "url": "{{urls.canonical}}",
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Volleyball Court Construction Services",
+            "description": "Professional volleyball court construction for every setting",
+            "numberOfItems": "25+"
+        }
+    }
+    </script>
+
+{{/partial}}
+
+{{#partial "page"}}
+{{!-- Add class to indicate if hero is present or not --}}
+<div class="page--category {{#unless category.image}}no-hero{{/unless}}">
+
+<!-- {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}} -->
+
+<!-- Category Hero Section - Only show if category has an image -->
+{{#if category.image}}
+<section class="category-hero">
+    <div class="category-hero__background" 
+         data-category="{{category.url}}"
+         style="background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('{{getImage category.image 'zoom_size'}}') center/cover;">
+        <div class="container">
+            <div class="category-hero__content">
+                <h1 class="category-hero__title h1">From the Ground Up—<strong>Complete Volleyball Court Construction</strong></h1>
+                <div class="category-hero__subtitle">From backyard home courts to professional college facilities, we provide complete volleyball court construction solutions. Our expert team can help design indoor gyms, outdoor sand courts, grass courts, and everything in between to meet your specific needs and budget.</div>
+                
+                
+                <!-- Scroll Down Arrow -->
+                <div class="category-hero__scroll-arrow">
+                    <div class="category-hero__scroll-btn" aria-label="Scroll to categories">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{/if}}
+
+<!-- Volleyball Court Construction Category Cards -->
+<section class="category-showcase" id="volleyball-court-construction-section">
+    <div class="container">
+        <h2 class="category-showcase__title">VOLLEYBALL COURT CONSTRUCTION</h2>
+        
+        <div class="category-showcase__grid category-showcase__grid--2x2">
+            <!-- Home/City Courts -->
+            <a href="/how-to-build-your-own-sand-court/" class="category-showcase__card category-showcase__card--clickable">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/court-construction/home-court.webp'}}');">
+                    <div class="category-showcase__overlay">
+                        <div class="category-showcase__content">
+                            <h3 class="category-showcase__card-title">HOME/CITY COURTS</h3>
+                            <p class="category-showcase__card-subtitle">Professional home and city volleyball court construction for residential backyards and municipal recreation facilities.</p>
+                            <span class="button button--primary">
+                                EXPLORE HOME COURTS
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- College Courts -->
+            <a href="/college-court-construction/" class="category-showcase__card category-showcase__card--clickable">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/court-construction/college-court.webp'}}');">
+                    <div class="category-showcase__overlay">
+                        <div class="category-showcase__content">
+                            <h3 class="category-showcase__card-title">COLLEGE COURTS</h3>
+                            <p class="category-showcase__card-subtitle">Professional indoor volleyball court construction for schools, clubs, and Division 1 colleges.</p>
+                            <span class="button button--primary">
+                                EXPLORE COLLEGE COURTS
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Indoor Courts -->
+            <a href="/indoor-court-construction/" class="category-showcase__card category-showcase__card--clickable">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/court-construction/indoor-court.webp'}}');">
+                    <div class="category-showcase__overlay">
+                        <div class="category-showcase__content">
+                            <h3 class="category-showcase__card-title">INDOOR COURTS</h3>
+                            <p class="category-showcase__card-subtitle">Expertise in a variety of installations for indoor gym surfaces and lightweight volleyball systems.</p>
+                            <span class="button button--primary">
+                                EXPLORE INDOOR COURTS
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Grass/Turf Courts -->
+            <a href="/grass-court-construction/" class="category-showcase__card category-showcase__card--clickable">
+                <div class="category-showcase__image" style="background-image: url('{{cdn 'assets/img/categories/court-construction/grass-court.webp'}}');">
+                    <div class="category-showcase__overlay">
+                        <div class="category-showcase__content">
+                            <h3 class="category-showcase__card-title">GRASS/TURF COURTS</h3>
+                            <p class="category-showcase__card-subtitle">Natural grass and artificial turf volleyball courts perfect for outdoor play in any weather condition.</p>
+                            <span class="button button--primary">
+                                EXPLORE GRASS/TURF COURTS
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+</div> {{!-- End page--category wrapper --}}
+{{/partial}}
+
+
+{{> layout/base container_active=false}}
