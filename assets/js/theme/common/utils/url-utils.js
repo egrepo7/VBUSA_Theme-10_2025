@@ -1,6 +1,37 @@
 import Url from 'url';
 
 const urlUtils = {
+    // List of tracking parameters that should be preserved during URL manipulation
+    trackingParams: [
+        'gclid',      // Google Ads Click ID
+        'gclsrc',     // Google Ads source
+        'dclid',      // Display & Video 360 Click ID
+        'fbclid',     // Facebook Click ID
+        'msclkid',    // Microsoft Advertising Click ID
+        'ttclid',     // TikTok Click ID
+        'twclid',     // Twitter Click ID
+        'utm_source', // UTM source
+        'utm_medium', // UTM medium
+        'utm_campaign', // UTM campaign
+        'utm_term',   // UTM term
+        'utm_content' // UTM content
+    ],
+
+    // Preserve tracking parameters from current URL when building new query strings
+    preserveTrackingParams: (newQueryParams = {}) => {
+        const currentUrl = Url.parse(window.location.href, true);
+        const preservedParams = {};
+        
+        // Copy tracking parameters from current URL
+        urlUtils.trackingParams.forEach(param => {
+            if (currentUrl.query[param]) {
+                preservedParams[param] = currentUrl.query[param];
+            }
+        });
+        
+        // Merge with new parameters (new parameters take precedence)
+        return Object.assign(preservedParams, newQueryParams);
+    },
     getUrl: () => `${window.location.pathname}${window.location.search}`,
 
     goToUrl: (url) => {
@@ -29,16 +60,24 @@ const urlUtils = {
         let key;
         for (key in queryData) {
             if (queryData.hasOwnProperty(key)) {
+                // Skip empty values to prevent invalid URLs
+                if (queryData[key] === null || queryData[key] === undefined || queryData[key] === '') {
+                    continue;
+                }
+                
                 if (Array.isArray(queryData[key])) {
                     let ndx;
 
                     for (ndx in queryData[key]) {
                         if (queryData[key].hasOwnProperty(ndx)) {
-                            out += `&${key}=${queryData[key][ndx]}`;
+                            const value = queryData[key][ndx];
+                            if (value !== null && value !== undefined && value !== '') {
+                                out += `&${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+                            }
                         }
                     }
                 } else {
-                    out += `&${key}=${queryData[key]}`;
+                    out += `&${encodeURIComponent(key)}=${encodeURIComponent(queryData[key])}`;
                 }
             }
         }

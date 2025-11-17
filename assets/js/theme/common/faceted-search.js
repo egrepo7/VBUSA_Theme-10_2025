@@ -402,9 +402,12 @@ class FacetedSearch {
         const urlQueryParams = {};
         Object.assign(urlQueryParams, url.query);
 
+        // Preserve tracking parameters (gclid, utm_*, etc.) during URL manipulation
+        const urlQueryParamsWithTracking = urlUtils.preserveTrackingParams(urlQueryParams);
+
         event.preventDefault();
 
-        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(urlQueryParams) }));
+        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(urlQueryParamsWithTracking) }));
     }
 
     onRangeSubmit(event, currentTarget) {
@@ -428,7 +431,10 @@ class FacetedSearch {
         const urlQueryParams = {};
         Object.assign(urlQueryParams, url.query);
 
-        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(urlQueryParams) }));
+        // Preserve tracking parameters (gclid, utm_*, etc.) during URL manipulation
+        const urlQueryParamsWithTracking = urlUtils.preserveTrackingParams(urlQueryParams);
+
+        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(urlQueryParamsWithTracking) }));
     }
 
     onStateChange() {

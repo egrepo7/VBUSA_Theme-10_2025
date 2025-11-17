@@ -29,7 +29,10 @@ export default class CatalogPage extends PageManager {
         url.query[queryParams[0]] = queryParams[1];
         delete url.query.page;
 
+        // Preserve tracking parameters (gclid, utm_*, etc.) during URL manipulation
+        const urlQueryParamsWithTracking = urlUtils.preserveTrackingParams(url.query);
+
         event.preventDefault();
-        window.location = Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(url.query) });
+        window.location = Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(urlQueryParamsWithTracking) });
     }
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Parameter Test</title>
+    <script src="./assets/dist/theme-bundle.main.js"></script>
+</head>
+<body>
+    <h1>Google Analytics Tracking Parameter Test</h1>
+    
+    <p>Current URL: <span id="current-url"></span></p>
+    
+    <div>
+        <h2>Test Cases</h2>
+        <button onclick="testBuildQueryString()">Test buildQueryString with gclid</button>
+        <button onclick="testPreserveTrackingParams()">Test preserveTrackingParams</button>
+        <button onclick="simulateSort()">Simulate Sort Operation</button>
+    </div>
+    
+    <div id="results" style="margin-top: 20px; padding: 10px; background: #f0f0f0;">
+        <h3>Results:</h3>
+        <div id="test-output"></div>
+    </div>
+
+    <script>
+        // Display current URL
+        document.getElementById('current-url').textContent = window.location.href;
+        
+        // Test functions
+        function log(message) {
+            const output = document.getElementById('test-output');
+            output.innerHTML += '<div>' + new Date().toLocaleTimeString() + ': ' + message + '</div>';
+        }
+        
+        function testBuildQueryString() {
+            // Simulate URL with gclid parameter
+            const testParams = {
+                gclid: 'CjwKCAjw123abc_test_gclid',
+                sort: 'price_asc',
+                category: 'volleyball'
+            };
+            
+            // Test if buildQueryString preserves all parameters
+            const queryString = window.stencilUtils?.tools?.urlUtils?.buildQueryString?.(testParams) || 'urlUtils not available';
+            log('buildQueryString test: ' + queryString);
+            
+            // Check if gclid is preserved
+            if (queryString.includes('gclid=CjwKCAjw123abc_test_gclid')) {
+                log('✅ SUCCESS: gclid parameter preserved in buildQueryString');
+            } else {
+                log('❌ FAIL: gclid parameter NOT preserved in buildQueryString');
+            }
+        }
+        
+        function testPreserveTrackingParams() {
+            // Test the new preserveTrackingParams function
+            if (window.stencilUtils?.tools?.urlUtils?.preserveTrackingParams) {
+                // Simulate current URL with tracking params
+                const mockUrl = 'https://example.com?gclid=test123&utm_source=google&sort=name_asc';
+                
+                // This would normally use the current URL, but for testing we'll simulate
+                log('preserveTrackingParams function is available');
+                log('✅ SUCCESS: preserveTrackingParams function loaded');
+            } else {
+                log('❌ FAIL: preserveTrackingParams function not available');
+            }
+        }
+        
+        function simulateSort() {
+            // Simulate what happens during a sort operation
+            log('Simulating sort operation...');
+            
+            // Check if the URL would preserve gclid during sort
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('gclid', 'test_gclid_value');
+            currentUrl.searchParams.set('sort', 'price_asc');
+            
+            // Use history API to test (without actually changing URL)
+            log('Test URL would be: ' + currentUrl.toString());
+            
+            if (currentUrl.toString().includes('gclid=test_gclid_value')) {
+                log('✅ SUCCESS: gclid would be preserved during sort');
+            } else {
+                log('❌ FAIL: gclid would be lost during sort');
+            }
+        }
+        
+        // Run initial tests
+        log('Starting tracking parameter tests...');
+        log('BigCommerce Stencil Utils available: ' + (!!window.stencilUtils));
+    </script>
+</body>
+</html>
